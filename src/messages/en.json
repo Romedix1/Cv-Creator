@@ -1,0 +1,11 @@
+{
+    "Nav": {
+        "templates": "Templates",
+        "login": "Login",
+        "languageText": "Language",
+        "themeText": "Theme"
+    },
+    "Button": {
+        "createCV": "Create CV"
+    }
+}

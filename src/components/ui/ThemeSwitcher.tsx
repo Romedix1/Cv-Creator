@@ -16,7 +16,7 @@ export default function ThemeSwitcher() {
     const isDark = theme === "dark";
 
     return (
-        <button onClick={toggleSwitch} className="w-15 h-9 bg-[#D9D9D9] dark:bg-default rounded-full p-1 flex items-center cursor-pointer transition-colors ">
+        <button onClick={toggleSwitch} className="w-15 h-9 bg-gray-300 dark:bg-default hover:dark:bg-default-hover hover:bg-[#BFBFBF] rounded-full p-1 flex items-center cursor-pointer transition-colors ">
             <div className={`w-7 h-7 rounded-full bg-surface-static shadow-[0px_2px_4px_0px_rgba(0,0,0,0.33)] flex items-center justify-center transition-transform ${isDark && "translate-x-6"}`}>
                 {!isDark ? (
                         <SunIcon className="w-5 h-5 transition-all"/>
