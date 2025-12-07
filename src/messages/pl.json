@@ -1,0 +1,11 @@
+{
+    "Nav": {
+        "templates": "Szablony",
+        "login": "Zaloguj",
+        "languageText": "Język",
+        "themeText": "Motyw"
+    },
+    "Button": {
+        "createCV": "Stwórz CV"
+    }
+}

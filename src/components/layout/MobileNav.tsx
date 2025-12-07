@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import HamburgerMenu from "../ui/HamburgerMenu";
 import MobileMenu from "./MobileMenu";
 

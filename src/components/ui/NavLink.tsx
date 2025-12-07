@@ -3,21 +3,21 @@ import Link from "next/link"
 type NavLinkProps = {
     className?: string
     onClick?: () => void;
-    page: PageName
+    page: string
 }
 
-type PageName = "Templates" | "Login" | "Home";
-
-const URL_MAP: Record<PageName, string> = {
+const URL_MAP: Record<string, string> = {
   "Home": "/",
   "Templates": "/templates",
+  "Szablony": "/templates",
   "Login": "/login",
+  "Zaloguj": "/login",
 };
 
 export default function NavLink({className, onClick, page}: NavLinkProps) {
     const url = URL_MAP[page];
 
     return (
-        <Link className={className} onClick={onClick} href={url}>{page}</Link>
+        <Link className={`${className} hover:text-default duration-200`} onClick={onClick} href={url}>{page}</Link>
     )
 }
