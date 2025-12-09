@@ -12,7 +12,7 @@ export default function Nav() {
             <div className="flex justify-between w-full h-16 gap-8">
                 <div className="flex gap-8 items-center">
                     <Link href="/">
-                        <h1 className="text-main text-2xl font-medium">CV Creator</h1>
+                        <span className="text-main text-2xl font-medium">CV Creator</span>
                     </Link>
                     <NavLink className="hidden md:block text-text-muted" page={t("templates")} />
                 </div>
