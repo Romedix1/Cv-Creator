@@ -5,6 +5,10 @@
         "languageText": "Język",
         "themeText": "Motyw"
     },
+    "Hero": {
+        "header": "Kreator CV, który pomoże Ci zdobyć wymarzoną pracę",
+        "subtitle": "Wybierz profesjonalny szablon, wypełnij dane i pobierz gotowe CV za darmo. Bez logowania i ukrytych opłat."
+    },
     "Button": {
         "createCV": "Stwórz CV"
     }
