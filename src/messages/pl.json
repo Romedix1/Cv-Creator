@@ -14,6 +14,28 @@
         "subtitle": "Darmowe, czytelne i dopasowane do Twojej branży.",
         "viewAllBtn": "Zobacz wszystkie szablony"
     },
+    "FeaturesSection": {
+        "header": "Dopasuj CV do swoich potrzeb",
+        "subtitle": "Pełna kontrola nad wyglądem dokumentu.",
+        "cards": {
+            "card1": {
+                "header": "Zapisuj w chmurze",
+                "text": "Załóż darmowe konto, aby przechowywać do 5 różnych wersji CV i mieć do nich dostęp z dowolnego urządzenia."
+            },
+            "card2": {
+                "header": "Eksport do PDF",
+                "text": "Pobierz gotowy dokument w wysokiej jakości A4, który bez problemu przejdzie przez systemy rekrutacyjne (ATS)."
+            },
+            "card3": {
+                "header": "Edycja typografii",
+                "text": "Zmieniaj rozmiar czcionki, odstępy między liniami i marginesy, aby zmieścić wszystko na jednej stronie."
+            },
+            "card4": {
+                "header": "Własne sekcje",
+                "text": "Dodawaj niestandardowe kategorie, takie jak \"Projekty\" czy \"Wolontariat\". Zmieniaj ich kolejność jednym ruchem."
+            }
+        }
+    },
     "Button": {
         "createCV": "Stwórz CV"
     }
