@@ -4,7 +4,6 @@ import Preview1 from "../../../public/images/Templates/classic-corporate.png"
 import Preview2 from "../../../public/images/Templates/tech-minimal.png"
 import Preview3 from "../../../public/images/Templates/swiss-minimalist.png"
 import Button from "../ui/Button"
-import Link from "next/link"
 
 export default function TemplatesSection() {
     const tTemplates = useTranslations("TemplatesSection");
@@ -29,8 +28,8 @@ export default function TemplatesSection() {
                 })}
             </div>
 
-            <div  className="flex flex-col items-center">
-                <Button className="w-[450px] hover:bg-surface!" text={tTemplates("viewAllBtn")} variant="secondary" />
+            <div className="flex flex-col items-center">
+                <Button className="w-[300px] md:w-[450px] hover:bg-surface!" text={tTemplates("viewAllBtn")} variant="secondary" />
             </div>
         </section>
     )

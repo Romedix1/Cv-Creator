@@ -28,7 +28,7 @@ export default function HeroSection() {
             </div>
             <div>
                 <div className="aspect-3/4 relative w-[300px] 2xl:w-[400px]">
-                    <div className="absolute w-[400px] 2xl:w-[500px] h-[400px] 2xl:h-[500px] bg-default -left-[25px] rounded-full opacity-25 blur-[100px]"></div>
+                    <div className="absolute w-[300px] 2xl:w-[500px] h-[400px] 2xl:h-[500px] bg-default -left-[25px] rounded-full opacity-25 blur-[100px]"></div>
                     <Image src={CvPreview} alt="CV preview" fill className="object-contain" />
                 </div>
             </div>

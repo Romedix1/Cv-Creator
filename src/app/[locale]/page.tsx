@@ -1,3 +1,4 @@
+import FeaturesSection from "@/components/layout/FeatuersSection";
 import HeroSection from "@/components/layout/HeroSection";
 import Nav from "@/components/layout/Nav";
 import TemplatesSection from "@/components/layout/TemplatesSection";
@@ -8,6 +9,7 @@ export default function Home() {
       <Nav />
       <HeroSection />
       <TemplatesSection />
+      <FeaturesSection />
     </>
   );
 }

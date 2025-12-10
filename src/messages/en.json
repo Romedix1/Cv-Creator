@@ -14,6 +14,28 @@
         "subtitle": "Free, clean, and tailored to your industry.",
         "viewAllBtn": "View all templates"
     },
+    "FeaturesSection": {
+        "header": "Customize Your CV to Fit Your Needs",
+        "subtitle": "Complete control over your document's appearance.",
+        "cards": {
+          "card1": {
+            "header": "Save to the Cloud",
+            "text": "Create a free account to store up to 5 different CV versions and access them from any device."
+          },
+          "card2": {
+            "header": "Export to PDF",
+            "text": "Download your final document in high-quality A4 format, guaranteed to pass Applicant Tracking Systems (ATS)."
+          },
+          "card3": {
+            "header": "Typography Editing",
+            "text": "Change font size, line spacing, and margins to ensure everything fits perfectly on a single page."
+          },
+          "card4": {
+            "header": "Custom Sections",
+            "text": "Add non-standard categories, such as 'Projects' or 'Volunteering'. Reorder your sections with a single drag-and-drop."
+          }
+        }
+    },
     "Button": {
         "createCV": "Create CV"
     }
