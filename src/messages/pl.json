@@ -9,6 +9,11 @@
         "header": "Kreator CV, który pomoże Ci zdobyć wymarzoną pracę",
         "subtitle": "Wybierz profesjonalny szablon, wypełnij dane i pobierz gotowe CV za darmo. Bez logowania i ukrytych opłat."
     },
+    "TemplatesSection": {
+        "header": "Wybierz profesjonalny szablon",
+        "subtitle": "Darmowe, czytelne i dopasowane do Twojej branży.",
+        "viewAllBtn": "Zobacz wszystkie szablony"
+    },
     "Button": {
         "createCV": "Stwórz CV"
     }

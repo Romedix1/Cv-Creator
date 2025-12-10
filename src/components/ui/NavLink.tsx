@@ -10,7 +10,7 @@ const URL_MAP: Record<string, string> = {
   "Home": "/",
   "Templates": "/templates",
   "Szablony": "/templates",
-  "Login": "/login",
+  "Log In": "/login",
   "Zaloguj": "/login",
 };
 

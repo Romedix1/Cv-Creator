@@ -1,11 +1,13 @@
 import HeroSection from "@/components/layout/HeroSection";
 import Nav from "@/components/layout/Nav";
+import TemplatesSection from "@/components/layout/TemplatesSection";
 
 export default function Home() {
   return (
     <>
       <Nav />
       <HeroSection />
+      <TemplatesSection />
     </>
   );
 }

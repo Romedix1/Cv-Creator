@@ -1,9 +1,18 @@
 {
     "Nav": {
         "templates": "Templates",
-        "login": "Login",
+        "login": "Log In",
         "languageText": "Language",
         "themeText": "Theme"
+    },
+    "Hero": {
+        "header": "The CV builder that helps you land your dream job",
+        "subtitle": "Choose a professional template, fill in your details, and download your CV for free. No login or hidden fees."
+    },
+    "TemplatesSection": {
+        "header": "Choose a professional template",
+        "subtitle": "Free, clean, and tailored to your industry.",
+        "viewAllBtn": "View all templates"
     },
     "Button": {
         "createCV": "Create CV"
