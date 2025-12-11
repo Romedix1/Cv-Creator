@@ -36,6 +36,25 @@
             }
         }
     },
+    "StepsSection": {
+        "header": "Gotowe CV w 3 prostych krokach",
+        "subtitle": "Nasz kreator przeprowadzi Cię przez cały proces.",
+        "cards": {
+            "card1": {
+                "header": "1. Wybierz szablon",
+                "text": "Przeglądaj darmowe wzory i wybierz ten, który pasuje do Twojej branży."
+            },
+            "card2": {
+                "header": "2. Wypełnij dane",
+                "text": "Wpisz swoje dane, dodaj własne sekcje i dopasuj rozmiar czcionki. Masz pełną kontrolę nad układem."
+            },
+            "card3": {
+                "header": "3. Pobierz PDF",
+                "text": "Zapisz gotowe CV na dysku i wyślij do pracodawcy."
+            }
+        },
+        "startCreatingBtn": "Zacznij tworzyć CV"
+    },
     "Button": {
         "createCV": "Stwórz CV"
     }
