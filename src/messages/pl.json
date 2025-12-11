@@ -55,6 +55,14 @@
         },
         "startCreatingBtn": "Zacznij tworzyć CV"
     },
+    "Footer": {
+        "text": "Najlepszy darmowy kreator CV online",
+        "templates": "Szablony",
+        "login": "Zaloguj się",
+        "policyPrivacy": "Polityka prywatności",
+        "terms": "Regulamin",
+        "rights": "Wszelkie prawa zastrzeżone."
+    },
     "Button": {
         "createCV": "Stwórz CV"
     }

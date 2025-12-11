@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image"
+import { Separator } from "./separator";
 
 type TemplateCardProps = {
     templateName: string;
@@ -13,7 +14,7 @@ export default function TemplateCard({ templateName, templatesImg }: TemplateCar
             </div>
 
             <div className="p-6 gap-2.5 flex flex-col">
-                <span className="block w-full h-px bg-border"></span>
+                <Separator />
                 <p className="text-xl font-semibold leading-7">{templateName}</p>
             </div>
         </div>

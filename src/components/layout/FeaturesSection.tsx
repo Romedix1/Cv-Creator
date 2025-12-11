@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl"
-import CloudIcon from "../../components/icons/CloudIcon"
-import PdfIcon from "../../components/icons/PdfIcon"
-import TextIcon from "../../components/icons/TextIcon"
-import SectionIcon from "../../components/icons/SectionIcon"
+import CloudIcon from "../icons/CloudIcon"
+import PdfIcon from "../icons/PdfIcon"
+import TextIcon from "../icons/TextIcon"
+import SectionIcon from "../icons/SectionIcon"
 import FeatureCard from "../ui/FeatureCard"
 
 export default function FeaturesSection() {

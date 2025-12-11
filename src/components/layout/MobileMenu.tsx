@@ -3,6 +3,7 @@ import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher";
 import NavLink from "../ui/NavLink";
 import { useTranslations } from "next-intl";
 import Button from "../ui/Button";
+import { Separator } from "../ui/separator";
 
 type MobileMenuProps = {
     isOpen: boolean;
@@ -19,7 +20,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <NavLink className="font-semibold text-xl hover:" onClick={onClose} page={tNav("login")} />
 
             <div className="flex justify-center w-full">
-                <span className="block h-px w-[96%] bg-border"></span>
+                <Separator />
             </div>
 
             <div className="flex justify-between items-center">
