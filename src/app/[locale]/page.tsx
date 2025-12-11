@@ -1,4 +1,5 @@
-import FeaturesSection from "@/components/layout/FeatuersSection";
+import FeaturesSection from "@/components/layout/FeaturesSection";
+import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/layout/HeroSection";
 import Nav from "@/components/layout/Nav";
 import StepsSection from "@/components/layout/StepsSection";
@@ -12,6 +13,7 @@ export default function Home() {
       <TemplatesSection />
       <FeaturesSection />
       <StepsSection />
+      <Footer />
     </>
   );
 }
