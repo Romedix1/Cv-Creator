@@ -2,6 +2,7 @@
     "Nav": {
         "templates": "Szablony",
         "login": "Zaloguj",
+        "logout": "Wyloguj",
         "languageText": "Język",
         "themeText": "Motyw"
     },
@@ -77,9 +78,13 @@
         "emailLabel": "Email",
         "emailPlaceholder": "j.kowalski@example.com",
         "passwordLabel": "Hasło",
-        "passwordPlaceholder": "*********",
         "registerBtn": "Zarejestruj się",
         "haveAccount": "Masz już konto? <login>Zaloguj się</login>",
         "agreementText": "Rejestrując się, akceptujesz <terms>Regulamin</terms> i <privacy>Politykę Prywatności</privacy>."
+    },
+    "Validation": {
+        "nameMin": "Imię musi mieć co najmniej 2 znaki",
+        "emailInvalid": "Niepoprawny adres email",
+        "passwordMin": "Hasło musi mieć conajmniej 6 znaków, zawierać dużą i małą literę i znak specjalny"
     }
 }
