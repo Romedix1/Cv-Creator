@@ -14,7 +14,7 @@ type ValidationErrors = {
     password?: string[];
 };
 
-export default function Register() {
+export default function RegisterPage() {
     const tRegister = useTranslations("Register");
 
     const [error, setError] = useState<ValidationErrors>({});
