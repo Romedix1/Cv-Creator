@@ -82,6 +82,17 @@
         "haveAccount": "Masz już konto? <login>Zaloguj się</login>",
         "agreementText": "Rejestrując się, akceptujesz <terms>Regulamin</terms> i <privacy>Politykę Prywatności</privacy>."
     },
+    "Login":{
+        "header": "Witaj ponownie",
+        "subtitle": "Zaloguj się, aby zarządzać swoimi CV.",
+        "emailLabel": "Email",
+        "emailPlaceholder": "j.kowalski@example.com",
+        "passwordLabel": "Hasło",
+        "forgotPassword": "Nie pamiętasz hasła?",
+        "loginBtn": "Zaloguj się",
+        "dontHaveAccount": "Nie masz konta? <login>Zarejestruj się</login>",
+        "agreementText": "Logując się, akceptujesz <terms>Regulamin</terms> i <privacy>Politykę Prywatności</privacy>."
+    },
     "Validation": {
         "nameMin": "Imię musi mieć co najmniej 2 znaki",
         "emailInvalid": "Niepoprawny adres email",
