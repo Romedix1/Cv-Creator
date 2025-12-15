@@ -16,8 +16,8 @@ export function useSignOut() {
 
             await supabase.auth.signOut();
 
-            router.refresh();
             router.push("/")
+            router.refresh();
         } catch (error) {
             console.error(error)
         } finally {
