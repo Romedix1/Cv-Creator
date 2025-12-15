@@ -2,6 +2,7 @@
     "Nav": {
         "templates": "Templates",
         "login": "Log In",
+        "logout": "Log out",
         "languageText": "Language",
         "themeText": "Theme"
     },
@@ -36,7 +37,67 @@
           }
         }
     },
+    "StepsSection": {
+        "header": "Your CV ready in 3 simple steps",
+        "subtitle": "Our builder will guide you through the whole process.",
+        "cards": {
+            "card1": {
+                "header": "1. Choose a template",
+                "text": "Browse free designs and pick one that suits your industry."
+            },
+            "card2": {
+                "header": "2. Fill in details",
+                "text": "Enter your details, add custom sections, and adjust font size. You have full control over the layout."
+            },
+            "card3": {
+                "header": "3. Download PDF",
+                "text": "Save your finished CV to your drive and send it to the employer."
+            }
+        },
+        "startCreatingBtn": "Start creating CV"
+    },
+    "Footer": {
+        "text": "The best free online CV builder",
+        "templates": "Templates",
+        "login": "Log in",
+        "policyPrivacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "rights": "All rights reserved."
+    },
     "Button": {
         "createCV": "Create CV"
+    },
+    "OAuth": {
+        "or": "or"
+    },
+    "Register": {
+        "header": "Create an account",
+        "subtitle": "Sign up to create and save CVs.",
+        "nameLabel": "First name",
+        "namePlaceholder": "John",
+        "emailLabel": "Email",
+        "emailPlaceholder": "j.doe@example.com",
+        "passwordLabel": "Password",
+        "registerBtn": "Sign up",
+        "haveAccount": "Already have an account? <login>Log in</login>",
+        "agreementText": "By registering, you accept the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "Login": {
+        "header": "Welcome back",
+        "subtitle": "Log in to manage your CVs.",
+        "emailLabel": "Email",
+        "emailPlaceholder": "j.doe@example.com",
+        "passwordLabel": "Password",
+        "forgotPassword": "Forgot password?",
+        "loginBtn": "Log in",
+        "dontHaveAccount": "Don't have an account? <login>Sign up</login>",
+        "agreementText": "By logging in, you accept the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "Validation": {
+        "nameMin": "First name must be at least 2 characters long",
+        "emailInvalid": "Invalid email address",
+        "passwordMin": "Password must be at least 6 characters long, contain an uppercase letter, a lowercase letter, and a special character",
+        "required": "This field is required",
+        "invalidLoginData": "Invalid email or password"
     }
 }

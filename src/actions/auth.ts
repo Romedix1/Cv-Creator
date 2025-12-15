@@ -26,11 +26,11 @@ export async function signUp(formData: FormData) {
         const formattedErrors: Record<string, string[]> = {};
 
         validatedData.error.issues.forEach((issue) => {
-        const fieldName = issue.path[0] as string
+            const fieldName = issue.path[0] as string
 
-        if(!formattedErrors[fieldName]) {
-            formattedErrors[fieldName] = [];
-        }
+            if(!formattedErrors[fieldName]) {
+                formattedErrors[fieldName] = [];
+            }
 
             formattedErrors[fieldName].push(issue.message);
         });
@@ -57,7 +57,7 @@ export async function signUp(formData: FormData) {
         },
     });
 
-    if (response.error) {
+    if(response.error) {
         return {
             error: response.error.message,
             apiError: response.error.message
@@ -65,4 +65,57 @@ export async function signUp(formData: FormData) {
     }
 
     return { success: true }
+}
+
+export async function signIn(formData: FormData) {
+    const t = await getTranslations("Validation")
+
+    const loginSchema = z.object({
+        email: z.string().regex(/^[^@]+@[^@]+\.[^@]+$/, { message: t("emailInvalid") }),
+        password: z.string().min(1, { message: t("required") })
+    })
+
+    const rawData = {
+        email: formData.get("email"),
+        password: formData.get("password"),
+    }
+
+    const validatedData = loginSchema.safeParse(rawData)
+
+    if(!validatedData.success) {
+        const formattedErrors: Record<string, string[]> = {}
+
+        validatedData.error.issues.forEach((issue) => {
+            const fieldName = issue.path[0] as string
+
+            if(!formattedErrors[fieldName]) {
+                formattedErrors[fieldName] = []
+            }
+
+            formattedErrors[fieldName].push(issue.message)
+        })
+
+        return {
+            success: false,
+            errors: formattedErrors
+        }
+    }
+
+    const supabase = await createClient()
+
+    const { email, password } = validatedData.data
+
+    const response = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    })
+
+    if(response.error) {
+        return {
+            error: response.error.message,
+            apiError: t("invalidLoginData")
+        }
+    }
+
+    return { success: true };
 }

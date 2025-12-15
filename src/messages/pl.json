@@ -96,6 +96,8 @@
     "Validation": {
         "nameMin": "Imię musi mieć co najmniej 2 znaki",
         "emailInvalid": "Niepoprawny adres email",
-        "passwordMin": "Hasło musi mieć conajmniej 6 znaków, zawierać dużą i małą literę i znak specjalny"
+        "passwordMin": "Hasło musi mieć conajmniej 6 znaków, zawierać dużą i małą literę i znak specjalny",
+        "required": "To pole jest wymagane",
+        "invalidLoginData": "Nieprawidłowy adres email lub hasło"
     }
 }
