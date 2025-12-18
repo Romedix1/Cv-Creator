@@ -7,11 +7,16 @@ type NavLinkProps = {
 }
 
 const URL_MAP: Record<string, string> = {
-  "Home": "/",
-  "Templates": "/templates",
-  "Szablony": "/templates",
-  "Log In": "/login",
-  "Zaloguj": "/login",
+    "Home": "/",
+    "Templates": "/templates",
+    "Szablony": "/templates",
+    "Log In": "/login",
+    "Zaloguj": "/login",
+    // TODO: UPDATE ROUTES
+    "Settings": "/",
+    "Ustawienia": "/",
+    "My CV": "/",
+    "Moje CV": "/",
 };
 
 export default function NavLink({className, onClick, page}: NavLinkProps) {
