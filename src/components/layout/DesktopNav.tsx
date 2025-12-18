@@ -1,21 +1,19 @@
-"use client"
-
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher"
 import LanguageSwitcher from "../ui/LanguageSwitcher"
 import NavLink from "../ui/NavLink"
 import Button from "../ui/Button"
-import { useSignOut } from "@/hooks/useSignOut"
+import UserMenu from "../ui/UserMenu"
 
 type DesktopNavProps = {
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
+    initials: string;
+    avatarUrl: string | undefined;
 }
 
-export default function DesktopNav({isAuthenticated}: DesktopNavProps) {
-    const tNav = useTranslations("Nav");
-    const tButton = useTranslations("Button");
-
-    const { signOut, loading } = useSignOut()
+export default async function DesktopNav({ isAuthenticated, avatarUrl, initials }: DesktopNavProps) {
+    const tNav = await getTranslations("Nav");
+    const tButton = await getTranslations("Button");
 
     return (
         <div className="hidden md:flex items-center gap-8">
@@ -24,11 +22,17 @@ export default function DesktopNav({isAuthenticated}: DesktopNavProps) {
                 <LanguageSwitcher />
             </div>
             <div className="flex items-center gap-4">
-                <div className="w-14 text-right">
-                    {isAuthenticated ? <button onClick={signOut}>{tNav("logout")}</button> : <NavLink page={tNav("login")}/>}
-                </div>
+                {!isAuthenticated &&
+                    <div className="w-14 text-right">
+                        <NavLink page={tNav("login")}/>
+                    </div>
+                }
+                        {/* <NavLink page={tNav("logout")} onClick={signOut}/> */}
 
                 <Button className="w-36" variant="primary" text={tButton("createCV")} />
+                {isAuthenticated &&
+                    <UserMenu avatarUrl={avatarUrl} initials={initials}/>
+                }
             </div>
         </div>
     )

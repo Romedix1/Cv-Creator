@@ -4,7 +4,10 @@
         "login": "Zaloguj",
         "logout": "Wyloguj",
         "languageText": "Język",
-        "themeText": "Motyw"
+        "themeText": "Motyw",
+        "userProfileAlt": "Zdjęcie profilowe",
+        "settings": "Ustawienia",
+        "myCV": "Moje CV"
     },
     "Hero": {
         "header": "Kreator CV, który pomoże Ci zdobyć wymarzoną pracę",
