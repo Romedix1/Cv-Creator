@@ -102,5 +102,16 @@
         "passwordMin": "Hasło musi mieć conajmniej 6 znaków, zawierać dużą i małą literę i znak specjalny",
         "required": "To pole jest wymagane",
         "invalidLoginData": "Nieprawidłowy adres email lub hasło"
+    },
+    "Templates": {
+        "header": "Znajdź idealny szablon dla siebie",
+        "subtitle": "Przeglądaj dziesiątki darmowych wzorów i wybierz ten, który pasuje do Twojej branży.",
+        "searchBarPlaceholder": "Szukaj Szablonu (np. IT, Kreatywne)",
+        "Filters": {
+            "all": "Wszystkie",
+            "minimalist": "Minimalistyczne",
+            "modern": "Nowoczesne",
+            "classic": "Klasyczne"
+        }
     }
 }

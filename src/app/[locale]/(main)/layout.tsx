@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import Nav from "@/components/layout/Nav";
 import { createClient } from "@/lib/supabase/server";
 import { ReactNode } from "react";
@@ -10,6 +11,7 @@ export default async function MainLayout({ children }: { children: ReactNode }) 
         <>
             <Nav user={user} />
             {children}
+            <Footer />
         </>
     );
 }
