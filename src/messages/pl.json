@@ -113,5 +113,31 @@
             "modern": "Nowoczesne",
             "classic": "Klasyczne"
         }
+    },
+    "Dashboard": {
+        "header": "Cześć",
+        "settings": "Ustawienia konta",
+        "myCVs": "Moje CV",
+        "MyCVs": {
+            "createCVBlock": "Utwórz nowe CV"
+        },
+        "Settings": {
+            "dataHeader": "Dane profilowe",
+            "userProfileAlt": "Zdjęcie profilowe",
+            "changeAvatar": "Zmień zdjęcie",
+            "firstNameLabel": "Imię",
+            "lastNameLabel": "Nazwisko",
+            "jobTitleLabel": "Tytuł zawodowy",
+            "emailLabel": "Adres e-mail",
+            "phoneLabel": "Numer telefonu",
+            "saveChangesBtn": "Zapisz zmiany",
+            "passwordHeader": "Zmiana hasła",
+            "currentPassword": "Obecne hasło",
+            "newPassword": "Nowe hasło",
+            "updatePasswordBtn": "Zaktualizuj hasło",
+            "deleteHeader": "Usuń konto",
+            "warningText": "Ta operacja jest nieodwracalna!",
+            "deleteAccountBtn": "Usuń konto"
+        }
     }
 }
