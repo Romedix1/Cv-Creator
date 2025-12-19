@@ -33,7 +33,7 @@ export default function UserMenu({ initials, avatarUrl, fullName }: UserNameProp
         return (
             <>
                 {menuItems.map((item) => (
-                    <NavLink key={item.key} className={isMobile ? mobileClasses : desktopClasses}  page={item.label} />
+                    <NavLink key={item.key} className={isMobile ? mobileClasses : desktopClasses} page={item.label} />
                 ))}
 
                 <button onClick={signOut} className={`${isMobile ? mobileClasses : desktopClasses} text-error text-left`}>{tNav("logout")}</button>

@@ -10,17 +10,18 @@ type InputProps = {
     type: string;
     placeholderValue: string;
     showPasswordIcon?: ReactNode;
-    error?: string
+    className?: string;
+    error?: string;
 }
 
-export default function Input({ name, label, type, placeholderValue, showPasswordIcon, error }: InputProps) {
+export default function Input({ name, label, type, placeholderValue, showPasswordIcon, className, error }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
     const isPasswordType = type === "password";
     const currentType = isPasswordType ? (showPassword ? "text" : "password") : type;
 
     return (
-        <div className="flex flex-col gap-2 w-full">
+        <div className={`flex flex-col gap-2 w-full ${className}`}>
             <label className="text-text-main text-[14px] font-medium">{label}</label>
 
             <div className="relative flex items-center">

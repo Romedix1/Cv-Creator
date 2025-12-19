@@ -4,7 +4,9 @@
         "login": "Log In",
         "logout": "Log out",
         "languageText": "Language",
-        "themeText": "Theme"
+        "themeText": "Theme",
+        "settings": "Settings",
+        "myCV": "My CVs"
     },
     "Hero": {
         "header": "The CV builder that helps you land your dream job",
@@ -99,5 +101,9 @@
         "passwordMin": "Password must be at least 6 characters long, contain an uppercase letter, a lowercase letter, and a special character",
         "required": "This field is required",
         "invalidLoginData": "Invalid email or password"
+    },
+    "Dashboard": {
+        "settings": "Account settings",
+        "myCVs": "My CVs"
     }
 }

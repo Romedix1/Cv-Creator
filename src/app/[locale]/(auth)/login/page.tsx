@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import Input from "@/components/ui/Input";
-import OAuthContainer from "@/components/ui/OAuthContainer";
+import OAuthContainer from "@/components/layout/OAuthContainer";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
