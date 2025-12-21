@@ -1,8 +1,10 @@
 "use server"
 
 import { createClient } from "@/lib/supabase/server"
+import { createClient as createClientAdmin } from "@supabase/supabase-js"
 import { getTranslations } from "next-intl/server"
 import { headers } from "next/headers"
+import { redirect } from "next/navigation"
 import z from "zod"
 
 export async function signUp(formData: FormData) {
@@ -118,4 +120,39 @@ export async function signIn(formData: FormData) {
     }
 
     return { success: true };
+}
+
+export async function deleteAccountAction() {
+    const t = await getTranslations("Validation")
+
+    const supabase = await createClient()
+
+    const { data: { user }, error } = await supabase.auth.getUser()
+
+    if (error || !user) {
+        throw new Error(t("sessionExpired"))
+    }
+
+    const supabaseAdmin = createClientAdmin(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!,
+        {
+            auth: {
+                autoRefreshToken: false,
+                persistSession: false,
+            },
+        }
+    )
+
+    const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(
+        user.id
+    )
+
+    if (deleteError) {
+        throw new Error(t("deleteAccount"))
+    }
+
+    await supabase.auth.signOut()
+
+    redirect("/")
 }

@@ -45,10 +45,12 @@ export default function UserMenu({ initials, avatarUrl, fullName }: UserNameProp
         <div className="relative">
             <button onClick={() => setIsOpened((prev) => !prev)} className="cursor-pointer gap-6 flex items-center focus:outline-none">
                 {avatarUrl ? (
-                    <Image referrerPolicy="no-referrer" src={avatarUrl} width={44} height={44} className="rounded-full object-cover" alt={tNav("userProfileAlt")}/>
+                    <div className="relative w-[50px] h-[50px] shrink-0 overflow-hidden rounded-full">
+                        <Image priority referrerPolicy="no-referrer" src={avatarUrl} alt={tNav("userProfileAlt")} fill className="object-cover" />
+                    </div>
                 ) : (
-                    <div className="w-11 h-11 rounded-full bg-surface-hover flex justify-center items-center hover:border-border transition-colors">
-                        <p className="text-text-main font-bold select-none">{initials}</p>
+                    <div className="w-15 h-15 rounded-full bg-surface-hover flex justify-center items-center hover:border-border">
+                        <p className="text-text-main font-bold select-none hover:text-default-hover">{initials}</p>
                     </div>
                 )}
                 <p className="md:hidden">{fullName}</p>

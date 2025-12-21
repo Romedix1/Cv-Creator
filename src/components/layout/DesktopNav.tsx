@@ -27,7 +27,6 @@ export default async function DesktopNav({ isAuthenticated, avatarUrl, initials 
                         <NavLink page={tNav("login")}/>
                     </div>
                 }
-                        {/* <NavLink page={tNav("logout")} onClick={signOut}/> */}
 
                 <Button className="w-36" variant="primary" text={tButton("createCV")} />
                 {isAuthenticated &&

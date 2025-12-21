@@ -1,3 +1,4 @@
+-- USER TABLE
 CREATE TABLE public.profiles (
   id uuid REFERENCES auth.users ON DELETE cascade NOT NULL primary key,
   first_name TEXT,
@@ -6,9 +7,6 @@ CREATE TABLE public.profiles (
   phone TEXT,
   job_title TEXT,
   avatar_url TEXT,
-  city TEXT,
-  country TEXT,
-  post_code TEXT,
   social_links jsonb DEFAULT '[]'::jsonb,
   updated_at timestamp WITH time zone DEFAULT now()
 );
@@ -27,12 +25,11 @@ DECLARE
   extracted_first_name text;
   extracted_last_name text;
 BEGIN
-  meta_full_name := new.raw_user_meta_data->>'full_name';
+  meta_full_name := COALESCE(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name');
   meta_avatar := new.raw_user_meta_data->>'avatar_url';
 
   if meta_full_name is not null THEN
     extracted_first_name := split_part(meta_full_name, ' ', 1);
-
     extracted_last_name := nullif(trim(substring(meta_full_name FROM position(' ' in meta_full_name) + 1)), '');
 
     if extracted_last_name = meta_full_name THEN
@@ -47,3 +44,10 @@ END;
 $$;
 
 CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+
+
+-- UPLOAD AVATAR POLICY
+
+CREATE POLICY "User can update own avatar" ON storage.objects FOR INSERT TO authenticated WITH CHECK ( bucket_id = 'avatars' );
+
+CREATE POLICY "Allow strict uploads" ON storage.objects FOR INSERT TO authenticated WITH CHECK ( bucket_id = 'avatars' AND (storage.foldername(name))[1] = auth.uid()::text AND (LOWER(storage.extension(name)) IN ('jpg', 'jpeg', 'png', 'webp')));

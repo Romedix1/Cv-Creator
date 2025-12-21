@@ -16,7 +16,7 @@ export const getUserProfile = cache(async (userId?: string) => {
         userMetadata = user.user_metadata;
     }
 
-    const { data: profile } = await supabase.from("profiles").select("first_name, last_name, avatar_url").eq("id", targetUserId).single();
+    const { data: profile } = await supabase.from("profiles").select("id, first_name, last_name, avatar_url, job_title, email, phone").eq("id", targetUserId).single();
 
     const firstName = profile?.first_name || "";
     const lastName = profile?.last_name || "";
@@ -29,5 +29,5 @@ export const getUserProfile = cache(async (userId?: string) => {
 
     const avatarUrl = profile?.avatar_url || userMetadata?.avatar_url || userMetadata?.picture;
 
-    return { firstName: firstName, lastName: lastName, fullName: fullName, avatarUrl: avatarUrl, initials: getInitials(fullName) };
+    return { uid: profile?.id, firstName: firstName, lastName: lastName, jobTitle: profile?.job_title, email: profile?.email, phone: profile?.phone, fullName: fullName, avatarUrl: avatarUrl, initials: getInitials(fullName) };
 })
