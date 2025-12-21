@@ -100,8 +100,17 @@
         "nameMin": "Imię musi mieć co najmniej 2 znaki",
         "emailInvalid": "Niepoprawny adres email",
         "passwordMin": "Hasło musi mieć conajmniej 6 znaków, zawierać dużą i małą literę i znak specjalny",
+        "incorrectPassword": "Niepoprawne hasło",
+        "oldPasswordIncorrect": "Obecne hasło jest nieprawidłowe",
         "required": "To pole jest wymagane",
-        "invalidLoginData": "Nieprawidłowy adres email lub hasło"
+        "invalidLoginData": "Nieprawidłowy adres email lub hasło",
+        "fileTooBig": "Plik jest za duży. Maksymalny rozmiar pliku to 2MB",
+        "genericSaveError": "Wystąpił problem z zapisem danych. Spróbuj ponownie później",
+        "genericPasswordUpdateError": "Nie udało się zaktualizować hasła",
+        "uploadPreviewError": "Nie udało się załadować podglądu",
+        "incorrectWordError": "Wpisz poprawnie słowo:",
+        "sessionExpired": "Nie jesteś zalogowany lub sesja wygasła",
+        "deleteAccount": "Nie udało się usunąć konta. Spróbuj ponownie później"
     },
     "Templates": {
         "header": "Znajdź idealny szablon dla siebie",
@@ -129,15 +138,27 @@
             "lastNameLabel": "Nazwisko",
             "jobTitleLabel": "Tytuł zawodowy",
             "emailLabel": "Adres e-mail",
+            "emailNotice": "Uwaga: Zmiana e-maila w tym miejscu nie zmienia danych logowania. Aby zaktualizować adres do logowania, skontaktuj się z administratorem",
             "phoneLabel": "Numer telefonu",
             "saveChangesBtn": "Zapisz zmiany",
+            "dataUpdated": "Dane zostały zaktualizowane",
             "passwordHeader": "Zmiana hasła",
             "currentPassword": "Obecne hasło",
             "newPassword": "Nowe hasło",
             "updatePasswordBtn": "Zaktualizuj hasło",
+            "passwordUpdated": "Hasło zostało zaktualizowane",
             "deleteHeader": "Usuń konto",
             "warningText": "Ta operacja jest nieodwracalna!",
-            "deleteAccountBtn": "Usuń konto"
+            "deleteAccountBtn": "Usuń konto",
+            "ConfirmDelete": {
+                "header": "Usuwanie konta",
+                "text": "Czy na pewno chcesz usunąć konto? Tej operacji nie można cofnąć. Wszystkie dane zostaną utracone",
+                "labelPassword": "Wpisz hasło, aby potwierdzić",
+                "labelOAuth": "Aby potwierdzić, wpisz słowo:",
+                "confirmationWord": "Usuń",
+                "cancelBtn": "Anuluj",
+                "deleteBtn": "Usuń"
+            }
         }
     }
 }

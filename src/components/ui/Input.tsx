@@ -8,13 +8,15 @@ type InputProps = {
     name: string;
     label: string;
     type: string;
-    placeholderValue: string;
+    defaultValue?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholderValue?: string;
     showPasswordIcon?: ReactNode;
     className?: string;
     error?: string;
 }
 
-export default function Input({ name, label, type, placeholderValue, showPasswordIcon, className, error }: InputProps) {
+export default function Input({ name, label, type, defaultValue, placeholderValue, showPasswordIcon, className, error, onChange }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
     const isPasswordType = type === "password";
@@ -25,7 +27,7 @@ export default function Input({ name, label, type, placeholderValue, showPasswor
             <label className="text-text-main text-[14px] font-medium">{label}</label>
 
             <div className="relative flex items-center">
-                <input name={name} className={`w-full p-3 bg-bg-main border border-border rounded-xl placeholder:text-text-muted outline-none duration-200 hover:border-text-muted focus:border-default ${showPasswordIcon ? "pl-12" : ""}${isPasswordType ? "pr-12" : ""} `} type={currentType} placeholder={placeholderValue}  />
+                <input onChange={onChange} defaultValue={defaultValue} name={name} className={`w-full p-3 bg-bg-main border border-border rounded-xl placeholder:text-text-muted outline-none duration-200 hover:border-text-muted focus:border-default ${showPasswordIcon ? "pl-12" : ""}${isPasswordType ? "pr-12" : ""} `} type={currentType} placeholder={placeholderValue}  />
 
                 {isPasswordType && (
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 text-text-muted hover:text-text-main transition-colors cursor-pointer">

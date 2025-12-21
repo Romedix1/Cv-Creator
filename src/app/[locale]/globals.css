@@ -17,6 +17,7 @@
   --color-border: var(--border);
 
   --color-surface-static: var(--surface-static);
+  --color-success: var(--success)
 }
 
 :root {
@@ -34,7 +35,7 @@
 
   /* Colors for both themes in few sections  */
   --surface-static: #FFFFFF;
-
+  --success: #16A34A;
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
