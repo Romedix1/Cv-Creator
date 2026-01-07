@@ -1,0 +1,1 @@
+export type CustomSectionType = "list" | "text" | "detailed"
