@@ -11,7 +11,7 @@ export default function Footer() {
         <footer className="py-16 px-8 bg-surface flex flex-col gap-6 md:px-16">
             <div className="flex flex-col gap-6 md:flex-row">
                 <div className="flex flex-col gap-4 md:flex-1">
-                    <h4 className="text-[16px] font-semibold">CV Creator</h4>
+                    <p className="text-[16px] font-semibold">CV Creator</p>
                     <p className="text-text-muted text-[14px]">{tFooter("text")}</p>
                 </div>
 

@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 
 type PersonalDataProps = {
+    isAuthenticated: boolean;
     uid: string;
     firstName: string;
     lastName: string;
@@ -16,10 +17,10 @@ type PersonalDataProps = {
     email: string;
     phone: string | null;
     avatarUrl: string;
-    initials: string
+    initials: string;
 }
 
-export default function PersonalDataSection({ uid, firstName, lastName, avatarUrl, jobTitle, email, phone, initials }: PersonalDataProps) {
+export default function PersonalDataSection({ isAuthenticated, uid, firstName, lastName, avatarUrl, jobTitle, email, phone, initials }: PersonalDataProps) {
     const tSettings = useTranslations("Dashboard.Settings")
     const tValidation = useTranslations("Validation")
 
@@ -105,7 +106,7 @@ export default function PersonalDataSection({ uid, firstName, lastName, avatarUr
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <h3 className="text-[20px] font-semibold">{tSettings("dataHeader")}</h3>
 
-            <AvatarUpload uid={uid} avatarUrl={avatarUrl} uploadedAvatarUrl={uploadedAvatarUrl} initials={initials} setUploadedAvatarUrl={setUploadedAvatarUrl} setSelectedFile={setSelectedFile} />
+            <AvatarUpload isAuthenticated={isAuthenticated} avatarUrl={avatarUrl} uploadedAvatarUrl={uploadedAvatarUrl} initials={initials} setUploadedAvatarUrl={setUploadedAvatarUrl} setSelectedFile={setSelectedFile} />
 
             <div className="flex flex-col gap-5 md:grid md:grid-cols-2">
                 <Input name="firstName" type="text" label={tSettings("firstNameLabel")} defaultValue={firstName || ""} />

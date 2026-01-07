@@ -2,19 +2,20 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import PlusIcon from "../icons/PlusIcon";
 
 type AvatarUploadProps = {
-    uid: string,
+    className?: string
+    isAuthenticated: boolean;
     avatarUrl: string | null;
     uploadedAvatarUrl: string | null;
-    initials: string;
-    setUploadedAvatarUrl: Dispatch<SetStateAction<string | null>>;
+    initials: string | null;
+    setUploadedAvatarUrl: (url: string | null) => void;
     setSelectedFile: Dispatch<SetStateAction<File | null>>;
 }
 
-export default function AvatarUpload({ uid, avatarUrl, uploadedAvatarUrl, initials, setUploadedAvatarUrl, setSelectedFile }: AvatarUploadProps) {
+export default function AvatarUpload({ className, isAuthenticated, avatarUrl, uploadedAvatarUrl, initials, setUploadedAvatarUrl, setSelectedFile }: AvatarUploadProps) {
     const tSettings = useTranslations("Dashboard.Settings")
     const tValidation = useTranslations("Validation")
 
@@ -23,8 +24,10 @@ export default function AvatarUpload({ uid, avatarUrl, uploadedAvatarUrl, initia
     const [uploadError, setUploadError] = useState<string | null>(null)
 
     const uploadAvatar = (event: ChangeEvent<HTMLInputElement>) => {
-        try {
-            setUploadError(null)
+        if(!isAuthenticated) return
+
+            try {
+                setUploadError(null)
 
             if (!event.target.files || event.target.files.length === 0) {
                 return
@@ -47,6 +50,14 @@ export default function AvatarUpload({ uid, avatarUrl, uploadedAvatarUrl, initia
         }
     }
 
+    useEffect(() => {
+        return () => {
+            if (uploadedAvatarUrl && uploadedAvatarUrl !== avatarUrl) {
+                URL.revokeObjectURL(uploadedAvatarUrl)
+            }
+        }
+    }, [uploadedAvatarUrl, avatarUrl])
+
     const handleRemove = (e: React.MouseEvent) => {
         e.preventDefault()
         setUploadedAvatarUrl(avatarUrl)
@@ -56,11 +67,11 @@ export default function AvatarUpload({ uid, avatarUrl, uploadedAvatarUrl, initia
     }
 
     return (
-        <div>
+        <div className={className}>
             <div className="flex items-center gap-6">
                 {uploadedAvatarUrl ? (
                     <div className="relative">
-                        <div className="relative w-[60px] h-[60px] shrink-0 overflow-hidden rounded-full border border-border">
+                        <div className="relative w-[60px] h-[60px] sm:w-18 sm:h-18 shrink-0 overflow-hidden rounded-full border border-border">
                             <Image priority referrerPolicy="no-referrer" src={uploadedAvatarUrl || ""} alt={tSettings("userProfileAlt")} fill className="object-cover" />
                         </div>
 

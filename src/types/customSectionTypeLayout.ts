@@ -1,0 +1,1 @@
+export type CustomSectionLayout = "left" | "center"
