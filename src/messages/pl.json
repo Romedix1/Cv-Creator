@@ -91,7 +91,10 @@
         "finish": "Zakończ",
         "addSubitemElement": "Dodaj podelement",
         "addLanguage": "Dodaj język",
-        "addSection": "Dodaj sekcję"
+        "addSection": "Dodaj sekcję",
+        "select": "Wybierz",
+        "preview": "Podgląd",
+        "close": "Zamknij"
     },
     "OAuth": {
         "or": "lub"
@@ -136,7 +139,8 @@
             "minimalist": "Minimalistyczne",
             "modern": "Nowoczesne",
             "classic": "Klasyczne"
-        }
+        },
+        "filterByCategory": "Filtruj według kategorii"
     },
     "Dashboard": {
         "header": "Cześć",
@@ -283,7 +287,8 @@
         "languageLevelLabel": "Poziom"
     },
     "ImgAlt": {
-        "userProfile": "Zdjęcie profilowe"
+        "userProfile": "Zdjęcie profilowe",
+        "template": "Szablon"
     },
     "Aria": {
         "backToDashboard": "Wróć do dokumentów",
@@ -292,6 +297,7 @@
         "changeOrder": "Zmień kolejność elementu",
         "changeView": "Zmień widok",
         "changePos": "Zmień pozycje",
-        "changeType": "Zmień rodzaj sekcji"
+        "changeType": "Zmień rodzaj sekcji",
+        "searchTemplate": "Szukaj szablony"
     }
 }
