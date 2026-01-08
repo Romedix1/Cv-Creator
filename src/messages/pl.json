@@ -298,6 +298,10 @@
         "changeView": "Zmień widok",
         "changePos": "Zmień pozycje",
         "changeType": "Zmień rodzaj sekcji",
-        "searchTemplate": "Szukaj szablony"
+        "searchTemplate": "Szukaj szablony",
+        "openNavMenu": "Otwórz menu nawigacji",
+        "closeNavMenu": "Zamknij menu nawigacji",
+        "switchToLight": "Zmień na tryb jasny",
+        "switchToDark": "Zmień na tryb ciemy"
     }
 }
