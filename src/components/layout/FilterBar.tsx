@@ -9,19 +9,21 @@ import techTemplate from '../../../public/images/Templates/tech-minimal.png';
 import timelineTemplate from '../../../public/images/Templates/timeline-modern.png';
 import Template from "../ui/Template";
 import { useState } from "react";
+import TemplatePreview from "../ui/TemplatePreview";
 
 const TEMPLATES_DATA = [
-  { name: 'Classic Corporate', category: "classic", image: classicTemplate },
-  { name: 'Creative Accent', category: "modern",  image: creativeTemplate },
-  { name: 'Modern Blue', category: "modern",  image: modernTemplate },
-  { name: 'Swiss Minimalist', category: "minimalist", image: swissTemplate },
-  { name: 'Tech Minimal', category: "minimalist", image: techTemplate },
-  { name: 'Timeline Modern', category: "modern", image: timelineTemplate },
+  { id: 'classic-corporate', name: 'Classic Corporate', category: "classic", image: classicTemplate },
+  { id: 'creative-accent', name: 'Creative Accent', category: "modern",  image: creativeTemplate },
+  { id: 'modern-blue', name: 'Modern Blue', category: "modern",  image: modernTemplate },
+  { id: 'swiss-minimalist', name: 'Swiss Minimalist', category: "minimalist", image: swissTemplate },
+  { id: 'tech-minimal', name: 'Tech Minimal', category: "minimalist", image: techTemplate },
+  { id: 'timeline-modern', name: 'Timeline Modern', category: "modern", image: timelineTemplate },
 ];
 
 export default function FilterBar() {
     const [search, setSearch] = useState("")
     const [selectedCategory, setSelectedCategory] = useState("all")
+    const [selectedTemplate, setSelectedTemplate] = useState("")
 
     const filteredTemplates = TEMPLATES_DATA.filter((template) => {
         const matchCategory = selectedCategory === "all" || template.category === selectedCategory
@@ -31,16 +33,26 @@ export default function FilterBar() {
         return matchCategory && matchSearch
     })
 
+    const activeTemplate = TEMPLATES_DATA.find(template => template.id === selectedTemplate)
+
+    const handleClose = () => {
+        setSelectedTemplate("")
+    }
+
     return (
         <>
             <SearchBar setSelectedCategory={setSelectedCategory} search={search} setSearch={setSearch}/>
             <div className="grid gap-8 lg:gap-10 lg:grid-cols-2 xl:grid-cols-3 2xl:mt-6">
                 {filteredTemplates.map((template, index) => {
                     return (
-                        <Template key={index} name={template.name} image={template.image} />
+                        <Template key={index} id={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate}/>
                     )
                 })}
             </div>
+
+            {(selectedTemplate && activeTemplate) && (
+                <TemplatePreview onClose={handleClose} id={activeTemplate.id} name={activeTemplate.name} image={activeTemplate.image} />
+            )}
         </>
     )
 }
