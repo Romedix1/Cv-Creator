@@ -1,0 +1,1 @@
+export type SkillsType = "categories" | "list"

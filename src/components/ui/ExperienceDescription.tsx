@@ -6,10 +6,11 @@ import { useTranslations } from "next-intl";
 import { Dot } from "lucide-react";
 import PlusIcon from "@/components/icons/PlusIcon";
 import BinIcon from "@/components/icons/BinIcon";
+import { DescriptionItem } from "@/types/descriptionItem";
 
 type DescriptionProps = {
-    items: string[];
-    onChange: (newItems: string[]) => void;
+    items: DescriptionItem[];
+    onChange: (newItems: DescriptionItem[]) => void;
 }
 
 export default function ExperienceDescription({ items, onChange }: DescriptionProps) {
@@ -17,16 +18,27 @@ export default function ExperienceDescription({ items, onChange }: DescriptionPr
     const tButton = useTranslations("Button")
     const tBuilder = useTranslations("Builder")
 
-    const handleAdd = () => onChange([...items, ""])
+    const handleAdd = () => {
+        const newItem = {
+            id: crypto.randomUUID(),
+            value: "",
+        }
 
-    const handleEdit = (index: number, value: string) => {
-        const newDescription = [...items]
-        newDescription[index] = value
-        onChange(newDescription)
+        onChange([...items, newItem])
     }
 
-    const handleRemove = (index: number) => {
-        onChange(items.filter((_, i) => i !== index))
+    const handleEdit = (id: string, newValue: string) => {
+        const newItems = items.map((item) => {
+            if (item.id === id) {
+                return { ...item, value: newValue }
+            }
+            return item
+        })
+        onChange(newItems)
+    }
+
+    const handleRemove = (id: string) => {
+        onChange(items.filter((item) => item.id !== id))
     }
 
     return (
@@ -35,14 +47,14 @@ export default function ExperienceDescription({ items, onChange }: DescriptionPr
 
             <div className="flex flex-col gap-3" role="list">
                 {(items).map((desc, index) => (
-                    <div key={index} className="flex gap-2 items-center">
+                    <div key={desc.id} className="flex gap-2 items-center">
                         <Dot className="mt-7" aria-hidden="true"/>
 
                         <div className="flex-1">
-                            <Input label={`${tInput("responsibilitiesLabel")} ${index+1}`} name={`desc-${index}`} type="text" placeholderValue={tInput("responsibilitiesPlaceholder")} value={desc} onChange={(e) => handleEdit(index, e.target.value)}/>
+                            <Input label={`${tInput("responsibilitiesLabel")} ${index+1}`} name={`desc-${index}`} type="text" placeholderValue={tInput("responsibilitiesPlaceholder")} value={desc.value} onChange={(e) => handleEdit(desc.id, e.target.value)}/>
                         </div>
 
-                        <Button onClick={() => handleRemove(index)} variant="remove" className="mt-6" aria-label={`${tButton("delete")} ${tInput("responsibilitiesLabel")} ${index + 1}`} icon={<BinIcon aria-hidden="true" className="w-7 h-7" />} />
+                        <Button onClick={() => handleRemove(desc.id)} variant="remove" className="mt-6" aria-label={`${tButton("delete")} ${tInput("responsibilitiesLabel")} ${index + 1}`} icon={<BinIcon aria-hidden="true" className="w-7 h-7" />} />
                     </div>
                 ))}
             </div>

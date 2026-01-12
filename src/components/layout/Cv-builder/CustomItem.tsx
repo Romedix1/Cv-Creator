@@ -129,7 +129,7 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
                     <Input name={`subitemHeader${index}`} value={subItem.title || ""} onChange={(event) => handleChange("title", event.target.value, subItem.id)} label={tBuilder("subitemHeader")} type="text" />
                 </div>
                 <div className="sm:grid sm:grid-cols-2 flex flex-col gap-6">
-                    <DateRange type="other" startDate={subItem.startDate} endDate={subItem.endDate} onChange={(field, value) => handleDateChange(subItem.id, field, value)} />
+                    <DateRange type="other" startDate={subItem.startDate || ""} endDate={subItem.endDate || ""} onChange={(field, value) => handleDateChange(subItem.id, field, value)} />
                 </div>
             </div>
         )
@@ -161,7 +161,7 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
             return (
                 <>
                     {headerAndDates}
-                    <textarea aria-label={tInput("insertText")} className="w-full h-37.5 p-3 border rounded-md bg-transparent focus:border-default outline-none placeholder:text-gray-400 mt-6" placeholder={tInput("insertText")} value={subItem.description || ""} onChange={(e) => handleChange("description", e.target.value, subItem.id)} />
+                    <textarea aria-label={tInput("insertText")} className="w-full h-37.5 p-3 border rounded-md bg-transparent focus:border-default outline-none placeholder:text-text-muted mt-6" placeholder={tInput("insertText")} value={subItem.description || ""} onChange={(e) => handleChange("description", e.target.value, subItem.id)} />
                     <Button className="border dark:bg-[#1F0A0A] bg-[#FEF2F2] border-error w-full mt-6" variant="secondary" icon={<BinIcon aria-hidden="true" className="w-6 h-6"/>} text={tButton("delete")} onClick={() => handleRemove("item", subItem.id)} />
                 </>
             )

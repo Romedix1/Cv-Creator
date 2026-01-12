@@ -71,16 +71,17 @@ export default function EducationSection({ education, onEducationChange, setIsEd
 
             <SortableList items={education} onReorder={onEducationChange} droppableId="education-list"
                 renderItem={(item) => (
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 w-full">
                         <div className="flex flex-col flex-1 min-w-0 gap-1">
                             {item.institution && (
                                 <h2 className="font-semibold text-text-main text-base sm:text-lg leading-tight wrap-break-word">{item.institution}</h2>
                             )}
-                            <div className="flex flex-wrap items-center text-sm gap-y-0.5">
-                                <span>{item.degree}</span>
-                                {item.degree && item.major && (<span className="text-text-muted"><Dot aria-hidden="true" /></span>)}
-                                <span>{item.major}</span>
+                            <div className="items-center text-sm gap-y-0.5">
+                                <span className="break-all">{item.degree}</span>
+                                {item.degree && item.major && (<span className="text-text-muted shrink-0 items-center inline-flex align-middle"><Dot aria-hidden="true"/></span>)}
+                                <span className="break-all">{item.major}</span>
                             </div>
+
                             {(item.startDate || item.endDate) && (
                                 <div className="text-text-muted mt-0.5">
                                     {item.startDate} {(item.startDate && item.endDate) && "-"} {item.endDate}

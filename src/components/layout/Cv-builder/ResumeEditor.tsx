@@ -6,7 +6,7 @@ import LanguagesIcon from "@/components/icons/LanguagesIcon";
 import PersonIcon from "@/components/icons/PersonIcon";
 import PlusIcon from "@/components/icons/PlusIcon";
 import SkillsIcon from "@/components/icons/SkillsIcon";
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import PersonalDataSection from "./PersonalDataSection"
 import { useTranslations } from "next-intl"
 import Capsule from "./Capsule"
@@ -23,6 +23,14 @@ import { LanguagesItem } from "@/types/languages";
 import LanguagesSection from "./LanguagesSection";
 import CustomSection from "./CustomSection";
 import { CustomSection as CustomSectionType } from "@/types/customSection";
+import { PersonalInfo } from "@/types/personalInfo";
+import CertificatesSection from "./CertificatesSection";
+import { Certificates } from "@/types/certificates";
+import { Award, Heart } from "lucide-react";
+import { Interests } from "@/types/interests";
+import InterestsSection from "./IntrestsSection";
+import { SkillsType } from "@/types/skillsType";
+import { LONG_FAKE_DATA } from "@/data/longFakeData";
 
 type ResumeEditorProps = {
     isAuthenticated: boolean;
@@ -33,10 +41,9 @@ type ResumeEditorProps = {
     jobTitle: string | null;
     email: string | null;
     phone: string | null;
-    address: string | null;
 }
 
-export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, userFirstName, userLastName, jobTitle, email, phone, address }: ResumeEditorProps) {
+export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, userFirstName, userLastName, jobTitle, email, phone }: ResumeEditorProps) {
     const tCvBuilder = useTranslations("BuilderSteps")
     const tButton = useTranslations("Button")
 
@@ -48,13 +55,15 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
         {key: "education", name: tCvBuilder("education"), icon: <EducationIcon className={iconStyles} />},
         {key: "skills", name: tCvBuilder("skills"), icon: <SkillsIcon className={iconStyles} />},
         {key: "languages", name: tCvBuilder("languages"), icon: <LanguagesIcon className={iconStyles} />},
+        {key: "certificates", name: tCvBuilder("certificates"), icon: <Award className={iconStyles} />},
+        {key: "interests", name: tCvBuilder("interests"), icon: <Heart className={iconStyles} />},
         {key: "addSection", name: tCvBuilder("addSection"), icon: <PlusIcon className={iconStyles} />},
     ]
 
     const [currentStep, setCurrentStep] = useState("personalData")
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [isEditingMode, setIsEditingMode] = useState(false)
-    const [viewMode, setViewMode] = useState<"list" | "categories">("categories")
+    const [viewMode, setViewMode] = useState<SkillsType>("categories")
 
     const [data, setData] = useState<ResumeData>({
         personalInfo: {
@@ -63,14 +72,15 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             lastName: userLastName || "",
             jobTitle: jobTitle || "",
             phone: phone || "",
-            email: email || "",
-            address: address || "",
-            links: []
-        },
+            email: email || ""
+        } as PersonalInfo,
         experience: [] as ExperienceItem[],
         education: [] as EducationItem[],
-        skills: [] as SkillsCategory[],
+        skillsCat: [] as SkillsCategory[],
+        skillsType: "categories",
         languages: [] as LanguagesItem[],
+        certificates: [] as Certificates[],
+        interests: [] as Interests[],
         customSection: [] as CustomSectionType[]
     })
 
@@ -87,9 +97,13 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             case "education":
                 return <EducationSection education={data.education} onEducationChange={(newItems) => handleSectionChange("education", newItems)} setIsEditingMode={setIsEditingMode} />
             case "skills":
-                return <SkillsSection categories={data.skills} viewMode={viewMode} setViewMode={setViewMode} onSkillsChange={(newItems) => handleSectionChange("skills", newItems)} />
+                return <SkillsSection categories={data.skillsCat} viewMode={viewMode} setViewMode={setViewMode} onSkillsChange={(newItems) => handleSectionChange("skillsCat", newItems)} onSkillsTypeChange={(newValue) => handleSectionChange("skillsType", newValue)} />
             case "languages":
                 return <LanguagesSection languages={data.languages} onLanguageChange={(newItems) => handleSectionChange("languages", newItems)} setIsEditingMode={setIsEditingMode} />
+            case "certificates":
+                return <CertificatesSection certificates={data.certificates} onCertificatesChange={(newItems) => handleSectionChange("certificates", newItems)} setIsEditingMode={setIsEditingMode} />
+            case "interests":
+                return <InterestsSection interests={data.interests} onCertificatesChange={(newItems) => handleSectionChange("interests", newItems)} setIsEditingMode={setIsEditingMode} />
             case "addSection":
                 return <CustomSection sections={data.customSection} onSectionChange={(newItems: CustomSectionType[]) => handleSectionChange("customSection", newItems)} setIsEditingMode={setIsEditingMode} />
         }
@@ -113,7 +127,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
 
     return (
         <div className="xl:flex w-full">
-            <div className="p-4 flex overflow-y-hidden border-b border-border gap-4 xl:flex-col xl:border-r xl:py-10 xl:w-[300px]">
+            <div className="p-4 flex overflow-y-hidden border-b border-border gap-4 xl:flex-col xl:border-r xl:py-10 xl:w-75">
                 {STEPS.map((item, index) => {
                     return <Capsule onClick={() => { setCurrentStep(item.key); setIsEditingMode(false) }} key={index} text={item.name} currentStep={currentStep} value={item.key} icon={item.icon} />
                 })}
