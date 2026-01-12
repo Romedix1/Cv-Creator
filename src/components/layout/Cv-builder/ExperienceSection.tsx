@@ -10,6 +10,7 @@ import ElementAddButton from "@/components/ui/ElementAddButton";
 import ItemActions from "@/components/ui/ItemActions";
 import SectionItemError from "@/components/ui/SectionItemError";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { DescriptionItem } from "@/types/descriptionItem";
 
 type ExperienceSectionProps = {
     experience: ExperienceProps[];
@@ -35,7 +36,7 @@ export default function ExperienceSection({ experience, onExperienceChange, setI
             company: "",
             startDate: "",
             endDate: "",
-            description: []
+            description: [] as DescriptionItem[]
         }
 
         onExperienceChange([...experience, newItem])
@@ -72,21 +73,21 @@ export default function ExperienceSection({ experience, onExperienceChange, setI
 
             <SortableList items={experience} onReorder={onExperienceChange} droppableId="experience-list"
                 renderItem={(item) => (
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 w-full">
                         <div className="flex flex-col flex-1 min-w-0 gap-1">
                             {item.position && (
                                 <h2 className="font-semibold text-text-main text-base sm:text-lg leading-tight wrap-break-word">{item.position}</h2>
                             )}
 
                             <div className="flex flex-wrap items-center text-sm gap-x-2 gap-y-0.5">
-                                <span className="font-medium text-text-muted wrap-break-word">{item.company}</span>
+                                <span className="font-medium text-text-muted flex-1 min-w-0 wrap-break-word">{item.company}</span>
                                 {(item.startDate || item.endDate) && (
                                     <div className="flex items-center text-xs sm:text-sm text-text-muted whitespace-nowrap">
                                         {item.company && (
                                             <Dot aria-hidden="true" className="w-4 h-4 mx-1 hidden sm:block" />
                                         )}
 
-                                        <span>{item.startDate} {(item.startDate && item.endDate) && "-"} {item.endDate}</span>
+                                        <span className="shrink-0 wrap-break-word min-w-0">{item.startDate} {(item.startDate && item.endDate) && "-"} {item.endDate}</span>
                                     </div>
                                 )}
                             </div>

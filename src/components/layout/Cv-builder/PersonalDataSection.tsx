@@ -75,13 +75,18 @@ export default function PersonalDataSection({ personalData, onPersonalInfoChange
             <Input onChange={(e) => handleChange("email", e.target.value)} name="email" label={tInput("emailLabel")} value={personalData.email || ""} placeholderValue={tInput("emailPlaceholder")} type="text" />
             <Input onChange={(e) => handleChange("address", e.target.value)} name="address" label={tInput("addressLabel")} value={personalData.address || ""} placeholderValue={tInput("addressPlaceholder")} type="text" />
 
+            <div className="flex flex-col gap-2 col-span-2">
+                <label htmlFor="profile" className="text-text-main text-[14px] font-medium">{tInput("profileLabel")}</label>
+                <textarea id="profile" onChange={(e) => handleChange("profile", e.target.value)} aria-label={tInput("insertText")} value={personalData.profile || ""} className="w-full h-37.5 p-3 bg-bg-main border border-border rounded-xl placeholder:text-text-muted outline-none duration-200 hover:border-text-muted focus:border-default" placeholder={tInput("insertText")} />
+            </div>
+
             <div className="sm:col-span-2">
                 <h2 className="text-lg font-semibold my-4">{tInput("linksHeader")}</h2>
 
                 <div className="flex flex-col gap-4">
                     {(personalData.links || []).map((link) => (
                         <div key={link.id} className="flex gap-4 items-end">
-                            <div className="w-[120px] sm:w-[180px] shrink-0">
+                            <div className="w-30 sm:w-45 shrink-0">
                                 <Input name={`platform-${link.id}`} label={tInput("platformLabel")} type="select" value={link.platform} placeholderValue={tInput("platformPlaceholder")} onChange={(e) => updateLink(link.id, "platform", e.target.value)} options={PLATFORM_OPTIONS} />
                             </div>
 

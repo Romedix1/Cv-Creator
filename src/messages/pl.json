@@ -91,10 +91,12 @@
         "finish": "Zakończ",
         "addSubitemElement": "Dodaj podelement",
         "addLanguage": "Dodaj język",
+        "addCertificates": "Dodaj certyfikat lub kurs",
         "addSection": "Dodaj sekcję",
         "select": "Wybierz",
         "preview": "Podgląd",
-        "close": "Zamknij"
+        "close": "Zamknij",
+        "addInterests": "Dodaj zainteresowanie"
     },
     "OAuth": {
         "or": "lub"
@@ -185,6 +187,8 @@
         "skillsSubtitle": "Wymień swoje kluczowe kompetencje, narzędzia i technologie",
         "languagesHeader": "Języki obce",
         "languagesSubtitle": "Podaj znane Ci języki oraz określ ich poziom zaawansowania",
+        "certificatesHeader": "Certyfikaty i kursy",
+        "certificatesSubtitle": "Podaj zdobyte certyfikaty oraz ukończone szkolenia",
         "customHeader": "Sekcja własna",
         "customSubtitle": "Dodaj dodatkowe informacje, np. Kursy, Certyfikaty, Projekty lub Zainteresowania",
 
@@ -222,6 +226,8 @@
         "education": "Edukacja",
         "skills": "Umiejętności",
         "languages": "Języki",
+        "certificates": "Kursy i Certyfikaty",
+        "interests": "Zainteresowania",
         "addSection": "Dodaj sekcje"
     },
     "Inputs": {
@@ -238,6 +244,7 @@
         "phonePlaceholder": "+48 123 456 789",
         "addressLabel": "Adres",
         "addressPlaceholder": "Gdańsk 80-958, Polska",
+        "profileLabel": "O mnie",
         "linksHeader": "Linki",
         "platformLabel": "Wybierz platformę",
         "positionLabel": "Stanowisko",
@@ -280,15 +287,21 @@
         "missingCompany": "Firma bez nazwy",
         "missingLanguage": "Element bez języka",
         "missingCategory": "Kategoria bez nazwy",
+        "missingCertificate": "Certyfikat / kurs bez nazwy",
         "websiteLabel": "Strona WWW",
         "otherLabel": "Inne",
         "platformPlaceholder": "Wybierz platformę",
         "languageValueLabel": "Język",
-        "languageLevelLabel": "Poziom"
+        "languageLevelLabel": "Poziom",
+        "nameLabel": "Nazwa",
+        "organizerLabel": "Organizator",
+        "dateLabel": "Data",
+        "interestsLabel": "Opis zainteresowania"
     },
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",
-        "template": "Szablon"
+        "template": "Szablon",
+        "userImage": "Zdjęcie"
     },
     "Aria": {
         "backToDashboard": "Wróć do dokumentów",
@@ -303,5 +316,18 @@
         "closeNavMenu": "Zamknij menu nawigacji",
         "switchToLight": "Zmień na tryb jasny",
         "switchToDark": "Zmień na tryb ciemy"
+    },
+    "Template": {
+        "profileHeader": "O mnie",
+        "experienceHeader": "Doświadczenie",
+        "contactHeader": "Kontakt",
+        "skillsHeader": "Umiejętności",
+        "educationHeader": "Wykształcenie",
+        "certificatesHeader": "Certyfikaty i kursy",
+        "interestsHeader": "Zainteresowania",
+        "majorLabel": "Kierunek",
+        "degreeLabel": "Stopień",
+        "languagesHeader": "Języki",
+        "organizerLabel": "Organizator"
     }
 }

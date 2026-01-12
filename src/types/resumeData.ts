@@ -4,12 +4,18 @@ import { PersonalInfo } from "./personalInfo";
 import { SkillsCategory } from "./skillsCategory";
 import { LanguagesItem } from "./languages";
 import { CustomSection } from "./customSection";
+import { Certificates } from "./certificates";
+import { Interests } from "./interests";
+import { SkillsType } from "./skillsType";
 
 export type ResumeData = {
     personalInfo: PersonalInfo;
     experience: ExperienceItem[];
     education: EducationItem[];
-    skills: SkillsCategory[];
+    skillsCat: SkillsCategory[];
+    skillsType: SkillsType;
     languages: LanguagesItem[];
-    customSection: CustomSection[]
+    certificates: Certificates[];
+    interests: Interests[];
+    customSection: CustomSection[];
 }

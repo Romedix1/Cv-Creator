@@ -12,7 +12,7 @@ export default async function CvBuilder() {
 
     return (
         <main className="xl:flex">
-            <ResumeEditor isAuthenticated={isAuthenticated} avatarUrl={userProfile?.avatarUrl} initials={userProfile?.initials || null} userFirstName={userProfile?.firstName} userLastName={userProfile?.lastName} jobTitle={userProfile?.jobTitle} email={userProfile?.phone} phone={userProfile?.phone} address={null} />
+            <ResumeEditor isAuthenticated={isAuthenticated} avatarUrl={userProfile?.avatarUrl} initials={userProfile?.initials || null} userFirstName={userProfile?.firstName} userLastName={userProfile?.lastName} jobTitle={userProfile?.jobTitle} email={userProfile?.email} phone={userProfile?.phone} />
         </main>
     )
 }

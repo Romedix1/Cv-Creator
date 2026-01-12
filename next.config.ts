@@ -19,6 +19,16 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: '*.googleusercontent.com',
       }
+
+      ,
+      {
+        protocol: 'https',
+        hostname: '*.unsplash.com',
+      },
+      {
+        protocol: 'http',
+        hostname: '*.unsplash.com',
+      }
     ],
   },
 

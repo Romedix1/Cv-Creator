@@ -15,9 +15,10 @@ type SkillsSectionProps = {
     viewMode: string;
     setViewMode: Dispatch<SetStateAction<"list" | "categories">>;
     onSkillsChange: (newSkill: SkillsCategory[]) => void;
+    onSkillsTypeChange: (newType: "list" | "categories") => void;
 }
 
-export default function SkillsSection({ categories, viewMode, setViewMode, onSkillsChange }: SkillsSectionProps) {
+export default function SkillsSection({ categories, viewMode, setViewMode, onSkillsChange, onSkillsTypeChange }: SkillsSectionProps) {
     const tInput = useTranslations("Inputs")
     const tButton = useTranslations("Button")
     const tBuilder = useTranslations("Builder")
@@ -69,7 +70,7 @@ export default function SkillsSection({ categories, viewMode, setViewMode, onSki
             <div className="flex justify-between items-center mb-6">
                 <SectionHeader step="skills" />
                 <div className="w-4/12 flex justify-end">
-                    <Toggle ariaLabel={tBuilder("changeView")} value={viewMode as "list" | "categories"} options={VIEWMODE_OPTIONS} onChange={(value) => setViewMode(value as "list" | "categories")} />
+                    <Toggle ariaLabel={tBuilder("changeView")} value={viewMode as "list" | "categories"} options={VIEWMODE_OPTIONS} onChange={(value) => { const newMode = value as "list" | "categories"; setViewMode(newMode); onSkillsTypeChange(newMode); }} />
                 </div>
             </div>
 

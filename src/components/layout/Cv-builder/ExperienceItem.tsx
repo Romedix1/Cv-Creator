@@ -7,6 +7,7 @@ import DateRange from "@/components/ui/DateRange";
 import ExperienceDescription from "@/components/ui/ExperienceDescription";
 import ExitEditingMode from "@/components/ui/ExitEditingMode";
 import ItemHeader from "@/components/ui/ItemHeader";
+import { DescriptionItem } from "@/types/descriptionItem";
 
 type ExperienceItemProps = {
     item: ExperienceProps;
@@ -19,7 +20,7 @@ type ExperienceItemProps = {
 export default function ExperienceItem({ item, onUpdate, onBack, onDelete, setIsEditingMode }: ExperienceItemProps) {
     const tInput = useTranslations("Inputs")
 
-    const handleChange = (field: keyof ExperienceProps, value: string | string[]) => {
+    const handleChange = (field: keyof ExperienceProps, value: string | DescriptionItem[]) => {
         onUpdate({ ...item, [field]: value })
     }
 

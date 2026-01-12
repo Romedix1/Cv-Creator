@@ -8,5 +8,6 @@ export type PersonalInfo = {
     phone: string;
     email: string;
     address: string;
-    links: SocialLink[];
+    profile: string;
+    links?: SocialLink[];
 }
