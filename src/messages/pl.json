@@ -96,7 +96,8 @@
         "select": "Wybierz",
         "preview": "Podgląd",
         "close": "Zamknij",
-        "addInterests": "Dodaj zainteresowanie"
+        "addInterests": "Dodaj zainteresowanie",
+        "clause": "klauzule"
     },
     "OAuth": {
         "or": "lub"
@@ -191,6 +192,9 @@
         "certificatesSubtitle": "Podaj zdobyte certyfikaty oraz ukończone szkolenia",
         "customHeader": "Sekcja własna",
         "customSubtitle": "Dodaj dodatkowe informacje, np. Kursy, Certyfikaty, Projekty lub Zainteresowania",
+        "rodoHeader": "Klauzula RODO",
+        "rodoSubtitle": "Dodaj zgodę na przetwarzanie danych osobowych, aby Twoje CV było kompletne i zgodne z wymogami prawnymi",
+
 
         "missingExperience": "Brak dodanego doświadczenia",
         "editExperience": "Edytuj stanowisko",
@@ -212,7 +216,10 @@
         "contentType": "Rodzaj treści",
         "moveItem": "Przenieś element",
         "untitledSection": "Nienazwana sekcja",
-        "sectionSettings": "Ustawienia sekcji"
+        "sectionSettings": "Ustawienia sekcji",
+        "rodoClauseHeader": "Klauzula RODO",
+        "rodoStandardClauseText": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji obecnego oraz przyszłych procesów rekrutacyjnych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).",
+        "rodoDedicatedClauseText": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez {company} dla potrzeb niezbędnych do realizacji obecnego oraz przyszłych procesów rekrutacyjnych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO)."
     },
     "BuilderNav": {
         "editTitle": "Edytuj nazwę dokumentu",
@@ -228,7 +235,8 @@
         "languages": "Języki",
         "certificates": "Kursy i Certyfikaty",
         "interests": "Zainteresowania",
-        "addSection": "Dodaj sekcje"
+        "addSection": "Dodaj sekcje",
+        "rodo": "RODO"
     },
     "Inputs": {
         "passwordLabel": "Hasło",
@@ -296,7 +304,12 @@
         "nameLabel": "Nazwa",
         "organizerLabel": "Organizator",
         "dateLabel": "Data",
-        "interestsLabel": "Opis zainteresowania"
+        "interestsLabel": "Opis zainteresowania",
+        "customClauseLabel": "Rodzaj klauzuli",
+        "standardClause": "Standardowa",
+        "dedicated": "Dedykowana",
+        "customClause": "Własna",
+        "clauseTextLabel": "Tekst klauzuli"
     },
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",
@@ -315,7 +328,8 @@
         "openNavMenu": "Otwórz menu nawigacji",
         "closeNavMenu": "Zamknij menu nawigacji",
         "switchToLight": "Zmień na tryb jasny",
-        "switchToDark": "Zmień na tryb ciemy"
+        "switchToDark": "Zmień na tryb ciemy",
+        "changeClauseType": "Zmień rodzaj klauzuli"
     },
     "Template": {
         "profileHeader": "O mnie",
