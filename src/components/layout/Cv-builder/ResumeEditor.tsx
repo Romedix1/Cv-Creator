@@ -27,6 +27,7 @@ import InterestsSection from "./IntrestsSection";
 import { SkillsType } from "@/types/skillsType";
 import RodoSection from "./RODOSection";
 import { Rodo as RodoSectionType } from "@/types/rodo"
+import { FAKE_DATA } from "@/data/fakeData"
 
 type ResumeEditorProps = {
     isAuthenticated: boolean;

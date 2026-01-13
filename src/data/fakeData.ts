@@ -178,5 +178,11 @@ export const FAKE_DATA: ResumeData = {
                 }
             ]
         }
-    ]
-};
+    ],
+    rodoSection: [{
+        id: "rodo-1",
+        type: "standard",
+        value: "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji obecnego oraz przyszłych procesów rekrutacyjnych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).",
+        company: ""
+    }]
+}

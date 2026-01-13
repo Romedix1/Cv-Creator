@@ -25,7 +25,7 @@ export default function RodoSection({ rodo, onRodoChange }: RodoSectionProps) {
             const newItem: RodoType = {
                 id: crypto.randomUUID(),
                 type: "standard",
-                value: tBuilder("rodoClauseText"),
+                value: tBuilder("rodoStandardClauseText"),
                 company: ""
             }
 
