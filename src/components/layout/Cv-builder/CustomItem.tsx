@@ -3,7 +3,6 @@
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button"
 import { useTranslations } from "next-intl";
-import BinIcon from "@/components/icons/BinIcon";
 import DateRange from "@/components/ui/DateRange";
 import { CustomSection as CustomSectionType } from "@/types/customSection";
 import { Separator } from "@/components/ui/separator";
@@ -14,7 +13,7 @@ import { PiDotsSixVertical } from "react-icons/pi";
 import { CustomSectionLayout } from "@/types/customSectionTypeLayout";
 import ExitEditingMode from "@/components/ui/ExitEditingMode";
 import ElementAddButton from "@/components/ui/ElementAddButton";
-import { Dot } from "lucide-react";
+import { Dot, Trash2 } from "lucide-react";
 
 type CustomSectionProps = {
     item: CustomSectionType;
@@ -148,13 +147,13 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
                                 <div className="w-full flex-1">
                                     <Input name={`value${element.id}`} type="text" label={tInput("value")} onChange={(e) => handleChange("value", e.target.value, subItem.id, element.id)} value={element.value} />
                                 </div>
-                                <Button className="mt-6" aria-label={`${tButton("delete")} ${tInput("value")} ${index + 1}`} variant="remove" icon={<BinIcon aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("element", subItem.id, element.id)} />
+                                <Button className="mt-6" aria-label={`${tButton("delete")} ${tInput("value")} ${index + 1}`} variant="remove" icon={<Trash2 aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("element", subItem.id, element.id)} />
                             </div>
                         ))}
                     </div>
 
                     <ElementAddButton step="SubitemElement" onAdd={() => handleAdd("element", subItem.id)} />
-                    <Button className="border dark:bg-[#1F0A0A] bg-[#FEF2F2] border-error w-full mt-6" variant="secondary" icon={<BinIcon aria-hidden="true" className="w-6 h-6"/>} text={tButton("delete")} onClick={() => handleRemove("item", subItem.id)} />
+                    <Button className="border dark:bg-[#1F0A0A] bg-[#FEF2F2] border-error w-full mt-6" variant="secondary" icon={<Trash2 aria-hidden="true" className="w-6 h-6"/>} text={tButton("delete")} onClick={() => handleRemove("item", subItem.id)} />
                 </>
             )
         } else if (type === "text") {
@@ -162,7 +161,7 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
                 <>
                     {headerAndDates}
                     <textarea aria-label={tInput("insertText")} className="w-full h-37.5 p-3 border rounded-md bg-transparent focus:border-default outline-none placeholder:text-text-muted mt-6" placeholder={tInput("insertText")} value={subItem.description || ""} onChange={(e) => handleChange("description", e.target.value, subItem.id)} />
-                    <Button className="border dark:bg-[#1F0A0A] bg-[#FEF2F2] border-error w-full mt-6" variant="secondary" icon={<BinIcon aria-hidden="true" className="w-6 h-6"/>} text={tButton("delete")} onClick={() => handleRemove("item", subItem.id)} />
+                    <Button className="border dark:bg-[#1F0A0A] bg-[#FEF2F2] border-error w-full mt-6" variant="secondary" icon={<Trash2 aria-hidden="true" className="w-6 h-6"/>} text={tButton("delete")} onClick={() => handleRemove("item", subItem.id)} />
                 </>
             )
         } else if (type === "list") {
@@ -173,7 +172,7 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
                             <PiDotsSixVertical className="w-6 h-6"/>
                         </button>
                         <input placeholder={tInput("categoryName")} aria-label={tInput("categoryName")} value={subItem.title || ""} onChange={(event) => handleChange("title", event.target.value, subItem.id)} className="font-semibold text-text-main bg-transparent outline-none placeholder:text-text-muted/50 w-full" />
-                        <Button variant="remove" onClick={() => handleRemove("item", subItem.id)} aria-label={`${tButton("delete")} ${subItem.title || tInput("categoryName")}`} icon={<BinIcon aria-hidden="true" className="w-6 h-6" />} />
+                        <Button variant="remove" onClick={() => handleRemove("item", subItem.id)} aria-label={`${tButton("delete")} ${subItem.title || tInput("categoryName")}`} icon={<Trash2 aria-hidden="true" className="w-6 h-6" />} />
                     </div>
 
                     {subItem.elements?.map((element: CustomElement, index) => (
@@ -182,7 +181,7 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
                             <div className="flex-1">
                                 <Input name={`listItem-${element.id}`} type="text" label={`${tInput("element")} ${index+1}`} value={element.value} onChange={(e) => handleChange("value", e.target.value, subItem.id, element.id)} />
                             </div>
-                            <Button className="mt-1" aria-label={`${tButton("delete")} ${tInput("value")} ${index + 1}`} variant="remove" icon={<BinIcon aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("element", subItem.id, element.id)} />
+                            <Button className="mt-1" aria-label={`${tButton("delete")} ${tInput("value")} ${index + 1}`} variant="remove" icon={<Trash2 aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("element", subItem.id, element.id)} />
                         </div>
                     ))}
                     <ElementAddButton step="SubitemElement" onAdd={() => handleAdd("element", subItem.id)} />

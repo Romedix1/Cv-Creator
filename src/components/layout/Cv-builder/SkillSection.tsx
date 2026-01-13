@@ -1,11 +1,10 @@
 import { Dispatch, SetStateAction } from "react"
-import { Dot } from "lucide-react"
+import { Dot, Trash2 } from "lucide-react"
 import Input from "@/components/ui/Input"
 import Button from "@/components/ui/Button"
 import { SkillsCategory } from "@/types/skillsCategory"
 import { useTranslations } from "next-intl"
 import Toggle from "@/components/ui/Toggle"
-import BinIcon from "@/components/icons/BinIcon"
 import ElementAddButton from "@/components/ui/ElementAddButton"
 import SortableList from "@/components/ui/SortableList"
 import SectionHeader from "@/components/ui/SectionHeader"
@@ -81,7 +80,7 @@ export default function SkillsSection({ categories, viewMode, setViewMode, onSki
                             <div key={cat.id} className="space-y-3">
                                 <div className="flex items-center gap-3 mb-4">
                                     <input id={`cat-label-${cat.id}`} aria-label={tInput("categoryName")} name={`category-${cat.id}`} placeholder={tInput("categoryName")} value={cat.name || ""} onChange={(event) => handleCategoryNameChange(cat.id, event.target.value)} className="font-semibold text-text-main bg-transparent outline-none placeholder:text-text-muted/50 w-full" />
-                                    <Button variant="remove" onClick={() => handleRemove("category", cat.id)} aria-label={`${tButton("delete")} ${cat.name || tInput("missingCategory")}`} icon={<BinIcon aria-hidden="true" className="w-6 h-6" />} />
+                                    <Button variant="remove" onClick={() => handleRemove("category", cat.id)} aria-label={`${tButton("delete")} ${cat.name || tInput("missingCategory")}`} icon={<Trash2 aria-hidden="true" className="w-6 h-6" />} />
                                 </div>
 
                                 <div role="list">
@@ -90,7 +89,7 @@ export default function SkillsSection({ categories, viewMode, setViewMode, onSki
                                             <Dot className="mt-7" aria-hidden="true"/>
                                             <Input label={`${tInput("element")} ${index+1}`} name={`skill-${skill.id}`} type="text" placeholderValue={tInput("skillNamePlaceholder")} value={skill.name || ""} onChange={(e) => handleSkillNameChange(cat.id, skill.id, e.target.value)} />
 
-                                            <Button className="mt-6" aria-label={`${tButton("deleteSkill")} ${skill.name || `${tInput("element")} ${index+1}`}`} variant="remove" icon={<BinIcon aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("skill", cat.id, skill.id)} />
+                                            <Button className="mt-6" aria-label={`${tButton("deleteSkill")} ${skill.name || `${tInput("element")} ${index+1}`}`} variant="remove" icon={<Trash2 aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("skill", cat.id, skill.id)} />
                                         </div>
                                     ))}
                                 </div>
@@ -110,7 +109,7 @@ export default function SkillsSection({ categories, viewMode, setViewMode, onSki
                                         <div aria-hidden="true" className="w-2 h-2 rounded-full bg-text-main shrink-0 mt-7"></div>
                                         <Input label={`${tInput("element")} ${index+1}`} name={`flat-skill-${skill.id}`} type="text" placeholderValue={tInput("skillNamePlaceholder")} value={skill.name || ""} onChange={(e) => handleSkillNameChange(skill.catId, skill.id, e.target.value)} />
 
-                                        <Button className="mt-6" aria-label={`${tButton("deleteSkill")} ${skill.name || `${tInput("element")} ${index+1}`}`} variant="remove" icon={<BinIcon aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("skill", skill.catId, skill.id)} />
+                                        <Button className="mt-6" aria-label={`${tButton("deleteSkill")} ${skill.name || `${tInput("element")} ${index+1}`}`} variant="remove" icon={<Trash2 aria-hidden="true" className="w-6 h-6"/>} onClick={() => handleRemove("skill", skill.catId, skill.id)} />
                                     </div>
                                 ))}
                             </div>

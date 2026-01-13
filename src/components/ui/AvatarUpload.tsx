@@ -1,9 +1,9 @@
 "use client"
 
+import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import PlusIcon from "../icons/PlusIcon";
 
 type AvatarUploadProps = {
     className?: string
@@ -71,13 +71,13 @@ export default function AvatarUpload({ className, isAuthenticated, avatarUrl, up
             <div className="flex items-center gap-6">
                 {uploadedAvatarUrl ? (
                     <div className="relative">
-                        <div className="relative w-[60px] h-[60px] sm:w-18 sm:h-18 shrink-0 overflow-hidden rounded-full border border-border">
+                        <div className="relative w-15 h-15 sm:w-18 sm:h-18 shrink-0 overflow-hidden rounded-full border border-border">
                             <Image priority referrerPolicy="no-referrer" src={uploadedAvatarUrl || ""} alt={tSettings("userProfileAlt")} fill className="object-cover" />
                         </div>
 
                         {uploadedAvatarUrl !== avatarUrl && (
                             <button onClick={handleRemove} className="absolute -top-1 -right-1 bg-error rounded-full p-0.5 w-5 h-5 flex items-center justify-center hover:bg-error/60 z-10 duration-200 cursor-pointer">
-                                <PlusIcon className="rotate-45" />
+                                <Plus className="rotate-45" />
                             </button>
                         )}
                     </div>

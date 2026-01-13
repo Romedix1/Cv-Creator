@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import Button from "./Button";
-import PlusIcon from "../icons/PlusIcon";
+import { Plus } from "lucide-react";
 
 type ElementAddButtonProps = {
     step: string;
@@ -12,7 +12,7 @@ export default function ElementAddButton({ step, onAdd }: ElementAddButtonProps)
 
     return (
         <div className="mt-6 w-full">
-            <Button onClick={onAdd} variant="secondary" className="w-full gap-4 border-dashed border-2" text={tButton(`add${step}`)} icon={<PlusIcon aria-hidden="true" className="w-5 h-5"/>} />
+            <Button onClick={onAdd} variant="secondary" className="w-full gap-4 border-dashed border-2" text={tButton(`add${step}`)} icon={<Plus aria-hidden="true" className="w-5 h-5"/>} />
         </div>
     )
 }

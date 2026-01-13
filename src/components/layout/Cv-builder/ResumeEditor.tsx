@@ -1,11 +1,5 @@
 "use client"
 
-import EducationIcon from "@/components/icons/EducationIcon";
-import ExperienceIcon from "@/components/icons/ExperienceIcon";
-import LanguagesIcon from "@/components/icons/LanguagesIcon";
-import PersonIcon from "@/components/icons/PersonIcon";
-import PlusIcon from "@/components/icons/PlusIcon";
-import SkillsIcon from "@/components/icons/SkillsIcon";
 import { useState } from "react"
 import PersonalDataSection from "./PersonalDataSection"
 import { useTranslations } from "next-intl"
@@ -27,7 +21,7 @@ import { Rodo as RodoType } from "@/types/rodo";
 import { PersonalInfo } from "@/types/personalInfo";
 import CertificatesSection from "./CertificatesSection";
 import { Certificates } from "@/types/certificates";
-import { Award, Heart, ShieldCheck } from "lucide-react";
+import { Award, BriefcaseBusiness, GraduationCap, Heart, Languages, Plus, ShieldCheck, User2, Wrench } from "lucide-react";
 import { Interests } from "@/types/interests";
 import InterestsSection from "./IntrestsSection";
 import { SkillsType } from "@/types/skillsType";
@@ -53,15 +47,15 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
     const iconStyles = "w-7 h-7"
 
     const STEPS = [
-        {key: "personalData", name: tCvBuilderSteps("personalData"), icon: <PersonIcon className={iconStyles} />},
-        {key: "experience", name: tCvBuilderSteps("experience"), icon: <ExperienceIcon className={iconStyles} />},
-        {key: "education", name: tCvBuilderSteps("education"), icon: <EducationIcon className={iconStyles} />},
-        {key: "skills", name: tCvBuilderSteps("skills"), icon: <SkillsIcon className={iconStyles} />},
-        {key: "languages", name: tCvBuilderSteps("languages"), icon: <LanguagesIcon className={iconStyles} />},
+        {key: "personalData", name: tCvBuilderSteps("personalData"), icon: <User2 className={iconStyles} />},
+        {key: "experience", name: tCvBuilderSteps("experience"), icon: <BriefcaseBusiness className={iconStyles} />},
+        {key: "education", name: tCvBuilderSteps("education"), icon: <GraduationCap className={iconStyles} />},
+        {key: "skills", name: tCvBuilderSteps("skills"), icon: <Wrench className={iconStyles} />},
+        {key: "languages", name: tCvBuilderSteps("languages"), icon: <Languages className={iconStyles} />},
         {key: "certificates", name: tCvBuilderSteps("certificates"), icon: <Award className={iconStyles} />},
         {key: "interests", name: tCvBuilderSteps("interests"), icon: <Heart className={iconStyles} />},
         {key: "rodo", name: tCvBuilderSteps("rodo"), icon: <ShieldCheck className={iconStyles} />},
-        {key: "addSection", name: tCvBuilderSteps("addSection"), icon: <PlusIcon className={iconStyles} />},
+        {key: "addSection", name: tCvBuilderSteps("addSection"), icon: <Plus className={iconStyles} />},
     ]
 
     const [currentStep, setCurrentStep] = useState("personalData")
