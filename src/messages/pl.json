@@ -217,7 +217,6 @@
         "moveItem": "Przenieś element",
         "untitledSection": "Nienazwana sekcja",
         "sectionSettings": "Ustawienia sekcji",
-        "rodoClauseHeader": "Klauzula RODO",
         "rodoStandardClauseText": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji obecnego oraz przyszłych procesów rekrutacyjnych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).",
         "rodoDedicatedClauseText": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez {company} dla potrzeb niezbędnych do realizacji obecnego oraz przyszłych procesów rekrutacyjnych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO)."
     },

@@ -311,6 +311,14 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
                         </div>
                     )
                 )}
+                {/* CLAUSE */}
+                {data.rodoSection.length > 0 && (
+                    <div className="mt-4">
+                        <p className="text-text-muted text-[10px] text-justify leading-tight">
+                            {data.rodoSection[0].value}
+                        </p>
+                    </div>
+                )}
                 </div>
             </div>
         </div>

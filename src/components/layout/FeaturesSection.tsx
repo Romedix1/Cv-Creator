@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl"
 import FeatureCard from "../ui/FeatureCard"
-import { Cloud, CloudCheck, CloudUpload, FileText, LayoutTemplate, Type } from "lucide-react"
+import { CloudUpload, FileText, LayoutTemplate, Type } from "lucide-react"
 
 export default function FeaturesSection() {
     const tFeatures = useTranslations("FeaturesSection");
