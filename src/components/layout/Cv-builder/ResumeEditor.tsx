@@ -23,14 +23,16 @@ import { LanguagesItem } from "@/types/languages";
 import LanguagesSection from "./LanguagesSection";
 import CustomSection from "./CustomSection";
 import { CustomSection as CustomSectionType } from "@/types/customSection";
+import { Rodo as RodoType } from "@/types/rodo";
 import { PersonalInfo } from "@/types/personalInfo";
 import CertificatesSection from "./CertificatesSection";
 import { Certificates } from "@/types/certificates";
-import { Award, Heart } from "lucide-react";
+import { Award, Heart, ShieldCheck } from "lucide-react";
 import { Interests } from "@/types/interests";
 import InterestsSection from "./IntrestsSection";
 import { SkillsType } from "@/types/skillsType";
-import { LONG_FAKE_DATA } from "@/data/longFakeData";
+import RodoSection from "./RODOSection";
+import { Rodo as RodoSectionType } from "@/types/rodo"
 
 type ResumeEditorProps = {
     isAuthenticated: boolean;
@@ -44,20 +46,22 @@ type ResumeEditorProps = {
 }
 
 export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, userFirstName, userLastName, jobTitle, email, phone }: ResumeEditorProps) {
-    const tCvBuilder = useTranslations("BuilderSteps")
+    const tCvBuilderSteps = useTranslations("BuilderSteps")
+    const tCvBuilder = useTranslations("Builder")
     const tButton = useTranslations("Button")
 
     const iconStyles = "w-7 h-7"
 
     const STEPS = [
-        {key: "personalData", name: tCvBuilder("personalData"), icon: <PersonIcon className={iconStyles} />},
-        {key: "experience", name: tCvBuilder("experience"), icon: <ExperienceIcon className={iconStyles} />},
-        {key: "education", name: tCvBuilder("education"), icon: <EducationIcon className={iconStyles} />},
-        {key: "skills", name: tCvBuilder("skills"), icon: <SkillsIcon className={iconStyles} />},
-        {key: "languages", name: tCvBuilder("languages"), icon: <LanguagesIcon className={iconStyles} />},
-        {key: "certificates", name: tCvBuilder("certificates"), icon: <Award className={iconStyles} />},
-        {key: "interests", name: tCvBuilder("interests"), icon: <Heart className={iconStyles} />},
-        {key: "addSection", name: tCvBuilder("addSection"), icon: <PlusIcon className={iconStyles} />},
+        {key: "personalData", name: tCvBuilderSteps("personalData"), icon: <PersonIcon className={iconStyles} />},
+        {key: "experience", name: tCvBuilderSteps("experience"), icon: <ExperienceIcon className={iconStyles} />},
+        {key: "education", name: tCvBuilderSteps("education"), icon: <EducationIcon className={iconStyles} />},
+        {key: "skills", name: tCvBuilderSteps("skills"), icon: <SkillsIcon className={iconStyles} />},
+        {key: "languages", name: tCvBuilderSteps("languages"), icon: <LanguagesIcon className={iconStyles} />},
+        {key: "certificates", name: tCvBuilderSteps("certificates"), icon: <Award className={iconStyles} />},
+        {key: "interests", name: tCvBuilderSteps("interests"), icon: <Heart className={iconStyles} />},
+        {key: "rodo", name: tCvBuilderSteps("rodo"), icon: <ShieldCheck className={iconStyles} />},
+        {key: "addSection", name: tCvBuilderSteps("addSection"), icon: <PlusIcon className={iconStyles} />},
     ]
 
     const [currentStep, setCurrentStep] = useState("personalData")
@@ -81,7 +85,13 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
         languages: [] as LanguagesItem[],
         certificates: [] as Certificates[],
         interests: [] as Interests[],
-        customSection: [] as CustomSectionType[]
+        customSection: [] as CustomSectionType[],
+        rodoSection: [{
+            id: crypto.randomUUID(),
+            type: "standard",
+            value: tCvBuilder("rodoStandardClauseText"),
+            company: ""
+        }] as RodoType[]
     })
 
     const handleSectionChange = <K extends keyof ResumeData>(sectionKey: K, newValue: ResumeData[K]) => {
@@ -106,6 +116,8 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 return <InterestsSection interests={data.interests} onCertificatesChange={(newItems) => handleSectionChange("interests", newItems)} setIsEditingMode={setIsEditingMode} />
             case "addSection":
                 return <CustomSection sections={data.customSection} onSectionChange={(newItems: CustomSectionType[]) => handleSectionChange("customSection", newItems)} setIsEditingMode={setIsEditingMode} />
+            case "rodo":
+                return <RodoSection rodo={data.rodoSection} onRodoChange={(newItems: RodoSectionType[]) => handleSectionChange("rodoSection", newItems)} />
         }
     }
 

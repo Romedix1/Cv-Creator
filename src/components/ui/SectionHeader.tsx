@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 
 type SectionHeaderProps = {
-    step: string
+    step: string;
 }
 
 export default function SectionHeader({ step }: SectionHeaderProps) {

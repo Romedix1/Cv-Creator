@@ -35,7 +35,7 @@ export default function SortableList<T extends Identifiable>({ items, onReorder,
                         {items.map((item, index) => (
                             <Draggable key={item.id} draggableId={item.id} index={index}>
                                 {(provided, snapshot) => (
-                                    <div ref={provided.innerRef} {...provided.draggableProps} className={`flex border p-3 sm:p-4 rounded-xl items-center gap-3 sm:gap-4 bg-bg-main ${snapshot.isDragging ? "shadow-lg border-blue-400 rotate-1" : "border-border"}`}>
+                                    <div ref={provided.innerRef} {...provided.draggableProps} className={`flex border p-3 sm:p-4 rounded-xl items-center gap-3 sm:gap-4 bg-bg-main ${snapshot.isDragging ? "shadow-lg border-default rotate-1" : "border-border"}`}>
                                         <div aria-label={tAria("changeOrder")} role="button" {...provided.dragHandleProps} className="cursor-grab p-1 shrink-0 text-text-main active:cursor-grabbing">
                                             <PiDotsSixVertical aria-hidden="true" className="w-6 h-6"/>
                                         </div>

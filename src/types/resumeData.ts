@@ -7,6 +7,7 @@ import { CustomSection } from "./customSection";
 import { Certificates } from "./certificates";
 import { Interests } from "./interests";
 import { SkillsType } from "./skillsType";
+import { Rodo } from "./rodo";
 
 export type ResumeData = {
     personalInfo: PersonalInfo;
@@ -18,4 +19,5 @@ export type ResumeData = {
     certificates: Certificates[];
     interests: Interests[];
     customSection: CustomSection[];
+    rodoSection: Rodo[];
 }
