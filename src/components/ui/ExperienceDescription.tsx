@@ -3,9 +3,7 @@
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
-import { Dot } from "lucide-react";
-import PlusIcon from "@/components/icons/PlusIcon";
-import BinIcon from "@/components/icons/BinIcon";
+import { Dot, Plus, Trash2 } from "lucide-react";
 import { DescriptionItem } from "@/types/descriptionItem";
 
 type DescriptionProps = {
@@ -54,13 +52,13 @@ export default function ExperienceDescription({ items, onChange }: DescriptionPr
                             <Input label={`${tInput("responsibilitiesLabel")} ${index+1}`} name={`desc-${index}`} type="text" placeholderValue={tInput("responsibilitiesPlaceholder")} value={desc.value} onChange={(e) => handleEdit(desc.id, e.target.value)}/>
                         </div>
 
-                        <Button onClick={() => handleRemove(desc.id)} variant="remove" className="mt-6" aria-label={`${tButton("delete")} ${tInput("responsibilitiesLabel")} ${index + 1}`} icon={<BinIcon aria-hidden="true" className="w-7 h-7" />} />
+                        <Button onClick={() => handleRemove(desc.id)} variant="remove" className="mt-6" aria-label={`${tButton("delete")} ${tInput("responsibilitiesLabel")} ${index + 1}`} icon={<Trash2 aria-hidden="true" className="w-7 h-7" />} />
                     </div>
                 ))}
             </div>
 
             <div className="mt-8">
-                <Button onClick={handleAdd} variant="secondary" className="w-full gap-2 border-dashed border-2" text={tBuilder("addPoint")} icon={<PlusIcon aria-hidden="true" className="w-4 h-4"/>} />
+                <Button onClick={handleAdd} variant="secondary" className="w-full gap-2 border-dashed border-2" text={tBuilder("addPoint")} icon={<Plus aria-hidden="true" className="w-4 h-4"/>} />
             </div>
         </div>
     )

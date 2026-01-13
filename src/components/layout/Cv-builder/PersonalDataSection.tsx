@@ -1,7 +1,5 @@
 "use client"
 
-import BinIcon from "@/components/icons/BinIcon";
-import PlusIcon from "@/components/icons/PlusIcon";
 import AvatarUpload from "@/components/ui/AvatarUpload";
 import Button from "@/components/ui/Button";
 import ElementAddButton from "@/components/ui/ElementAddButton";
@@ -9,6 +7,7 @@ import Input from "@/components/ui/Input";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { PersonalInfo } from "@/types/personalInfo";
 import { SocialLink } from "@/types/socialLink";
+import { Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Dispatch, SetStateAction } from "react";
 
@@ -95,7 +94,7 @@ export default function PersonalDataSection({ personalData, onPersonalInfoChange
                             </div>
 
                             <div className="mb-px">
-                                <Button onClick={() => removeLink(link.id)} variant="remove" aria-label={`${tButton("deleteLink")} ${link.platform}`} icon={<BinIcon aria-hidden="true" className="w-7 h-7" />} />
+                                <Button onClick={() => removeLink(link.id)} variant="remove" aria-label={`${tButton("deleteLink")} ${link.platform}`} icon={<Trash2 aria-hidden="true" className="w-7 h-7" />} />
                             </div>
                         </div>
                     ))}

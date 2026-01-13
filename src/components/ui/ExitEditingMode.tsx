@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import Button from "./Button";
-import BinIcon from "../icons/BinIcon";
+import { Trash2 } from "lucide-react";
 
 type ExitEditingModeProps = {
     itemId: string,
@@ -15,7 +15,7 @@ export default function ExitEditingMode({ itemId, onDelete, setIsEditingMode, on
 
     return (
         <div className="mt-8 flex gap-4 justify-between">
-            <Button onClick={() => {onDelete(itemId); setIsEditingMode(false);}} variant="remove" text={tButton("delete")} icon={<BinIcon aria-hidden="true" className="w-7 h-7" />} />
+            <Button onClick={() => {onDelete(itemId); setIsEditingMode(false);}} variant="remove" text={tButton("delete")} icon={<Trash2 aria-hidden="true" className="w-7 h-7" />} />
             <Button onClick={() => {onBack()}} variant="primary" text={tBuilder("save")} className="w-fit px-6" />
         </div>
     )

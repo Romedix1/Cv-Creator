@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, ReactNode } from "react"
-import EyeIcon from "@/components/icons/EyeIcon";
-import EyeSlashIcon from "@/components/icons/EyeSlashIcon";
+import { Eye, EyeOff } from "lucide-react";
 
 type SelectOption = {
     label: string;
@@ -63,9 +62,9 @@ export default function Input({ name, label, type, value, placeholderValue, show
                         {isPasswordType && (
                             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 text-text-muted hover:text-text-main duration-200 cursor-pointer">
                                 {showPassword ? (
-                                    <EyeIcon className="w-6 h-6" />
+                                    <Eye className="w-6 h-6" />
                                 ) : (
-                                    <EyeSlashIcon className="w-6 h-6" />
+                                    <EyeOff className="w-6 h-6" />
                                 )}
                             </button>
                         )}

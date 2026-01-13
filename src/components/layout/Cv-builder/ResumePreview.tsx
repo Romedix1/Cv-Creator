@@ -1,11 +1,10 @@
 "use client"
 
-import EyeIcon from "@/components/icons/EyeIcon"
 import { useState } from "react"
 import { ResumeData } from "@/types/resumeData"
 import { useSearchParams } from "next/navigation"
 import ModernBlue from "@/components/ui/ModernBlue"
-import { ZoomIn } from "lucide-react"
+import { Eye, ZoomIn } from "lucide-react"
 import FullScreenTemplate from "./FullScreenTemplate"
 
 export default function ResumePreview({ data }: { data: ResumeData }) {
@@ -43,7 +42,7 @@ export default function ResumePreview({ data }: { data: ResumeData }) {
 
             {/* Mobile button */}
             <div className="fixed bottom-24 right-4 w-14 h-14 bg-default hover:bg-default-hover flex justify-center items-center rounded-full border border-white xl:hidden shadow-lg cursor-pointer" onClick={() => setShow(!show)}>
-                <EyeIcon className="w-7.5 h-7.5 text-white"/>
+                <Eye className="w-7.5 h-7.5 text-white"/>
             </div>
         </>
     )
