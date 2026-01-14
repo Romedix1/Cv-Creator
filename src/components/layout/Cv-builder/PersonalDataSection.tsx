@@ -9,7 +9,7 @@ import { PersonalInfo } from "@/types/personalInfo";
 import { SocialLink } from "@/types/socialLink";
 import { Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, Fragment, SetStateAction } from "react";
 
 type PersonalDataSectionProps = {
     personalData: PersonalInfo;
@@ -24,7 +24,7 @@ const PLATFORM_OPTIONS = [
     { label: "GitHub", value: "github" },
     { label: "Strona WWW", value: "website" },
     { label: "Behance", value: "behance" },
-    { label: "X (Twitter)", value: "twitter" },
+    { label: "Twitter", value: "twitter" },
     { label: "Inne", value: "other" },
 ]
 
@@ -83,21 +83,28 @@ export default function PersonalDataSection({ personalData, onPersonalInfoChange
                 <h2 className="text-lg font-semibold my-4">{tInput("linksHeader")}</h2>
 
                 <div className="flex flex-col gap-4">
-                    {(personalData.links || []).map((link) => (
-                        <div key={link.id} className="flex gap-4 items-end">
-                            <div className="w-30 sm:w-45 shrink-0">
-                                <Input name={`platform-${link.id}`} label={tInput("platformLabel")} type="select" value={link.platform} placeholderValue={tInput("platformPlaceholder")} onChange={(e) => updateLink(link.id, "platform", e.target.value)} options={PLATFORM_OPTIONS} />
-                            </div>
+                    {(personalData.links || []).map((link) => {
+                        const isStandardOption = PLATFORM_OPTIONS.some(opt => opt.value === link.platform && opt.value !== "other")
 
-                            <div className="flex-1">
-                                <Input name={`link-${link.id}`} label="Link URL" type="text" value={link.url} placeholderValue="https://..." onChange={(e) => updateLink(link.id, "url", e.target.value)} />
-                            </div>
+                        const selectValue = isStandardOption ? link.platform : "other"
+                        return (
+                            <Fragment key={link.id}>
+                                <div className="flex gap-4 items-end">
+                                    <div className="w-30 sm:w-45 shrink-0">
+                                        <Input name={`platform-${link.id}`} label={tInput("platformLabel")} type="select" value={selectValue} placeholderValue={tInput("platformPlaceholder")} onChange={(e) => updateLink(link.id, "platform", e.target.value)} options={PLATFORM_OPTIONS} />
+                                    </div>
 
-                            <div className="mb-px">
-                                <Button onClick={() => removeLink(link.id)} variant="remove" aria-label={`${tButton("deleteLink")} ${link.platform}`} icon={<Trash2 aria-hidden="true" className="w-7 h-7" />} />
-                            </div>
-                        </div>
-                    ))}
+                                    <div className="flex-1">
+                                        <Input name={`link-${link.id}`} label="Link URL" type="text" value={link.url} placeholderValue="https://..." onChange={(e) => updateLink(link.id, "url", e.target.value)} />
+                                    </div>
+                                    <div className="mb-px">
+                                        <Button onClick={() => removeLink(link.id)} variant="remove" aria-label={`${tButton("deleteLink")} ${link.platform}`} icon={<Trash2 aria-hidden="true" className="w-7 h-7" />} />
+                                    </div>
+                                </div>
+                                {selectValue === "other" && <Input name={`link-${link.id}`} label={tInput("customPlatformLabel")} type="text" value={link.platform === "other" ? "" : link.platform} placeholderValue={tInput("customPlatformPlaceholder")} onChange={(e) => updateLink(link.id, "platform", e.target.value)} />}
+                            </Fragment>
+                        )
+                    })}
                 </div>
 
                 <ElementAddButton step={"Link"} onAdd={addLink} />

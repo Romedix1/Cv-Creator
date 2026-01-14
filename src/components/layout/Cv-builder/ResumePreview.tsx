@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation"
 import ModernBlue from "@/components/ui/ModernBlue"
 import { Eye, ZoomIn } from "lucide-react"
 import FullScreenTemplate from "./FullScreenTemplate"
+import ClassicCorporate from "@/components/ui/ClassicCorporate"
 
 export default function ResumePreview({ data }: { data: ResumeData }) {
     const [show, setShow] = useState(false)
@@ -16,6 +17,8 @@ export default function ResumePreview({ data }: { data: ResumeData }) {
         switch(template) {
             case "modern-blue":
                 return <ModernBlue data={data} />
+            case "classic-corporate":
+                return <ClassicCorporate data={data} />
             default:
                 return <ModernBlue data={data} />
         }
