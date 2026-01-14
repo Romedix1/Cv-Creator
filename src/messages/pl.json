@@ -308,7 +308,9 @@
         "standardClause": "Standardowa",
         "dedicated": "Dedykowana",
         "customClause": "Własna",
-        "clauseTextLabel": "Tekst klauzuli"
+        "clauseTextLabel": "Tekst klauzuli",
+        "customPlatformLabel": "Nazwa platformy",
+        "customPlatformPlaceholder": "facebook"
     },
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",
