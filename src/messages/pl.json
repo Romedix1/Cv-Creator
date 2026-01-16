@@ -310,7 +310,13 @@
         "customClause": "Własna",
         "clauseTextLabel": "Tekst klauzuli",
         "customPlatformLabel": "Nazwa platformy",
-        "customPlatformPlaceholder": "facebook"
+        "customPlatformPlaceholder": "facebook",
+        "showSkillLevel": "Pokaż poziom umiejętności",
+        "beginner": "początkujący",
+        "elementary": "podstawowy",
+        "intermediate": "średniozaawansowany",
+        "advanced": "zaawansowany",
+        "proficient": "ekspert / senior"
     },
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",

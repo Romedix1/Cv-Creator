@@ -8,7 +8,7 @@ import LanguagesItem from "./LanguagesItem"
 import ElementAddButton from "@/components/ui/ElementAddButton"
 import ItemActions from "@/components/ui/ItemActions"
 import SectionItemError from "@/components/ui/SectionItemError"
-import SectionHeader from "@/components/ui/SectionHeader"
+import SectionHeader from "@/components/cv-builder/SectionHeader"
 
 type LanguagesSectionProps = {
     languages: LanguageProps[];

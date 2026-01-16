@@ -1,33 +1,33 @@
 "use client"
 
 import { useState } from "react"
-import PersonalDataSection from "./PersonalDataSection"
 import { useTranslations } from "next-intl"
-import Capsule from "./Capsule"
-import Button from "@/components/ui/Button";
-import ResumePreview from "./ResumePreview";
 import { ExperienceItem } from "@/types/experience";
 import { EducationItem } from "@/types/education";
-import ExperienceSection from "./ExperienceSection";
-import EducationSection from "./EducationSection";
 import { ResumeData } from "@/types/resumeData";
-import SkillsSection from "./SkillSection";
 import { SkillsCategory } from "@/types/skillsCategory";
 import { LanguagesItem } from "@/types/languages";
-import LanguagesSection from "./LanguagesSection";
-import CustomSection from "./CustomSection";
 import { CustomSection as CustomSectionType } from "@/types/customSection";
 import { Rodo as RodoType } from "@/types/rodo";
 import { PersonalInfo } from "@/types/personalInfo";
-import CertificatesSection from "./CertificatesSection";
 import { Certificates } from "@/types/certificates";
 import { Award, BriefcaseBusiness, GraduationCap, Heart, Languages, Plus, ShieldCheck, User2, Wrench } from "lucide-react";
 import { Interests } from "@/types/interests";
-import InterestsSection from "./IntrestsSection";
-import { SkillsType } from "@/types/skillsType";
-import RodoSection from "./RODOSection";
 import { Rodo as RodoSectionType } from "@/types/rodo"
-import { FAKE_DATA } from "@/data/fakeData"
+import { Settings } from "@/types/settings"
+import { useSearchParams } from "next/navigation"
+import PersonalDataSection from "./PersonalDataSection";
+import ExperienceSection from "./ExperienceSection";
+import EducationSection from "./EducationSection";
+import SkillsSection from "./SkillSection";
+import LanguagesSection from "./LanguagesSection";
+import CertificatesSection from "./CertificatesSection";
+import InterestsSection from "./IntrestsSection";
+import CustomSection from "./CustomSection";
+import RodoSection from "./RODOSection";
+import Button from "../ui/Button";
+import ResumePreview from "./ResumePreview";
+import Capsule from "./Capsule";
 
 type ResumeEditorProps = {
     isAuthenticated: boolean;
@@ -44,6 +44,9 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
     const tCvBuilderSteps = useTranslations("BuilderSteps")
     const tCvBuilder = useTranslations("Builder")
     const tButton = useTranslations("Button")
+
+    const searchParams = useSearchParams()
+    const template = searchParams.get('template')
 
     const iconStyles = "w-7 h-7"
 
@@ -62,7 +65,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
     const [currentStep, setCurrentStep] = useState("personalData")
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [isEditingMode, setIsEditingMode] = useState(false)
-    const [viewMode, setViewMode] = useState<SkillsType>("categories")
+    const [viewMode, setViewMode] = useState<Settings["skillsType"]>("categories")
 
     const [data, setData] = useState<ResumeData>({
         personalInfo: {
@@ -76,7 +79,6 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
         experience: [] as ExperienceItem[],
         education: [] as EducationItem[],
         skillsCat: [] as SkillsCategory[],
-        skillsType: "categories",
         languages: [] as LanguagesItem[],
         certificates: [] as Certificates[],
         interests: [] as Interests[],
@@ -86,7 +88,13 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             type: "standard",
             value: tCvBuilder("rodoStandardClauseText"),
             company: ""
-        }] as RodoType[]
+        }] as RodoType[],
+        settings: {
+            skillsType: viewMode,
+            showSkillsLevel: false,
+            showLanguageLevel: false,
+            template: template
+        } as Settings
     })
 
     const handleSectionChange = <K extends keyof ResumeData>(sectionKey: K, newValue: ResumeData[K]) => {
@@ -102,7 +110,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             case "education":
                 return <EducationSection education={data.education} onEducationChange={(newItems) => handleSectionChange("education", newItems)} setIsEditingMode={setIsEditingMode} />
             case "skills":
-                return <SkillsSection categories={data.skillsCat} viewMode={viewMode} setViewMode={setViewMode} onSkillsChange={(newItems) => handleSectionChange("skillsCat", newItems)} onSkillsTypeChange={(newValue) => handleSectionChange("skillsType", newValue)} />
+                return <SkillsSection settings={data.settings} categories={data.skillsCat} viewMode={viewMode} setViewMode={setViewMode} onSkillsChange={(newItems) => handleSectionChange("skillsCat", newItems)} onSettingsChange={(newValue) => handleSectionChange("settings", newValue)} />
             case "languages":
                 return <LanguagesSection languages={data.languages} onLanguageChange={(newItems) => handleSectionChange("languages", newItems)} setIsEditingMode={setIsEditingMode} />
             case "certificates":
@@ -150,7 +158,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 )}
             </div>
 
-            <ResumePreview data={data} />
+            <ResumePreview template={template} data={data} />
         </div>
     )
 }

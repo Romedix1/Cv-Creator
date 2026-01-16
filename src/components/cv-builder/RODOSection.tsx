@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import ElementAddButton from "@/components/ui/ElementAddButton";
-import SectionHeader from "@/components/ui/SectionHeader";
+import SectionHeader from "@/components/cv-builder/SectionHeader";
 import { Rodo as RodoType} from "@/types/rodo";
 import Input from "@/components/ui/Input";
 import Toggle from "@/components/ui/Toggle";

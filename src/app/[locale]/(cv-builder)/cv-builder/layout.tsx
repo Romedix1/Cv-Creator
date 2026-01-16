@@ -1,4 +1,4 @@
-import CvBuilderNav from "@/components/layout/Cv-builder/Nav";
+import CvBuilderNav from "@/components/cv-builder/Nav";
 import Footer from "@/components/layout/Footer";
 import { createClient } from "@/lib/supabase/server";
 import { ReactNode } from "react";
