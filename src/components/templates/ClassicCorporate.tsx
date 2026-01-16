@@ -5,13 +5,13 @@ import { useTranslations } from "next-intl";
 import { Merriweather } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import TemplateHeader from "./TemplateHeader";
+import TemplateHeader from "./shared/SectionHeader";
 
 const merriweather = Merriweather({
     subsets: ["latin"],
-    weight: ["400", "500", "700", "900"],
     style: ["normal", "italic"],
 });
+
 export default function ClassicCorporate({ data }: { data: ResumeData }) {
     const tTemplate = useTranslations("Template")
     const tAlt = useTranslations("ImgAlt")
@@ -213,8 +213,8 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
             {/* CUSTOM SECTION */}
             {data.customSection.map((section) => (section.layout === "center" && section.type === "text") ? (
                     <div key={section.id}>
-                        <h2 className="text-text-muted font-bold text-[16px] uppercase mb-2.5 wrap-break-word">{section.title}</h2>
-                        <Separator className="mt-1 mb-2.5 h-0.5 bg-[#E5E7EB] w-full" />
+                        <TemplateHeader text={section.title} className="wrap-break-word"/>
+
                         <div className="flex flex-col gap-4">
                             {section.items.map((item) => {
                                 return (
@@ -236,8 +236,8 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
                     </div>
                 ) : (section.layout === "center" && section.type === "detailed") && (
                     <div>
-                        <h2 className="text-text-muted font-bold text-[16px] uppercase mb-2.5 wrap-break-word">{section.title}</h2>
-                        <Separator className="mt-1 mb-2.5 h-0.5 bg-[#E5E7EB] w-full" />
+                        <TemplateHeader text={section.title} className="wrap-break-word"/>
+
                         <div className="flex flex-col gap-4">
                             {section.items.map((item) => {
                                 return (

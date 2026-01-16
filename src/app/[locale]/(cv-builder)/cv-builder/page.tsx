@@ -1,4 +1,4 @@
-import ResumeEditor from "@/components/layout/Cv-builder/ResumeEditor";
+import ResumeEditor from "@/components/cv-builder/ResumeEditor";
 import { getUserProfile } from "@/lib/getUserProfile";
 import { createClient } from "@/lib/supabase/server";
 

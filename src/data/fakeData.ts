@@ -60,24 +60,23 @@ export const FAKE_DATA: ResumeData = {
             endDate: "06.2019"
         }
     ],
-    skillsType: "categories",
     skillsCat: [
         {
             id: "cat-1",
             name: "Zarządzanie",
             skills: [
-                { id: "s-1-1", name: "Agile & Scrum", level: "Expert" },
-                { id: "s-1-2", name: "Strategia Produktu", level: "Advanced" },
-                { id: "s-1-3", name: "Zarządzanie Zespołem", level: "Advanced" }
+                { id: "s-1-1", name: "Agile & Scrum", level: 5 },
+                { id: "s-1-2", name: "Strategia Produktu", level: 3 },
+                { id: "s-1-3", name: "Zarządzanie Zespołem", level: 3 }
             ]
         },
         {
             id: "cat-2",
             name: "Narzędzia",
             skills: [
-                { id: "s-2-1", name: "Jira / Confluence", level: "Expert" },
-                { id: "s-2-2", name: "Figma", level: "Intermediate" },
-                { id: "s-2-3", name: "Google Analytics", level: "Advanced" }
+                { id: "s-2-1", name: "Jira / Confluence", level: 1 },
+                { id: "s-2-2", name: "Figma", level: 2 },
+                { id: "s-2-3", name: "Google Analytics", level: 5 }
             ]
         }
     ],
@@ -184,5 +183,11 @@ export const FAKE_DATA: ResumeData = {
         type: "standard",
         value: "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji obecnego oraz przyszłych procesów rekrutacyjnych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).",
         company: ""
-    }]
+    }],
+    settings: {
+        skillsType: "categories",
+        showSkillsLevel: true,
+        showLanguageLevel: true,
+        template: "tech-minimal"
+    }
 }

@@ -6,17 +6,17 @@ import SortableList from "@/components/ui/SortableList";
 import ElementAddButton from "@/components/ui/ElementAddButton";
 import ItemActions from "@/components/ui/ItemActions";
 import SectionItemError from "@/components/ui/SectionItemError";
-import SectionHeader from "@/components/ui/SectionHeader";
-import { Certificates as CertificatesProps } from "@/types/certificates";
-import CertificatesItem from "./CertificatesItem";
+import SectionHeader from "@/components/cv-builder/SectionHeader";
+import { Interests as InterestsProps } from "@/types/interests";
+import InterestsItem from "./IntrestsItem";
 
-type CertificatesSectionProps = {
-    certificates: CertificatesProps[];
-    onCertificatesChange: (newExperience: CertificatesProps[]) => void;
+type InterestsSectionProps = {
+    interests: InterestsProps[];
+    onCertificatesChange: (newExperience: InterestsProps[]) => void;
     setIsEditingMode: (isEditing: boolean) => void;
 }
 
-export default function CertificatesSection({ certificates, onCertificatesChange, setIsEditingMode }: CertificatesSectionProps) {
+export default function InterestsSection({ interests, onCertificatesChange, setIsEditingMode }: InterestsSectionProps) {
     const tInput = useTranslations("Inputs")
     const tButton = useTranslations("Button")
 
@@ -28,25 +28,24 @@ export default function CertificatesSection({ certificates, onCertificatesChange
     }
 
     const handleAdd = () => {
-        const newItem: CertificatesProps = {
+        const newItem: InterestsProps = {
             id: crypto.randomUUID(),
             name: "",
-            organizer: "",
-            date: "",
+            value: "",
         }
 
-        onCertificatesChange([...certificates, newItem])
+        onCertificatesChange([...interests, newItem])
         setIsEditingMode(true)
         setEditing(newItem.id)
     }
 
-    const handleUpdate = (updatedItem: CertificatesProps) => {
-        const updatedList = certificates.map(item => item.id === updatedItem.id ? updatedItem : item )
+    const handleUpdate = (updatedItem: InterestsProps) => {
+        const updatedList = interests.map(item => item.id === updatedItem.id ? updatedItem : item )
         onCertificatesChange(updatedList)
     }
 
     const handleRemove = (expId: string) => {
-        onCertificatesChange(certificates.filter(item => item.id !== expId))
+        onCertificatesChange(interests.filter(item => item.id !== expId))
 
         if (editing === expId) {
             handleExitEdit()
@@ -54,20 +53,20 @@ export default function CertificatesSection({ certificates, onCertificatesChange
     }
 
     if (editing !== null) {
-        const activeItem = certificates.find(item => item.id === editing)
+        const activeItem = interests.find(item => item.id === editing)
 
         if (!activeItem) {
             return <SectionItemError />
         }
 
-        return <CertificatesItem item={activeItem} onUpdate={handleUpdate} onBack={handleExitEdit} onDelete={handleRemove} setIsEditingMode={setIsEditingMode} />
+        return <InterestsItem item={activeItem} onUpdate={handleUpdate} onBack={handleExitEdit} onDelete={handleRemove} setIsEditingMode={setIsEditingMode} />
     }
 
     return (
         <section className="px-3 mt-6 flex flex-col gap-6 sm:px-12 w-full">
-            <SectionHeader step="certificates" />
+            <SectionHeader step="interests" />
 
-            <SortableList items={certificates} onReorder={onCertificatesChange} droppableId="certificates-list"
+            <SortableList items={interests} onReorder={onCertificatesChange} droppableId="certificates-list"
                 renderItem={(item) => (
                     <div className="flex items-center gap-4">
                         <div className="flex flex-col flex-1 min-w-0 gap-1">
@@ -76,9 +75,9 @@ export default function CertificatesSection({ certificates, onCertificatesChange
                             )}
 
                             <div className="flex flex-wrap items-center text-sm gap-x-2 gap-y-0.5">
-                                {item.date && (
-                                    <div className="flex items-center text-xs sm:text-sm text-text-muted whitespace-nowrap">
-                                        <span>{item.date}</span>
+                                {item.value && (
+                                    <div className="flex items-center text-xs sm:text-sm text-text-muted min-w-0">
+                                        <span className="wrap-break-word w-full">{item.value}</span>
                                     </div>
                                 )}
                             </div>
@@ -89,7 +88,7 @@ export default function CertificatesSection({ certificates, onCertificatesChange
                 )}
             />
 
-            <ElementAddButton step={"Certificates"} onAdd={() => { handleAdd(); setIsEditingMode(true) }} />
+            <ElementAddButton step={"Interests"} onAdd={() => { handleAdd(); setIsEditingMode(true) }} />
         </section>
     )
 }

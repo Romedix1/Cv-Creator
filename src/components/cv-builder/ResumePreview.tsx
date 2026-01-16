@@ -2,25 +2,31 @@
 
 import { useState } from "react"
 import { ResumeData } from "@/types/resumeData"
-import { useSearchParams } from "next/navigation"
-import ModernBlue from "@/components/ui/ModernBlue"
+import ModernBlue from "@/components/templates/ModernBlue"
 import { Eye, ZoomIn } from "lucide-react"
-import FullScreenTemplate from "./FullScreenTemplate"
-import ClassicCorporate from "@/components/ui/ClassicCorporate"
+import FullScreenTemplate from "../cv-builder/FullScreenTemplate"
+import ClassicCorporate from "@/components/templates/ClassicCorporate"
+import TechMinimal from "@/components/templates/TechMinimal"
+import { FAKE_DATA } from "@/data/fakeData"
 
-export default function ResumePreview({ data }: { data: ResumeData }) {
+type ResumePreviewProps = {
+    data: ResumeData;
+    template: string | null;
+}
+
+export default function ResumePreview({ data, template }: ResumePreviewProps) {
     const [show, setShow] = useState(false)
-    const searchParams = useSearchParams()
-    const template = searchParams.get('template')
 
     const getTemplate = () => {
         switch(template) {
             case "modern-blue":
-                return <ModernBlue data={data} />
+                return <ModernBlue data={FAKE_DATA} />
             case "classic-corporate":
-                return <ClassicCorporate data={data} />
+                return <ClassicCorporate data={FAKE_DATA} />
+            case "tech-minimal":
+                return <TechMinimal data={FAKE_DATA} />
             default:
-                return <ModernBlue data={data} />
+                return <ModernBlue data={FAKE_DATA} />
         }
     }
 

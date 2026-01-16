@@ -55,7 +55,6 @@ export const LONG_FAKE_DATA: ResumeData = {
             endDate: "Czerwiec 2020"
         }
     ],
-    skillsType: "categories",
     skillsCat: [
         {
             id: "cat-1",
@@ -123,5 +122,10 @@ export const LONG_FAKE_DATA: ResumeData = {
         type: "standard",
         value: "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji obecnego oraz przyszłych procesów rekrutacyjnych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).",
         company: ""
-    }]
+    }],
+    settings: {
+        skillsType: "categories",
+        showSkillsLevel: true,
+        showLanguageLevel: true,
+    }
 };

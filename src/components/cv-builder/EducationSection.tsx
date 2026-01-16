@@ -8,7 +8,7 @@ import EducationItem from "./EducationItem";
 import SortableList from "@/components/ui/SortableList";
 import ItemActions from "@/components/ui/ItemActions";
 import ElementAddButton from "@/components/ui/ElementAddButton";
-import SectionHeader from "@/components/ui/SectionHeader";
+import SectionHeader from "@/components/cv-builder/SectionHeader";
 
 type EducationSectionProps = {
     education: EducationProps[];
