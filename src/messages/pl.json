@@ -316,7 +316,8 @@
         "elementary": "podstawowy",
         "intermediate": "średniozaawansowany",
         "advanced": "zaawansowany",
-        "proficient": "ekspert / senior"
+        "proficient": "ekspert / senior",
+        "changeTemplate": "Zmień szablon"
     },
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",
@@ -336,7 +337,8 @@
         "closeNavMenu": "Zamknij menu nawigacji",
         "switchToLight": "Zmień na tryb jasny",
         "switchToDark": "Zmień na tryb ciemy",
-        "changeClauseType": "Zmień rodzaj klauzuli"
+        "changeClauseType": "Zmień rodzaj klauzuli",
+        "settings": "Ustawienia"
     },
     "Template": {
         "profileHeader": "O mnie",

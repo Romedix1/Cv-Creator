@@ -11,7 +11,7 @@ import { CustomSection as CustomSectionType } from "@/types/customSection";
 import { Rodo as RodoType } from "@/types/rodo";
 import { PersonalInfo } from "@/types/personalInfo";
 import { Certificates } from "@/types/certificates";
-import { Award, BriefcaseBusiness, GraduationCap, Heart, Languages, Plus, ShieldCheck, User2, Wrench } from "lucide-react";
+import { Award, BriefcaseBusiness, GraduationCap, Heart, Languages, Plus, ShieldCheck, TextQuote, User2, Wrench } from "lucide-react";
 import { Interests } from "@/types/interests";
 import { Rodo as RodoSectionType } from "@/types/rodo"
 import { Settings } from "@/types/settings"
@@ -101,6 +101,10 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
         setData((prev) => ({ ...prev, [sectionKey]: newValue }))
     }
 
+    const handleSettingChange = (field: keyof Settings, value: string) => {
+        setData((prev) => ({ ...prev, settings: {...prev.settings, [field]: value }}));
+    };
+
     const displaySection = (currentStep: string) => {
         switch(currentStep) {
             case "personalData":
@@ -117,10 +121,10 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 return <CertificatesSection certificates={data.certificates} onCertificatesChange={(newItems) => handleSectionChange("certificates", newItems)} setIsEditingMode={setIsEditingMode} />
             case "interests":
                 return <InterestsSection interests={data.interests} onCertificatesChange={(newItems) => handleSectionChange("interests", newItems)} setIsEditingMode={setIsEditingMode} />
-            case "addSection":
-                return <CustomSection sections={data.customSection} onSectionChange={(newItems: CustomSectionType[]) => handleSectionChange("customSection", newItems)} setIsEditingMode={setIsEditingMode} />
             case "rodo":
                 return <RodoSection rodo={data.rodoSection} onRodoChange={(newItems: RodoSectionType[]) => handleSectionChange("rodoSection", newItems)} />
+            case "addSection":
+                return <CustomSection sections={data.customSection} onSectionChange={(newItems: CustomSectionType[]) => handleSectionChange("customSection", newItems)} setIsEditingMode={setIsEditingMode} />
         }
     }
 
@@ -158,7 +162,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 )}
             </div>
 
-            <ResumePreview template={template} data={data} />
+            <ResumePreview template={template} onTemplateChange={(newValue) => handleSettingChange("template", newValue)} />
         </div>
     )
 }
