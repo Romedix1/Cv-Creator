@@ -8,13 +8,14 @@ import FullScreenTemplate from "../cv-builder/FullScreenTemplate"
 import ClassicCorporate from "@/components/templates/ClassicCorporate"
 import TechMinimal from "@/components/templates/TechMinimal"
 import { FAKE_DATA } from "@/data/fakeData"
+import TimelineModern from "../templates/TimelineModern"
 
 type ResumePreviewProps = {
     data: ResumeData;
     template: string | null;
 }
 
-export default function ResumePreview({ data, template }: ResumePreviewProps) {
+export default function ResumePreview({ template }: ResumePreviewProps) {
     const [show, setShow] = useState(false)
 
     const getTemplate = () => {
@@ -25,6 +26,8 @@ export default function ResumePreview({ data, template }: ResumePreviewProps) {
                 return <ClassicCorporate data={FAKE_DATA} />
             case "tech-minimal":
                 return <TechMinimal data={FAKE_DATA} />
+            case "timeline-modern":
+                return <TimelineModern data={FAKE_DATA} />
             default:
                 return <ModernBlue data={FAKE_DATA} />
         }

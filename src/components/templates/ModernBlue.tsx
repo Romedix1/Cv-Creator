@@ -1,13 +1,13 @@
 import { ResumeData } from "@/types/resumeData";
-import { AtSign, Dot, Globe, Phone } from "lucide-react";
+import { AtSign, Dot, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { FaBehance, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
 import SectionHeader from "./shared/SectionHeader";
+import { LinkIcon } from "../ui/LinkIcon";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -16,25 +16,6 @@ const inter = Inter({
 export default function ModernBlue({ data }: { data: ResumeData }) {
     const tTemplate = useTranslations("Template")
     const tAlt = useTranslations("ImgAlt")
-
-    const getLinkIcon = (platform: string) => {
-        switch(platform) {
-            case "linkedin":
-                return <FaLinkedin className="w-3 h-3" />
-            case "github":
-                return <FaGithub className="w-3 h-3" />
-            case "website":
-                return <Globe className="w-3 h-3" />
-            case "behance":
-                return <FaBehance className="w-3 h-3" />
-            case "twitter":
-                return <FaTwitter className="w-3 h-3" />
-            case "other":
-                return <Globe className="w-3 h-3" />
-            default:
-                return <Globe className="w-3 h-3" />
-        }
-    }
 
     const showContactSection = data.personalInfo.phone || data.personalInfo.email || data.personalInfo.address || (data.personalInfo.links && data.personalInfo.links.length > 0);
 
@@ -55,7 +36,7 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
                             {data.personalInfo.address && <li className="flex gap-2 items-center break-all"><span className="shrink-0"><PiAddressBook className="w-3 h-3" /></span> {data.personalInfo.address}</li>}
                             {data.personalInfo.links?.map((link) => {
                                 return (
-                                    <li key={link.id} className="flex gap-2 items-center break-all"><span className="shrink-0">{getLinkIcon(link.platform)}</span> <Link href={link.url} className="break-all underline">{link.url}</Link></li>
+                                    <li key={link.id} className="flex gap-2 items-center break-all"><span className="shrink-0">{<LinkIcon platform={link.platform} />}</span> <Link href={link.url} className="break-all underline">{link.url}</Link></li>
                                 )
                             })}
                         </ul>
@@ -144,7 +125,7 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
                 {/* NAME */}
                 {(data.personalInfo.firstName || data.personalInfo.lastName || data.personalInfo.jobTitle) && <div className="mb-6">
                     {(data.personalInfo.firstName || data.personalInfo.lastName) && <h1 className="font-bold text-3xl wrap-break-word">{data.personalInfo.firstName}{data.personalInfo.lastName && ` ${data.personalInfo.lastName}`}</h1>}
-                    {data.personalInfo.jobTitle && <p className="font-medium text-default text-[16px] break-all">{data.personalInfo.jobTitle}</p>}
+                    {data.personalInfo.jobTitle && <p className="font-medium text-[#2563EB] text-[16px] break-all">{data.personalInfo.jobTitle}</p>}
                 </div>}
                 <div className="flex flex-col gap-8">
                     {/* PROFILE */}
@@ -168,7 +149,7 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
                                                     <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.position}</h3>
                                                     <span className="text-[10px] text-text-muted font-medium whitespace-nowrap">{item.startDate} - {item.endDate}</span>
                                                 </div>
-                                                <p className="text-[11px] font-semibold text-default mb-1 wrap-break-word flex-1 min-w-0">{item.company}</p>
+                                                <p className="text-[11px] font-semibold text-[#2563EB] mb-1 wrap-break-word flex-1 min-w-0">{item.company}</p>
                                             </div>
 
                                             <ul className="list-none gap-1 flex flex-col text-black">

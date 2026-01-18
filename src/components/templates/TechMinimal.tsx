@@ -1,13 +1,13 @@
 import { ResumeData } from "@/types/resumeData";
-import { AtSign, Dot, Globe, Phone } from "lucide-react";
+import { AtSign, Dot, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Inter, Roboto_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { FaBehance, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
 import TemplateHeader from "./shared/SectionHeader";
+import { LinkIcon } from "../ui/LinkIcon";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -20,25 +20,6 @@ const roboto = Roboto_Mono({
 export default function TechMinimal({ data }: { data: ResumeData }) {
     const tTemplate = useTranslations("Template")
     const tAlt = useTranslations("ImgAlt")
-
-    const getLinkIcon = (platform: string) => {
-        switch(platform) {
-            case "linkedin":
-                return <FaLinkedin className="w-3 h-3" />
-            case "github":
-                return <FaGithub className="w-3 h-3" />
-            case "website":
-                return <Globe className="w-3 h-3" />
-            case "behance":
-                return <FaBehance className="w-3 h-3" />
-            case "twitter":
-                return <FaTwitter className="w-3 h-3" />
-            case "other":
-                return <Globe className="w-3 h-3" />
-            default:
-                return <Globe className="w-3 h-3" />
-        }
-    }
 
     const showContactSection = data.personalInfo.phone || data.personalInfo.email || data.personalInfo.address || (data.personalInfo.links && data.personalInfo.links.length > 0);
 
@@ -69,7 +50,7 @@ export default function TechMinimal({ data }: { data: ResumeData }) {
                             {data.personalInfo.address && <li className={`flex gap-2 items-center break-all ${roboto.className}`}><span className="shrink-0"><PiAddressBook className="w-3 h-3" /></span> {data.personalInfo.address}</li>}
                             {data.personalInfo.links?.map((link) => {
                                 return (
-                                    <li key={link.id} className={`flex gap-2 items-center break-all ${roboto.className}`}><span className="shrink-0">{getLinkIcon(link.platform)}</span> <Link href={link.url} className="break-all underline">{link.url}</Link></li>
+                                    <li key={link.id} className={`flex gap-2 items-center break-all ${roboto.className}`}><span className="shrink-0">{<LinkIcon platform={link.platform} />}</span> <Link href={link.url} className="break-all underline">{link.url}</Link></li>
                                 )
                             })}
                         </ul>
@@ -145,7 +126,7 @@ export default function TechMinimal({ data }: { data: ResumeData }) {
                 {/* CUSTOM */}
                 {data.customSection.map((section) => (section.layout === "left" && section.type === "list") && (
                     <div key={section.id} className="flex flex-col items-center gap-3 w-full min-w-0">
-                        <LeftSectionHeader text={tTemplate("languagesHeader")} font={roboto.className} className="wrap-break-word" />
+                        <LeftSectionHeader text={section.title} font={roboto.className} className="wrap-break-word" />
 
                         <div className="text-[11px] w-full">
                             <ul className="flex flex-col gap-3">
@@ -204,7 +185,7 @@ export default function TechMinimal({ data }: { data: ResumeData }) {
                                                     <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.position}</h3>
                                                     <span className={`text-[10px] text-text-muted font-medium whitespace-nowrap ${roboto.className}`}>{item.startDate} - {item.endDate}</span>
                                                 </div>
-                                                <p className="text-[11px] font-semibold text-default mb-1 wrap-break-word flex-1 min-w-0">{item.company}</p>
+                                                <p className="text-[11px] font-semibold text-[#2563EB] mb-1 wrap-break-word flex-1 min-w-0">{item.company}</p>
                                             </div>
 
                                             <ul className="list-none gap-1 flex flex-col text-black">
