@@ -7,6 +7,7 @@ import FullScreenTemplate from "../cv-builder/FullScreenTemplate"
 import ClassicCorporate from "@/components/templates/ClassicCorporate"
 import TechMinimal from "@/components/templates/TechMinimal"
 import { FAKE_DATA } from "@/data/fakeData"
+import TimelineModern from "../templates/TimelineModern"
 import { useTranslations } from "next-intl"
 import Input from "../ui/Input"
 import { Separator } from "../ui/separator"
@@ -41,6 +42,8 @@ export default function ResumePreview({ template, onTemplateChange }: ResumePrev
                 return <ClassicCorporate data={FAKE_DATA} />
             case "tech-minimal":
                 return <TechMinimal data={FAKE_DATA} />
+            case "timeline-modern":
+                return <TimelineModern data={FAKE_DATA} />
             default:
                 return <ModernBlue data={FAKE_DATA} />
         }

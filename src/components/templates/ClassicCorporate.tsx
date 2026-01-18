@@ -90,7 +90,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
                                             <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.position}</h3>
                                             <span className="text-[10px] text-text-muted font-medium whitespace-nowrap">{item.startDate} - {item.endDate}</span>
                                         </div>
-                                        <p className="text-[11px] font-semibold text-default mb-1 wrap-break-word flex-1 min-w-0">{item.company}</p>
+                                        <p className="text-[11px] font-semibold text-[[#2563EB] mb-1 wrap-break-word flex-1 min-w-0">{item.company}</p>
                                     </div>
 
                                     <ul className="list-none gap-1 flex flex-col text-black">
