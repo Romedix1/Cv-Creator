@@ -351,6 +351,8 @@
         "majorLabel": "Kierunek",
         "degreeLabel": "Stopień",
         "languagesHeader": "Języki",
-        "organizerLabel": "Organizator"
+        "organizerLabel": "Organizator",
+        "fluentLanguages": "Poziom biegły / ojczysty",
+        "basicLanguages": "Poziom podstawowy"
     }
 }

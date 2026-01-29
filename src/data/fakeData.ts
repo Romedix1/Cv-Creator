@@ -111,10 +111,10 @@ export const FAKE_DATA: ResumeData = {
             items: [
                 {
                     id: "it-1",
-                    title: "",
-                    description: "",
-                    startDate: "",
-                    endDate: "",
+                    title: "Osiągnięcia Zawodowe", 
+                    description: "Kluczowe sukcesy potwierdzające kompetencje w zarządzaniu produktem i innowacyjność.", 
+                    startDate: "2019",
+                    endDate: "2022",
                     elements: [
                         { id: "el-1", type: "text", value: "1. Miejsce Hackathon 2021" },
                         { id: "el-2", type: "text", value: "Stypendium Rektora" },
@@ -188,6 +188,7 @@ export const FAKE_DATA: ResumeData = {
         skillsType: "categories",
         showSkillsLevel: true,
         showLanguageLevel: true,
-        template: "tech-minimal"
+        template: "tech-minimal",
+        sectionOrder: ["contact", "profile", "experience", "education", "skills", "languages", "certificates", "interests", "cust-1", "cust-2", "cust-3"]
     }
 }

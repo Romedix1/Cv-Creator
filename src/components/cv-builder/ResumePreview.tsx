@@ -11,6 +11,7 @@ import TimelineModern from "../templates/TimelineModern"
 import { useTranslations } from "next-intl"
 import Input from "../ui/Input"
 import { Separator } from "../ui/separator"
+import SwissMinimalist from "../templates/SwissMinimalist"
 
 type ResumePreviewProps = {
     template: string | null;
@@ -44,6 +45,8 @@ export default function ResumePreview({ template, onTemplateChange }: ResumePrev
                 return <TechMinimal data={FAKE_DATA} />
             case "timeline-modern":
                 return <TimelineModern data={FAKE_DATA} />
+            case "swiss-minimalist":
+                return <SwissMinimalist data={FAKE_DATA} />
             default:
                 return <ModernBlue data={FAKE_DATA} />
         }
@@ -54,7 +57,7 @@ export default function ResumePreview({ template, onTemplateChange }: ResumePrev
             {show && <FullScreenTemplate template={getTemplate} onClose={() => setShow(false)} />}
             <div>
                 <div className="p-4 border-b border-border 2xl:px-36">
-                    <Input name={tInput("changeTemplate")} label={tInput("changeTemplate")} type="select" options={CHANGE_TEMPLATE_OPTIONS} onChange={(e) => onTemplateChange(e.target.value)} className="w-full text-sm"/>
+                    <Input name={tInput("changeTemplate")} value={template || ""} label={tInput("changeTemplate")} type="select" options={CHANGE_TEMPLATE_OPTIONS} onChange={(e) => onTemplateChange(e.target.value)} className="w-full text-sm"/>
                 </div>
                 <div className="hidden xl:flex w-120 2xl:w-175 h-full border-l border-border bg-bg-main group relative flex-col">
 
