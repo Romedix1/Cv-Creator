@@ -11,12 +11,10 @@ import { LinkIcon } from "../ui/LinkIcon";
 
 const manrope = Manrope({
     subsets: ["latin"],
-    display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
-    display: "swap",
 });
 
 export default function TimelineModern({ data }: { data: ResumeData }) {
