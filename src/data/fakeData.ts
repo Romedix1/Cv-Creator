@@ -111,8 +111,8 @@ export const FAKE_DATA: ResumeData = {
             items: [
                 {
                     id: "it-1",
-                    title: "Osiągnięcia Zawodowe", 
-                    description: "Kluczowe sukcesy potwierdzające kompetencje w zarządzaniu produktem i innowacyjność.", 
+                    title: "aa",
+                    description: "Kluczowe sukcesy potwierdzające kompetencje w zarządzaniu produktem i innowacyjność.",
                     startDate: "2019",
                     endDate: "2022",
                     elements: [
@@ -189,6 +189,7 @@ export const FAKE_DATA: ResumeData = {
         showSkillsLevel: true,
         showLanguageLevel: true,
         template: "tech-minimal",
+        color: "#2563EB",
         sectionOrder: ["contact", "profile", "experience", "education", "skills", "languages", "certificates", "interests", "cust-1", "cust-2", "cust-3"]
     }
 }

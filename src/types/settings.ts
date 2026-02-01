@@ -3,5 +3,6 @@ export type Settings = {
     showSkillsLevel: boolean;
     showLanguageLevel: boolean;
     template: string;
+    color: string;
     sectionOrder: string[]
 }

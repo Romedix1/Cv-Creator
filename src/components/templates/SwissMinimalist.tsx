@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { DEFAULT_SECTION_ORDER } from "@/lib/constants";
 import { Dot } from "lucide-react";
+import { useSectionOrder } from "@/hooks/useSectionOrder";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -278,14 +279,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
         }
     })
 
-    const customSectionIds = data.customSection?.map(section => section.id) || []
-
-    const fullDefaultOrder = [...DEFAULT_SECTION_ORDER, ...customSectionIds]
-
-    const finalOrder = data.settings.sectionOrder || fullDefaultOrder
-
-    const sectionsToRender = finalOrder.map(id => sectionsMap[id]).filter(section => section && section.isVisible)
-
+    const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
         <div className={`bg-white flex flex-col gap-8 ${inter.className} w-full text-black p-10`}>
