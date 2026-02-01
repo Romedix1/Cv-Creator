@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl"
 import Input from "../ui/Input"
 import { Separator } from "../ui/separator"
 import SwissMinimalist from "../templates/SwissMinimalist"
+import CreativeAccent from "../templates/CreativeAccent"
 
 type ResumePreviewProps = {
     template: string | null;
@@ -47,6 +48,8 @@ export default function ResumePreview({ template, onTemplateChange }: ResumePrev
                 return <TimelineModern data={FAKE_DATA} />
             case "swiss-minimalist":
                 return <SwissMinimalist data={FAKE_DATA} />
+            case "creative-accent":
+                return <CreativeAccent data={FAKE_DATA} />
             default:
                 return <ModernBlue data={FAKE_DATA} />
         }
