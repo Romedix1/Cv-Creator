@@ -194,6 +194,8 @@
         "customSubtitle": "Dodaj dodatkowe informacje, np. Kursy, Certyfikaty, Projekty lub Zainteresowania",
         "rodoHeader": "Klauzula RODO",
         "rodoSubtitle": "Dodaj zgodę na przetwarzanie danych osobowych, aby Twoje CV było kompletne i zgodne z wymogami prawnymi",
+        "summaryHeader": "Podsumowanie",
+        "summarySubtitle": "Dostosuj ostateczny układ sekcji za pomocą funkcji przeciągnij i upuść, aby idealnie wyeksponować swoje najważniejsze atuty",
 
 
         "missingExperience": "Brak dodanego doświadczenia",
@@ -234,6 +236,7 @@
         "languages": "Języki",
         "certificates": "Kursy i Certyfikaty",
         "interests": "Zainteresowania",
+        "summary": "Podsumowanie",
         "addSection": "Dodaj sekcje",
         "rodo": "RODO"
     },
@@ -317,7 +320,8 @@
         "intermediate": "średniozaawansowany",
         "advanced": "zaawansowany",
         "proficient": "ekspert / senior",
-        "changeTemplate": "Zmień szablon"
+        "changeTemplate": "Zmień szablon",
+        "changeColor": "Zmień kolor"
     },
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",
@@ -338,7 +342,8 @@
         "switchToLight": "Zmień na tryb jasny",
         "switchToDark": "Zmień na tryb ciemy",
         "changeClauseType": "Zmień rodzaj klauzuli",
-        "settings": "Ustawienia"
+        "settings": "Ustawienia",
+        "selectColor": "Wybierz kolor"
     },
     "Template": {
         "profileHeader": "O mnie",
@@ -353,6 +358,13 @@
         "languagesHeader": "Języki",
         "organizerLabel": "Organizator",
         "fluentLanguages": "Poziom biegły / ojczysty",
-        "basicLanguages": "Poziom podstawowy"
+        "basicLanguages": "Poziom podstawowy",
+        "noTitle": "Bez tytułu",
+        "blue": "Niebieski",
+        "green": "Zielony",
+        "purple": "Fioletowy",
+        "red": "Czerwony",
+        "gray": "Szary",
+        "pink": "Różowy"
     }
 }

@@ -11,7 +11,7 @@ import { CustomSection as CustomSectionType } from "@/types/customSection";
 import { Rodo as RodoType } from "@/types/rodo";
 import { PersonalInfo } from "@/types/personalInfo";
 import { Certificates } from "@/types/certificates";
-import { Award, BriefcaseBusiness, GraduationCap, Heart, Languages, Plus, ShieldCheck, TextQuote, User2, Wrench } from "lucide-react";
+import { Award, BriefcaseBusiness, FileText, GraduationCap, Heart, Languages, Plus, ShieldCheck, User2, Wrench } from "lucide-react";
 import { Interests } from "@/types/interests";
 import { Rodo as RodoSectionType } from "@/types/rodo"
 import { Settings } from "@/types/settings"
@@ -28,6 +28,8 @@ import RodoSection from "./RODOSection";
 import Button from "../ui/Button";
 import ResumePreview from "./ResumePreview";
 import Capsule from "./Capsule";
+import SummarySection from "./SummarySection";
+import { DEFAULT_SECTION_ORDER } from "@/lib/constants";
 
 type ResumeEditorProps = {
     isAuthenticated: boolean;
@@ -59,6 +61,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
         {key: "certificates", name: tCvBuilderSteps("certificates"), icon: <Award className={iconStyles} />},
         {key: "interests", name: tCvBuilderSteps("interests"), icon: <Heart className={iconStyles} />},
         {key: "rodo", name: tCvBuilderSteps("rodo"), icon: <ShieldCheck className={iconStyles} />},
+        {key: "summary", name: tCvBuilderSteps("summary"), icon: <FileText className={iconStyles} />},
         {key: "addSection", name: tCvBuilderSteps("addSection"), icon: <Plus className={iconStyles} />},
     ]
 
@@ -93,7 +96,10 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             skillsType: viewMode,
             showSkillsLevel: false,
             showLanguageLevel: false,
-            template: template
+            template: template,
+            order: DEFAULT_SECTION_ORDER,
+            color: "",
+            sectionOrder: DEFAULT_SECTION_ORDER
         } as Settings
     })
 
@@ -102,8 +108,8 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
     }
 
     const handleSettingChange = (field: keyof Settings, value: string) => {
-        setData((prev) => ({ ...prev, settings: {...prev.settings, [field]: value }}));
-    };
+        setData((prev) => ({ ...prev, settings: {...prev.settings, [field]: value }}))
+    }
 
     const displaySection = (currentStep: string) => {
         switch(currentStep) {
@@ -123,6 +129,11 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 return <InterestsSection interests={data.interests} onCertificatesChange={(newItems) => handleSectionChange("interests", newItems)} setIsEditingMode={setIsEditingMode} />
             case "rodo":
                 return <RodoSection rodo={data.rodoSection} onRodoChange={(newItems: RodoSectionType[]) => handleSectionChange("rodoSection", newItems)} />
+            case "summary":
+                const customIds = data.customSection.map(s => s.id)
+                const syncedOrder = [...data.settings.sectionOrder, ...customIds.filter(id => !data.settings.sectionOrder.includes(id))]
+
+                return <SummarySection sections={syncedOrder} onSectionsOrderChange={(newOrder: string[]) => handleSectionChange("settings", {...data.settings, sectionOrder: newOrder})} customSections={data.customSection} onTemplateChange={(newValue) => handleSettingChange("template", newValue)} onColorChange={(newValue) => handleSettingChange("color", newValue)} template={data.settings.template} color={data.settings.color}/>
             case "addSection":
                 return <CustomSection sections={data.customSection} onSectionChange={(newItems: CustomSectionType[]) => handleSectionChange("customSection", newItems)} setIsEditingMode={setIsEditingMode} />
         }
@@ -162,7 +173,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 )}
             </div>
 
-            <ResumePreview template={template} onTemplateChange={(newValue) => handleSettingChange("template", newValue)} />
+            <ResumePreview data={data} template={data.settings.template} />
         </div>
     )
 }

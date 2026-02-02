@@ -72,7 +72,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
         return Icon ? <Icon className="w-4 h-4 text-[#ffffff]" /> : null
     }
 
-    const userColor = data.settings.color
+    const userColor = data.settings.color || "#2563EB"
 
     const sectionsMap: Record<string, { title: string, position: "left" | "center", isVisible: boolean, content: React.ReactNode }> = {
         "contact": {
@@ -418,7 +418,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                                 return (
                                     <div key={`center-${index}`}>
                                         <div className="flex">
-                                            <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 relative -left-3" style={{ backgroundColor: data.settings.color }}>
+                                            <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 relative -left-3" style={{ backgroundColor: userColor }}>
                                                 {SectionIcon(sectionKey.id, sectionKey.title)}
                                             </div>
                                             <div className="w-full">
