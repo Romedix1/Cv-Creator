@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { DEFAULT_SECTION_ORDER } from "@/lib/constants";
 import { Dot } from "lucide-react";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 
@@ -35,7 +34,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
         return <span className="text-[10px] text-black font-medium whitespace-nowrap">{date}</span>
     }
 
-    const sectionsMap: Record<string, { title: string, isVisible: boolean, content: React.ReactNode }> = {
+    const sectionsMap: Record<string, { title: string, isVisible: boolean, content: React.ReactNode, position?: "left" | "center" }> = {
         "contact": {
             title: tTemplate("contactHeader"),
             isVisible: !!showContactSection,
@@ -227,9 +226,10 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
             sectionsMap[section.id] = {
                 title: section.title,
                 isVisible: section.items.length > 0,
+                position: section.layout,
                 content: (() => {
                     return (
-                        ["list", "text"].includes(section.type)) ? (
+                        section.type === "text") ? (
                             <div key={section.id}>
                                 <div className="flex flex-col gap-4">
                                     {section.items.map((item) => {
@@ -250,7 +250,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
                                     })}
                                 </div>
                             </div>
-                        ) : (section.type === "detailed") && (
+                        ) : (section.type === "detailed") ? (
                             <div className="flex flex-col gap-4">
                                 {section.items.map((item) => {
                                     return (
@@ -273,6 +273,8 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
                                     )
                                 })}
                             </div>
+                        ) : (
+                            null
                         )
                 })()
             }
@@ -298,14 +300,16 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
             </div>
 
             <div className="flex w-full flex-col gap-12">
-                {sectionsToRender.map((section, index) => (
-                    <div key={index} className="flex w-full items-start">
-                        {SectionHeader(index+1, section.title)}
-                        <div className="flex-1 min-w-0 pt-0.5">
-                            {section.content}
+                {sectionsToRender.map((section, index) =>
+                    section.position !== "left" && (
+                        <div key={index} className="flex w-full items-start">
+                            {SectionHeader(index+1, section.title)}
+                            <div className="flex-1 min-w-0 pt-0.5">
+                                {section.content}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    )
+                )}
             </div>
 
             {data.rodoSection.length > 0 && (

@@ -17,13 +17,14 @@ import { Dot, Trash2 } from "lucide-react";
 
 type CustomSectionProps = {
     item: CustomSectionType;
+    template: string;
     onUpdate: (updatedItem: CustomSectionType) => void;
     onBack: () => void;
     onDelete: (index: string) => void;
     setIsEditingMode: (isEditing: boolean) => void;
 }
 
-export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEditingMode }: CustomSectionProps) {
+export default function CustomItem({ item, template, onUpdate, onBack, onDelete, setIsEditingMode }: CustomSectionProps) {
     const tInput = useTranslations("Inputs")
     const tBuilder = useTranslations("Builder")
     const tButton = useTranslations("Button")
@@ -119,6 +120,7 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
         { value: "description", label: tInput("description") },
     ]
 
+    const visibleLayoutOptions = ["classic-corporate", "swiss-minimalist"].includes(template) ? POSITION_OPTIONS.filter(option => option.value === "center") : POSITION_OPTIONS
     const visibleContentTypeOptions = item.layout === "left" ? CONTENT_TYPE_OPTIONS.filter(option => option.value === "list") : CONTENT_TYPE_OPTIONS.filter(option => option.value !== "list")
 
     const renderSubitem = (type: string, index: number, subItem: CustomItemType) => {
@@ -201,7 +203,7 @@ export default function CustomItem({ item, onUpdate, onBack, onDelete, setIsEdit
                 <div role="group" aria-label={tBuilder("sectionSettings")} className="flex justify-between">
                     <div>
                         <p id="pos-label" className="mb-4">{tBuilder("position")}</p>
-                        <Toggle ariaLabel={tAria("changePos")} value={item.layout} onChange={(value) => handleLayoutChange(value)} name="sectionLayout" options={POSITION_OPTIONS} />
+                        <Toggle ariaLabel={tAria("changePos")} value={item.layout} onChange={(value) => handleLayoutChange(value)} name="sectionLayout" options={visibleLayoutOptions} />
                     </div>
 
                     <div>

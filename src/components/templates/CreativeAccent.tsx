@@ -9,6 +9,7 @@ import LeftSectionHeader from "./shared/LeftSectionHeader";
 import SectionHeader from "./shared/SectionHeader";
 import { LinkIcon } from "../ui/LinkIcon";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
+import { createLine } from "./shared/TemplateLine";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -26,16 +27,6 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
 
     const CenterItemDate = (date: string) => {
         return <span className="text-[10px] text-text-muted font-medium whitespace-nowrap">{date}</span>
-    }
-
-    const createLine = (isFirstElement: boolean, isLastElement: boolean) => {
-        return (
-            <div className="mr-4 mt-2 relative -left-2">
-                {isFirstElement && <div style={{ height: "calc(6% + 20px)"}} className="bg-[#E5E7EB] absolute w-1 z-10 -top-6"></div>}
-                <div className="bg-white w-1 h-1 ring-2 rounded-full z-20 relative" style={{ "--tw-ring-color": userColor } as React.CSSProperties}></div>
-                {<div style={{ height: !isLastElement ? "calc(100% + 20px)" : "92%"}} className="bg-[#E5E7EB] w-1"></div>}
-            </div>
-        )
     }
 
     const SectionIcon = (id: string, title: string) => {
@@ -98,7 +89,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
             position: "center",
             content: (
                 <div className="flex">
-                    {createLine(true, true)}
+                    {createLine(true, userColor)}
                     <p className="text-[11px] leading-3.75 wrap-break-word">{data.personalInfo.profile}</p>
                 </div>
             )
@@ -110,12 +101,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
             content: (
                 <div className="flex flex-col gap-4">
                     {data.experience.map((item, index) => {
-                        const isFirst = index===0
                         const isLast = index===data.experience.length-1
 
                         return (
                             <div key={item.id} className="flex">
-                                {createLine(isFirst, isLast)}
+                                {createLine(isLast, userColor)}
                                 <div key={item.id} className="flex flex-col flex-1 gap-2.5">
                                     <div>
                                         <div className="flex justify-between items-baseline">
@@ -146,12 +136,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
             content: (
                 <div className="flex flex-col gap-4">
                     {data.education.map((item, index) => {
-                        const isFirst = index===0
                         const isLast = index===data.education.length-1
 
                         return (
                             <div key={item.id} className="flex">
-                                {createLine(isFirst, isLast)}
+                                {createLine(isLast, userColor)}
                                 <div className="flex flex-col flex-1 gap-1 w-full">
                                     <div>
                                         <div className="flex justify-between items-baseline">
@@ -222,12 +211,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
             content: (
                 <div className="flex flex-col gap-4">
                     {data.certificates.map((item, index) => {
-                        const isFirst = index===0
                         const isLast = index===data.certificates.length-1
 
                         return (
                             <div key={item.id} className="flex">
-                                {createLine(isFirst, isLast)}
+                                {createLine(isLast, userColor)}
                                 <div className="flex flex-col flex-1 gap-1">
                                     <div>
                                         <div className="flex justify-between items-baseline">
@@ -253,12 +241,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
             content: (
                 <div className="flex flex-col gap-4">
                     {data.interests.map((item, index) => {
-                        const isFirst = index===0
                         const isLast = index===data.interests.length-1
 
                         return (
                             <div key={item.id} className="flex">
-                                {createLine(isFirst, isLast)}
+                                {createLine(isLast, userColor)}
 
                                 <div className="flex flex-col gap-1">
                                     <div>
@@ -290,12 +277,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                         (section.type === "text") ? (
                             <div className="flex flex-col gap-4">
                                 {section.items.map((item, index) => {
-                                    const isFirst = index===0
                                     const isLast = index===section.items.length-1
 
                                     return (
                                         <div key={item.id} className="flex">
-                                            {createLine(isFirst, isLast)}
+                                            {createLine(isLast, userColor)}
                                             <div className="flex flex-col gap-1">
                                                 <div>
                                                     <div className="flex justify-between items-baseline">
@@ -315,12 +301,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                         ) : (section.type === "detailed") ? (
                             <div className="flex flex-col gap-4">
                                 {section.items.map((item, index) => {
-                                    const isFirst = index===0
                                     const isLast = index===section.items.length-1
 
                                     return (
                                         <div key={item.id} className="flex">
-                                            {createLine(isFirst, isLast)}
+                                            {createLine(isLast, userColor)}
                                         <div className="flex flex-col gap-2.5">
                                             <div>
                                                 <div className="flex justify-between items-baseline">
@@ -382,11 +367,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
     return (
         <div className={`bg-white flex flex-col ${inter.className} w-full text-black`}>
             {/* TOP */}
-            <div className="flex w-full py-11" style={{ background: userColor }}>
-                <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 top-[82px] "/>
+            <div className="flex w-full py-11 relative" style={{ background: userColor }}>
+                <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 bottom-0 translate-y-1/2"/>
 
                 {(data.personalInfo.firstName || data.personalInfo.lastName || data.personalInfo.jobTitle) &&
-                    <div className="text-center w-full">
+                    <div className="text-left w-full pl-42">
                         {(data.personalInfo.firstName || data.personalInfo.lastName) && <h1 className="font-bold text-3xl wrap-break-word text-white">{data.personalInfo.firstName}{data.personalInfo.lastName && ` ${data.personalInfo.lastName}`}</h1>}
                         {data.personalInfo.jobTitle && <p className="font-medium text-[16px] text-white break-all">{data.personalInfo.jobTitle}</p>}
                     </div>
@@ -398,7 +383,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                     {sectionsToRender.map((section, index) => {
                         if(section.position === "left") {
                             return (
-                                <div key={`left-${index}`} className="flex flex-col items-center gap-3">
+                                <div key={`left-${index}`} className="flex flex-col gap-3 w-full wrap-break-word">
                                     <LeftSectionHeader text={section.title} />
                                     <div className="flex-1 min-w-0 pt-0.5">
                                         {section.content}
@@ -409,19 +394,22 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                     })}
                 </div>
                 {/* RIGHT */}
-                <div className="p-8 pb-4 pl-6 flex-1 min-w-0">
+                <div className="p-8 pb-0 pl-6 flex-1 min-w-0">
                     <div className="flex flex-col gap-8">
-                        {sectionsToRender.map((sectionKey, index) => {
-                            const section = sectionsMap[sectionKey.id]
-
+                        {sectionsToRender.map((section, index) => {
                             if(section.position === "center") {
                                 return (
                                     <div key={`center-${index}`}>
                                         <div className="flex">
-                                            <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 relative -left-3" style={{ backgroundColor: userColor }}>
-                                                {SectionIcon(sectionKey.id, sectionKey.title)}
+                                            <div className="flex flex-col items-center w-7 -left-3 shrink-0 relative">
+                                                <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: userColor }}>
+                                                    {SectionIcon(section.id, section.title)}
+                                                </div>
+
+                                                <div className="bg-[#E5E7EB] w-1 z-10 flex-1 -mb-4" />
                                             </div>
-                                            <div className="w-full">
+
+                                            <div className="w-full wrap-break-word relative">
                                                 <SectionHeader text={section.title} />
                                             </div>
                                         </div>
