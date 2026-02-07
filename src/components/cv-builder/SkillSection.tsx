@@ -85,7 +85,7 @@ export default function SkillsSection({ settings, categories, viewMode, setViewM
                 </div>
             </div>
 
-            <ToggleLevelBar label={tInput("showSkillLevel")} checked={settings.showSkillsLevel} onChange={(isChecked) => handleSettingsChange("showSkillsLevel", isChecked)} />
+            {settings.template === "tech-minimal" && <ToggleLevelBar label={tInput("showSkillLevel")} checked={settings.showSkillsLevel} onChange={(isChecked) => handleSettingsChange("showSkillsLevel", isChecked)} />}
 
             <div className="flex flex-col gap-6">
                 {viewMode === "categories" && (

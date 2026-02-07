@@ -10,11 +10,12 @@ import SectionHeader from "@/components/cv-builder/SectionHeader";
 
 type CustomSectionProps = {
     sections: CustomSectionType[];
+    template: string;
     onSectionChange: (newSection: CustomSectionType[]) => void;
     setIsEditingMode: (isEditing: boolean) => void;
 }
 
-export default function CustomSection({ sections, onSectionChange, setIsEditingMode }: CustomSectionProps) {
+export default function CustomSection({ sections, template, onSectionChange, setIsEditingMode }: CustomSectionProps) {
     const tButton = useTranslations("Button")
     const tBuilder = useTranslations("Builder")
 
@@ -59,7 +60,7 @@ export default function CustomSection({ sections, onSectionChange, setIsEditingM
             return <SectionItemError />
         }
 
-        return <CustomItem item={activeItem} onUpdate={handleUpdate} onBack={handleExitEdit} onDelete={handleRemove} setIsEditingMode={setIsEditingMode} />
+        return <CustomItem item={activeItem} template={template} onUpdate={handleUpdate} onBack={handleExitEdit} onDelete={handleRemove} setIsEditingMode={setIsEditingMode} />
     }
 
     return (
@@ -67,21 +68,21 @@ export default function CustomSection({ sections, onSectionChange, setIsEditingM
             <SectionHeader step="custom" />
 
             <SortableList items={sections} onReorder={onSectionChange} droppableId="experience-list"
-                            renderItem={(item) => (
-                                <div className="flex items-center gap-4">
-                                    <div className="flex flex-col flex-1 min-w-0 gap-1">
-                                        <h2 className="font-semibold text-text-main text-base sm:text-lg leading-tight wrap-break-word">{item.title || <span className="text-text-muted italic text-sm">{tBuilder("untitledSection")}</span>}</h2>
+               renderItem={(item) => (
+                   <div className="flex items-center gap-4">
+                       <div className="flex flex-col flex-1 min-w-0 gap-1">
+                           <h2 className="font-semibold text-text-main text-base sm:text-lg leading-tight wrap-break-word">{item.title || <span className="text-text-muted italic text-sm">{tBuilder("untitledSection")}</span>}</h2>
 
-                                        <div className="flex flex-wrap items-center text-sm gap-x-2 gap-y-0.5">
-                                            <span className="font-medium text-text-muted wrap-break-word">{item.type}</span>
-                                            <span className="font-medium text-text-muted wrap-break-word">{item.layout}</span>
-                                        </div>
-                                    </div>
+                           <div className="flex flex-wrap items-center text-sm gap-x-2 gap-y-0.5">
+                               <span className="font-medium text-text-muted wrap-break-word">{item.type}</span>
+                               <span className="font-medium text-text-muted wrap-break-word">{item.layout}</span>
+                           </div>
+                       </div>
 
-                                    <ItemActions onEdit={() => { setEditing(item.id); setIsEditingMode(true) }} onDelete={() => handleRemove(item.id)} editLabel={tButton("edit")} deleteLabel={tButton("delete")} itemLabel={item.title || tBuilder("untitledSection")} />
-                                </div>
-                            )}
-                        />
+                       <ItemActions onEdit={() => { setEditing(item.id); setIsEditingMode(true) }} onDelete={() => handleRemove(item.id)} editLabel={tButton("edit")} deleteLabel={tButton("delete")} itemLabel={item.title || tBuilder("untitledSection")} />
+                   </div>
+               )}
+            />
 
             <ElementAddButton step={"Section"} onAdd={() => { handleAdd() }} />
         </section>

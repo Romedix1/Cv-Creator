@@ -1,12 +1,12 @@
 import { Separator } from "@radix-ui/react-separator";
 
-type TemplateHeaderProps = {
+type SectionHeaderProps = {
     text: string;
     font?: string;
     className?: string;
 }
 
-export default function SectionHeader({ text, font, className }: TemplateHeaderProps) {
+export default function SectionHeader({ text, font, className }: SectionHeaderProps) {
     return (
         <>
             <h2 className={`text-text-muted mb-2.5 font-bold text-[16px] uppercase ${font} ${className}`}>{text}</h2>
