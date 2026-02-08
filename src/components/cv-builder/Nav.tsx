@@ -1,9 +1,12 @@
 "use client"
 
 import { ArrowLeft, CloudUpload, DownloadIcon, PenSquare } from "lucide-react";
-import { useState } from "react";
 import { useTranslations } from "use-intl";
 import Link from "next/link";
+import { useResume } from "@/context/ResumeContext";
+import { useDebounce } from "@/hooks/useDebounce";
+import { useEffect } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 type CvBuilderNavProps = {
     isAuthenticated: boolean
@@ -13,7 +16,7 @@ export default function CvBuilderNav({ isAuthenticated }: CvBuilderNavProps) {
     const tBuilderNav = useTranslations("BuilderNav")
     const tAria = useTranslations("Aria")
 
-    const [title, setTitle] = useState(tBuilderNav("documentName"))
+    const { isSaving, title, setTitle } = useResume()
 
     return (
         <nav className="relative bg-bg-main p-3 border-b border-border flex items-center justify-between">
@@ -39,7 +42,7 @@ export default function CvBuilderNav({ isAuthenticated }: CvBuilderNavProps) {
 
             <div className="flex items-center gap-1">
                 <div role="status" aria-live="polite" className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-2 lg:gap-3 text-text-main pointer-events-none select-none">
-                    <span className="text-sm font-medium lg:text-[18px]">{tBuilderNav("saved")}</span>
+                    <span className="text-sm font-medium lg:text-[18px]">{isSaving ? tBuilderNav("saving") : tBuilderNav("saved")}</span>
                     <CloudUpload aria-hidden="true" className="w-5 h-5 lg:w-6 lg:h-6" />
                 </div>
 

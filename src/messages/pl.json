@@ -228,6 +228,7 @@
         "editTitle": "Edytuj nazwę dokumentu",
         "documentName": "Bez tytułu",
         "saved": "Zapisano",
+        "saving": "Zapisywanie...",
         "download": "Pobierz PDF"
     },
     "BuilderSteps": {

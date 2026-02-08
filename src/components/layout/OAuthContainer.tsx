@@ -1,20 +1,19 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import FacebookIcon from "../icons/FacebookIcon"
-import GithubIcon from "../icons/GithubIcon"
-import GoogleIcon from "../icons/GoogleIcon"
 import OAuthCard from "../ui/OAuthCard"
 import { Separator } from "../ui/separator"
 import { createClient } from "@/lib/supabase/client"
 import { Provider } from "@supabase/supabase-js"
+import { BsGoogle } from "react-icons/bs"
+import { FaFacebook, FaGithub } from "react-icons/fa6"
 
 export default function OAuthContainer() {
 
 
     const tOAuth = useTranslations("OAuth")
 
-    const signInWithGithub = async (provider: Provider) => {
+    const signInWithOAuth = async (provider: Provider) => {
         const supabase = await createClient()
         const origin = window.location.origin;
 
@@ -29,15 +28,15 @@ export default function OAuthContainer() {
     const OAUTH_CARD_DATA = [
     {
         platform : "google",
-        icon: <GoogleIcon key="i1" className="w-5.5 h-5.5" />,
+        icon: <BsGoogle key="i1" className="w-5.5 h-5.5" />,
     },
     {
         platform : "facebook",
-        icon: <FacebookIcon key="i2" className="w-5.5 h-5.5" />,
+        icon: <FaFacebook key="i2" className="w-5.5 h-5.5" />,
     },
     {
         platform : "github",
-        icon: <GithubIcon key="i3" className="w-5.5 h-5.5" />,
+        icon: <FaGithub key="i3" className="w-5.5 h-5.5" />,
     }]
 
     return (
@@ -45,7 +44,7 @@ export default function OAuthContainer() {
             <div className="flex gap-4 mb-6 mt-9">
                 {OAUTH_CARD_DATA.map((item, index) => {
                     return (
-                        <OAuthCard key={index} icon={item.icon} onClick={() => signInWithGithub(item.platform as Provider)}/>
+                        <OAuthCard key={index} icon={item.icon} onClick={() => signInWithOAuth(item.platform as Provider)}/>
                     )
                 })}
             </div>

@@ -4,5 +4,6 @@ export type Settings = {
     showLanguageLevel: boolean;
     template: string;
     color: string;
-    sectionOrder: string[]
+    sectionOrder: string[];
+    resumeId: string;
 }
