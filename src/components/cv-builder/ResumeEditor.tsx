@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import { ExperienceItem } from "@/types/experience";
 import { EducationItem } from "@/types/education";
@@ -15,7 +15,7 @@ import { Award, BriefcaseBusiness, FileText, GraduationCap, Heart, Languages, Pl
 import { Interests } from "@/types/interests";
 import { Rodo as RodoSectionType } from "@/types/rodo"
 import { Settings } from "@/types/settings"
-import { useSearchParams } from "next/navigation"
+import { redirect, useSearchParams } from "next/navigation"
 import PersonalDataSection from "./PersonalDataSection";
 import ExperienceSection from "./ExperienceSection";
 import EducationSection from "./EducationSection";
@@ -30,6 +30,9 @@ import ResumePreview from "./ResumePreview";
 import Capsule from "./Capsule";
 import SummarySection from "./SummarySection";
 import { DEFAULT_SECTION_ORDER } from "@/lib/constants";
+import { useDebounce } from "@/hooks/useDebounce";
+import { createClient } from "@/lib/supabase/client";
+import { useResume } from "@/context/ResumeContext";
 
 type ResumeEditorProps = {
     isAuthenticated: boolean;
@@ -45,10 +48,14 @@ type ResumeEditorProps = {
 export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, userFirstName, userLastName, jobTitle, email, phone }: ResumeEditorProps) {
     const tCvBuilderSteps = useTranslations("BuilderSteps")
     const tCvBuilder = useTranslations("Builder")
+    const tBuilderNav = useTranslations("BuilderNav")
     const tButton = useTranslations("Button")
 
     const searchParams = useSearchParams()
     const template = searchParams.get('template')
+    const resumeId = searchParams.get('resumeId')
+
+    if (!resumeId) redirect("/")
 
     const iconStyles = "w-7 h-7"
 
@@ -69,6 +76,8 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [isEditingMode, setIsEditingMode] = useState(false)
     const [viewMode, setViewMode] = useState<Settings["skillsType"]>("categories")
+
+    const { title, setIsSaving } = useResume()
 
     const [data, setData] = useState<ResumeData>({
         personalInfo: {
@@ -97,9 +106,9 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             showSkillsLevel: false,
             showLanguageLevel: false,
             template: template,
-            order: DEFAULT_SECTION_ORDER,
             color: "",
-            sectionOrder: DEFAULT_SECTION_ORDER
+            sectionOrder: DEFAULT_SECTION_ORDER,
+            resumeId: resumeId,
         } as Settings
     })
 
@@ -110,6 +119,89 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
     const handleSettingChange = (field: keyof Settings, value: string) => {
         setData((prev) => ({ ...prev, settings: {...prev.settings, [field]: value }}))
     }
+
+    const debouncedData = useDebounce(data, 1500)
+    const debouncedTitle = useDebounce(title, 1500)
+
+    const supabase = createClient()
+
+    useEffect(() => {
+        setIsSaving(true)
+    }, [data, title, setIsSaving])
+
+    useEffect(() => {
+        const saveData = async () => {
+            if (!resumeId) return
+
+            if (!isAuthenticated) {
+                try {
+                    localStorage.setItem(`guest_resume_${resumeId}`, JSON.stringify(debouncedData))
+                    localStorage.setItem(`guest_title_${resumeId}`, title)
+                } catch (error) {
+                    console.error("Local storage is full or disabled")
+                } finally {
+                    setIsSaving(false)
+                }
+            } else {
+                try {
+                    const { error } = await supabase.from('resumes').upsert({ id: resumeId, content: debouncedData, template: debouncedData.settings.template, title: debouncedTitle || tBuilderNav("documentName"), user_id: (await supabase.auth.getUser()).data.user?.id, updated_at: new Date().toISOString() })
+
+                    if (error) throw error
+                } catch (error) {
+                    console.error("Saving error")
+                } finally {
+                    setTimeout(() => setIsSaving(false), 500)
+                }
+            }
+        }
+
+        saveData()
+    }, [debouncedData, resumeId, isAuthenticated, setIsSaving, supabase, tBuilderNav, debouncedTitle])
+
+    useEffect(() => {
+        const uploadImage = async () => {
+            if (!selectedFile || typeof selectedFile === 'string' || !resumeId) return
+
+            if (!isAuthenticated) {
+                const reader = new FileReader()
+                reader.onloadend = () => {
+                    const base64String = reader.result as string
+
+                    handleSectionChange("personalInfo", { ...data.personalInfo, avatarUrl: base64String })
+
+                    setSelectedFile(null)
+                }
+
+                reader.readAsDataURL(selectedFile)
+                return
+            }
+
+            setIsSaving(true)
+            try {
+                const { data: { user } } = await supabase.auth.getUser()
+
+                const fileExt = selectedFile.name.split('.').pop()
+                const filePath = `${user?.id}/${resumeId}.${fileExt}`
+
+                const { error: uploadError } = await supabase.storage.from('cv-images').upload(filePath, selectedFile, { upsert: true })
+
+                if (uploadError) throw uploadError
+
+                const { data: { publicUrl } } = supabase.storage.from('cv-images').getPublicUrl(filePath)
+
+                const permanentUrl = `${publicUrl}`
+
+                handleSectionChange("personalInfo", { ...data.personalInfo, avatarUrl: permanentUrl })
+
+            } catch (error) {
+                console.error("Uploading error")
+            } finally {
+                setSelectedFile(null)
+            }
+        }
+
+        uploadImage()
+    }, [selectedFile, resumeId, isAuthenticated, supabase])
 
     const displaySection = (currentStep: string) => {
         switch(currentStep) {

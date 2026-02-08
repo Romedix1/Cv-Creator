@@ -45,7 +45,6 @@ $$;
 
 CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
 
-
 -- UPLOAD AVATAR POLICY
 
 CREATE POLICY "User can update own avatar" ON storage.objects FOR INSERT TO authenticated WITH CHECK ( bucket_id = 'avatars' );
@@ -54,32 +53,37 @@ CREATE POLICY "Allow strict uploads" ON storage.objects FOR INSERT TO authentica
 
 -- RESUME TABLE
 
-create table public.resumes (
-  id uuid default gen_random_uuid() primary key,
-  user_id uuid references auth.users on delete cascade not null,
-  title text NOT NULL default 'My Cv',
-  template text NOT NULL default 'modern',
-  content jsonb default '{
+CREATE TABLE public.resumes (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES auth.users ON DELETE CASCADE NOT NULL,
+  title TEXT NOT NULL,
+  template TEXT NOT NULL DEFAULT 'modern-blue',
+  content jsonb DEFAULT '{
     "personalInfo": {},
     "experience": [],
     "education": [],
-    "skills": [],
-    "customSections": []
+    "skillsCat": [],
+    "languages": [],
+    "certificates": [],
+    "interests": [],
+    "customSection": [],
+    "rodoSection": [],
+    "settings": {}
   }'::jsonb,
-  created_at timestamp with time zone default now(),
-  updated_at timestamp with time zone default now()
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now()
 );
 
-alter table public.resumes enable row level security;
+ALTER TABLE public.resumes ENABLE ROW LEVEL SECURITY;
 
-create policy "Users can manage own resumes" on public.resumes for all using ( auth.uid() = user_id );
+CREATE POLICY "Users can manage own resumes" ON public.resumes FOR all USING ( auth.uid() = user_id );
 
-create or replace function public.handle_updated_at() returns trigger as $$
-begin
+CREATE OR REPLACE FUNCTION public.handle_updated_at() RETURNS trigger AS $$
+BEGIN
   new.updated_at = now();
-  return new;
-end;
-$$ language plpgsql;
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
 
-create trigger on_resume_updated before update on public.resumes
-  for each row execute procedure public.handle_updated_at();
+CREATE TRIGGER on_resume_updated BEFORE UPDATE ON public.resumes
+  FOR EACH ROW EXECUTE PROCEDURE public.handle_updated_at();
