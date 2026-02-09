@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { RefObject, useState } from "react"
 import ModernBlue from "@/components/templates/ModernBlue"
 import { Eye, ZoomIn } from "lucide-react"
 import FullScreenTemplate from "../cv-builder/FullScreenTemplate"
@@ -13,11 +13,12 @@ import CreativeAccent from "../templates/CreativeAccent"
 import { ResumeData } from "@/types/resumeData"
 
 type ResumePreviewProps = {
+    previewRef: RefObject<HTMLDivElement | null>;
     data: ResumeData;
     template: string | null;
 }
 
-export default function ResumePreview({ data, template }: ResumePreviewProps) {
+export default function ResumePreview({ previewRef, data, template }: ResumePreviewProps) {
     const tButton = useTranslations("Button")
     const tAria = useTranslations("Aria")
 
@@ -57,7 +58,7 @@ export default function ResumePreview({ data, template }: ResumePreviewProps) {
 
                 <div className="h-full w-full overflow-y-auto overflow-x-hidden pt-8 flex justify-center">
                     <div className="origin-top scale-[0.7] 2xl:scale-[1] mb-16 h-fit transition-transform duration-300">
-                        <div className="w-148.75 min-h-210.5 bg-white shadow-2xl">
+                        <div ref={previewRef} className="w-148.75 min-h-210.5 bg-white shadow-2xl">
                             {getTemplate()}
                         </div>
                     </div>
