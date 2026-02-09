@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTranslations } from "next-intl"
 import { ExperienceItem } from "@/types/experience";
 import { EducationItem } from "@/types/education";
@@ -33,6 +33,7 @@ import { DEFAULT_SECTION_ORDER } from "@/lib/constants";
 import { useDebounce } from "@/hooks/useDebounce";
 import { createClient } from "@/lib/supabase/client";
 import { useResume } from "@/context/ResumeContext";
+import { toJpeg } from "html-to-image";
 
 type ResumeEditorProps = {
     isAuthenticated: boolean;
@@ -78,6 +79,8 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
     const [viewMode, setViewMode] = useState<Settings["skillsType"]>("categories")
 
     const { title, setIsSaving } = useResume()
+
+    const previewRef = useRef<HTMLDivElement>(null)
 
     const [data, setData] = useState<ResumeData>({
         personalInfo: {
@@ -137,7 +140,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 try {
                     localStorage.setItem(`guest_resume_${resumeId}`, JSON.stringify(debouncedData))
                     localStorage.setItem(`guest_title_${resumeId}`, title)
-                } catch (error) {
+                } catch {
                     console.error("Local storage is full or disabled")
                 } finally {
                     setIsSaving(false)
@@ -147,7 +150,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                     const { error } = await supabase.from('resumes').upsert({ id: resumeId, content: debouncedData, template: debouncedData.settings.template, title: debouncedTitle || tBuilderNav("documentName"), user_id: (await supabase.auth.getUser()).data.user?.id, updated_at: new Date().toISOString() })
 
                     if (error) throw error
-                } catch (error) {
+                } catch {
                     console.error("Saving error")
                 } finally {
                     setTimeout(() => setIsSaving(false), 500)
@@ -179,9 +182,10 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             setIsSaving(true)
             try {
                 const { data: { user } } = await supabase.auth.getUser()
+                if (!user) return
 
                 const fileExt = selectedFile.name.split('.').pop()
-                const filePath = `${user?.id}/${resumeId}.${fileExt}`
+                const filePath = `${user.id}/${resumeId}.${fileExt}`
 
                 const { error: uploadError } = await supabase.storage.from('cv-images').upload(filePath, selectedFile, { upsert: true })
 
@@ -189,11 +193,8 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
 
                 const { data: { publicUrl } } = supabase.storage.from('cv-images').getPublicUrl(filePath)
 
-                const permanentUrl = `${publicUrl}`
-
-                handleSectionChange("personalInfo", { ...data.personalInfo, avatarUrl: permanentUrl })
-
-            } catch (error) {
+                handleSectionChange("personalInfo", { ...data.personalInfo, avatarUrl: publicUrl })
+            } catch {
                 console.error("Uploading error")
             } finally {
                 setSelectedFile(null)
@@ -202,6 +203,52 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
 
         uploadImage()
     }, [selectedFile, resumeId, isAuthenticated, supabase])
+
+    const isCapturing = useRef(false)
+
+    const updatePreviewImage = async () => {
+        if (isCapturing.current || !previewRef.current || !resumeId || !isAuthenticated) return
+
+        try {
+            isCapturing.current = true
+
+            const { data: { user } } = await supabase.auth.getUser()
+            if (!user) return
+
+            const dataUrl = await toJpeg(previewRef.current, { quality: 0.7,  pixelRatio: 1,  backgroundColor: "#ffffff", cacheBust: true,  fetchRequestInit: { cache: "no-cache" }})
+
+            const res = await fetch(dataUrl)
+            const blob = await res.blob()
+
+            const file = new File([blob], "preview.jpg", { type: "image/jpeg" })
+
+            const filePath = `${user.id}/${resumeId}/preview/preview.jpg`
+
+            const { error: uploadError } = await supabase.storage.from("cv-images").upload(filePath, file, { upsert: true, cacheControl: "0" })
+
+            if (uploadError) throw uploadError
+
+            const { data: { publicUrl } } = supabase.storage.from("cv-images").getPublicUrl(filePath)
+
+            const freshUrl = `${publicUrl}?time=${Date.now()}`
+
+            await supabase.from('resumes').update({ preview_url: freshUrl }).eq('id', resumeId)
+        } catch {
+            console.error("Snapshot error")
+        } finally {
+            isCapturing.current = false
+        }
+    }
+
+    useEffect(() => {
+        if (!resumeId || !isAuthenticated) return
+
+        const timer = setTimeout(() => {
+            updatePreviewImage()
+        }, 30000)
+
+        return () => clearTimeout(timer)
+    }, [currentStep, resumeId, isAuthenticated])
 
     const displaySection = (currentStep: string) => {
         switch(currentStep) {
@@ -265,7 +312,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 )}
             </div>
 
-            <ResumePreview data={data} template={data.settings.template} />
+            <ResumePreview previewRef={previewRef} data={data} template={data.settings.template} />
         </div>
     )
 }
