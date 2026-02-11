@@ -397,5 +397,8 @@
         "chrome": "Zdefiniuj CHROME_PATH w pliku .env.local",
         "emptyTitle": "Tytuł dokumentu nie może być pusty",
         "cvNotFound": "Nie znaleziono dokumentu"
+    },
+    "Loading": {
+        "loadingText": "Ładowanie"
     }
 }
