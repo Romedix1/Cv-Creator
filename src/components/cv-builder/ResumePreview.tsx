@@ -1,16 +1,11 @@
 "use client"
 
 import { RefObject, useState } from "react"
-import ModernBlue from "@/components/templates/ModernBlue"
 import { Eye, ZoomIn } from "lucide-react"
 import FullScreenTemplate from "../cv-builder/FullScreenTemplate"
-import ClassicCorporate from "@/components/templates/ClassicCorporate"
-import TechMinimal from "@/components/templates/TechMinimal"
-import TimelineModern from "../templates/TimelineModern"
 import { useTranslations } from "next-intl"
-import SwissMinimalist from "../templates/SwissMinimalist"
-import CreativeAccent from "../templates/CreativeAccent"
 import { ResumeData } from "@/types/resumeData"
+import { getTemplate } from "@/lib/getTemplate"
 
 type ResumePreviewProps = {
     previewRef: RefObject<HTMLDivElement | null>;
@@ -25,28 +20,11 @@ export default function ResumePreview({ previewRef, data, template }: ResumePrev
     const [show, setShow] = useState(false)
     const [openSettings, setOpenSettings] = useState(false)
 
-    const getTemplate = () => {
-        switch(template) {
-            case "modern-blue":
-                return <ModernBlue data={data} />
-            case "classic-corporate":
-                return <ClassicCorporate data={data} />
-            case "tech-minimal":
-                return <TechMinimal data={data} />
-            case "timeline-modern":
-                return <TimelineModern data={data} />
-            case "swiss-minimalist":
-                return <SwissMinimalist data={data} />
-            case "creative-accent":
-                return <CreativeAccent data={data} />
-            default:
-                return <ModernBlue data={data} />
-        }
-    }
+    const renderTemplate = () => getTemplate(template, data)
 
     return (
         <>
-            {show && <FullScreenTemplate template={getTemplate} onClose={() => setShow(false)} />}
+            {show && <FullScreenTemplate template={renderTemplate} onClose={() => setShow(false)} />}
             <div>
                 <div className="hidden xl:flex w-120 2xl:w-175 h-full border-l border-border bg-bg-main group relative flex-col">
 
@@ -59,7 +37,7 @@ export default function ResumePreview({ previewRef, data, template }: ResumePrev
                 <div className="h-full w-full overflow-y-auto overflow-x-hidden pt-8 flex justify-center">
                     <div className="origin-top scale-[0.7] 2xl:scale-[1] mb-16 h-fit transition-transform duration-300">
                         <div ref={previewRef} className="w-148.75 min-h-210.5 bg-white shadow-2xl">
-                            {getTemplate()}
+                            {renderTemplate()}
                         </div>
                     </div>
                 </div>

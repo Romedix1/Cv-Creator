@@ -4,7 +4,7 @@ import PersonalDataSection from "@/components/layout/PersonalDataSection";
 import { getUserProfile } from "@/lib/getUserProfile";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function Dashboard() {
+export default async function DashboardSettings() {
   const supabase = await createClient()
   const userProfile = await getUserProfile()
 
