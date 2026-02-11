@@ -75,8 +75,10 @@
         "deleteDescription": "Usuń opis",
         "addDescription": "Dodaj opis",
         "save": "Zapisz",
+        "saving": "Zapisywanie",
         "edit": "Edytuj",
         "delete": "Usuń",
+        "deleting": "Usuwanie",
         "backToList": "Wróć do listy",
         "prevSection": "Poprzedni krok",
         "nextSection": "Następny krok",
@@ -97,7 +99,8 @@
         "preview": "Podgląd",
         "close": "Zamknij",
         "addInterests": "Dodaj zainteresowanie",
-        "clause": "klauzule"
+        "clause": "klauzule",
+        "cancel": "Anuluj"
     },
     "OAuth": {
         "or": "lub"
@@ -150,7 +153,22 @@
         "settings": "Ustawienia konta",
         "myCVs": "Moje CV",
         "MyCVs": {
-            "createCVBlock": "Utwórz nowe CV"
+            "createCVBlock": "Utwórz nowe CV",
+            "missingSnapshot": "Brak podglądu do wyświetlenia",
+            "edit": "Edytuj",
+            "changeTitle": "Zmień nazwę",
+            "copy": "Kopiuj",
+            "download": "Pobierz",
+            "delete": "Usuń",
+            "changeTitleSuccess": "Nazwa została zmieniona",
+            "copyText": "Kopia",
+            "copySuccess": "Dokument został skopiowany",
+            "deleteSuccess": "Dokument został usunięty",
+            "deleteHeader": "Usuń dokument",
+            "deleteText": "Ta operacja jest nieodwracalna",
+            "generating": "Generowanie PDF",
+            "downloadSuccess": "Pobrano pomyślnie",
+            "downloadFailed": "Nie udało się pobrać pliku"
         },
         "Settings": {
             "dataHeader": "Dane profilowe",
@@ -171,9 +189,7 @@
                 "text": "Czy na pewno chcesz usunąć konto? Tej operacji nie można cofnąć. Wszystkie dane zostaną utracone",
                 "labelPassword": "Wpisz hasło, aby potwierdzić",
                 "labelOAuth": "Aby potwierdzić, wpisz słowo:",
-                "confirmationWord": "Usuń",
-                "cancelBtn": "Anuluj",
-                "deleteBtn": "Usuń"
+                "confirmationWord": "Usuń"
             }
         }
     },
@@ -324,7 +340,8 @@
         "advanced": "zaawansowany",
         "proficient": "ekspert / senior",
         "changeTemplate": "Zmień szablon",
-        "changeColor": "Zmień kolor"
+        "changeColor": "Zmień kolor",
+        "changeTitle": "Zmień nazwę"
     },
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",
@@ -369,5 +386,16 @@
         "red": "Czerwony",
         "gray": "Szary",
         "pink": "Różowy"
+    },
+    "Errors": {
+        "changeTitle": "Nie udało się zaktualizować tytułu",
+        "unexpected": "Wystąpił nieoczekiwany błąd",
+        "resumeLimit": "Osiągnięto limit dokumentów (max 5)",
+        "copy": "Nie udało się skopiować dokumentu",
+        "unauthorized": "Nieautoryzowany użytkownik",
+        "delete": "Nie udało się usunąć dokumentu",
+        "chrome": "Zdefiniuj CHROME_PATH w pliku .env.local",
+        "emptyTitle": "Tytuł dokumentu nie może być pusty",
+        "cvNotFound": "Nie znaleziono dokumentu"
     }
 }

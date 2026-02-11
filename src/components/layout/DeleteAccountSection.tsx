@@ -23,7 +23,7 @@ export default function DeleteAccountSection({ email, hasPassword }: DeleteAccou
                 <p className="w-full text-[14px] lg:text-[16px] text-text-muted">{tSettings("warningText")}</p>
 
                 <div className="flex w-full md:justify-end">
-                    <Button onClick={() => setConfirmDelete(true)} variant="primary" text={tSettings("deleteAccountBtn")} className="mt-6 bg-error w-full md:w-[300px] hover:bg-error/50" />
+                    <Button onClick={() => setConfirmDelete(true)} variant="primary" text={tSettings("deleteAccountBtn")} className="mt-6 bg-error w-full md:w-75 hover:bg-error/50" />
                 </div>
             </section>
         </>

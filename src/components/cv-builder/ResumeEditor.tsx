@@ -185,7 +185,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
                 if (!user) return
 
                 const fileExt = selectedFile.name.split('.').pop()
-                const filePath = `${user.id}/${resumeId}.${fileExt}`
+                const filePath = `${user.id}/${resumeId}/avatar/avatar.${fileExt}`
 
                 const { error: uploadError } = await supabase.storage.from('cv-images').upload(filePath, selectedFile, { upsert: true })
 
@@ -215,7 +215,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
             const { data: { user } } = await supabase.auth.getUser()
             if (!user) return
 
-            const dataUrl = await toJpeg(previewRef.current, { quality: 0.7,  pixelRatio: 1,  backgroundColor: "#ffffff", cacheBust: true,  fetchRequestInit: { cache: "no-cache" }})
+            const dataUrl = await toJpeg(previewRef.current, { quality: 0.9,  pixelRatio: 1,  backgroundColor: "#ffffff", cacheBust: true,  fetchRequestInit: { cache: "no-cache" }})
 
             const res = await fetch(dataUrl)
             const blob = await res.blob()
@@ -245,7 +245,7 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
 
         const timer = setTimeout(() => {
             updatePreviewImage()
-        }, 30000)
+        }, 200)
 
         return () => clearTimeout(timer)
     }, [currentStep, resumeId, isAuthenticated])

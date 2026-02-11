@@ -16,6 +16,7 @@ type InputProps = {
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
     placeholderValue?: string;
     showPasswordIcon?: ReactNode;
+    autoFocus: boolean,
     className?: string;
     inputClassName?: string;
     error?: string;
@@ -23,7 +24,7 @@ type InputProps = {
     disabled?: boolean;
 }
 
-export default function Input({ name, label, type, value, placeholderValue, showPasswordIcon, className, error, onChange, options = [], disabled, inputClassName }: InputProps) {
+export default function Input({ name, label, type, value, placeholderValue, showPasswordIcon, autoFocus, className, error, onChange, options = [], disabled, inputClassName }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
     const isPasswordType = type === "password";
@@ -57,7 +58,7 @@ export default function Input({ name, label, type, value, placeholderValue, show
                     </div>
                 ) : (
                     <>
-                        <input id={name} disabled={disabled} onChange={onChange} value={value} name={name} className={`w-full p-3 bg-bg-main border border-border rounded-xl placeholder:text-text-muted outline-none duration-200 hover:border-text-muted focus:border-default ${showPasswordIcon ? "pl-12" : ""}${isPasswordType ? "pr-12" : ""} ${inputClassName}`} type={currentType} placeholder={placeholderValue}  />
+                        <input id={name} disabled={disabled} autoFocus={autoFocus} onChange={onChange} value={value} name={name} className={`w-full p-3 bg-bg-main border border-border rounded-xl placeholder:text-text-muted outline-none duration-200 hover:border-text-muted focus:border-default ${showPasswordIcon ? "pl-12" : ""}${isPasswordType ? "pr-12" : ""} ${inputClassName}`} type={currentType} placeholder={placeholderValue}  />
 
                         {isPasswordType && (
                             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 text-text-muted hover:text-text-main duration-200 cursor-pointer">
