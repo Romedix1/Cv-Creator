@@ -18,8 +18,8 @@ export function useSignOut() {
 
             router.push("/")
             router.refresh();
-        } catch (error) {
-            console.error(error)
+        } catch {
+            console.error("Sign out error")
         } finally {
             setLoading(false)
         }
