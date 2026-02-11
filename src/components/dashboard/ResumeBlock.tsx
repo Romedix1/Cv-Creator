@@ -26,7 +26,7 @@ export default async function ResumeBlock({ data, snapshotUrl }: CvBlockType) {
 
     return (
         <article className="bg-[#EFF6FF] relative flex flex-col dark:bg-transparent border-2 border-border-default rounded-[12px] items-end w-70 h-100 duration-200 hover:border-opacity-100">
-            <Link href={`/cv-builder?resumeId=${data.id}`} className="relative w-full group flex-1 overflow-hidden rounded-t-[12px] cursor-pointer flex items-center justify-center">
+            <Link href={`/cv-builder/${data.id}`} className="relative w-full group flex-1 overflow-hidden rounded-t-[12px] cursor-pointer flex items-center justify-center">
                 <ResumeSnapshot src={snapshotUrl} alt={data.title} />
 
                 <div className="absolute bg-default-hover opacity-0 group-hover:opacity-50 duration-400 z-10 w-full h-full" />

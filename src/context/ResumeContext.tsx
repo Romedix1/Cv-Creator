@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useTranslations } from "use-intl";
 
 type ResumeContextType = {
@@ -10,13 +10,32 @@ type ResumeContextType = {
     setTitle: (value: string) => void;
 }
 
+type ResumeProviderType = {
+    children: ReactNode;
+    initialTitle: string;
+    isAuthenticated: boolean;
+    resumeId: string;
+}
+
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined)
 
-export function ResumeProvider({ children }: { children: ReactNode }) {
+export function ResumeProvider({ children, initialTitle, isAuthenticated, resumeId }: ResumeProviderType) {
     const tBuilderNav = useTranslations("BuilderNav")
 
     const [isSaving, setIsSaving] = useState(false)
-    const [title, setTitle] = useState(tBuilderNav("documentName"))
+    const [title, setTitle] = useState(initialTitle || tBuilderNav("documentName"))
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            const savedTitle = localStorage.getItem(`guest_title_${resumeId}`)
+
+            if (savedTitle && savedTitle !== title) {
+                requestAnimationFrame(() => {
+                    setTitle(savedTitle)
+                });
+            }
+        }
+    }, [isAuthenticated, resumeId, title])
 
     return (
         <ResumeContext.Provider value={{ isSaving, setIsSaving, title, setTitle }}>

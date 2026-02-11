@@ -1,16 +1,11 @@
 import CreateCvBlock from "@/components/dashboard/CreateResumeBlock";
 import ResumeBlock from "@/components/dashboard/ResumeBlock";
+import { getResumeList } from "@/lib/resume/server";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardSettings() {
+  const { resumes, userId } = await getResumeList()
   const supabase = await createClient()
-
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) return
-  const userId = user.id
-
-  const { data: resumes } = await supabase.from("resumes").select("id, title, updated_at").order("updated_at", { ascending: false })
 
   const itemCount = (resumes && resumes.length < 5) ? resumes.length + 1 : 5
 
@@ -21,11 +16,12 @@ export default async function DashboardSettings() {
             <CreateCvBlock />
           )}
 
-          {resumes?.map((resume) => {
+          {resumes.map((resume) => {
             const { data: snapshotUrl } = supabase.storage.from("cv-images").getPublicUrl(`${userId}/${resume.id}/preview/preview.jpg`)
+            const finalUrl = `${snapshotUrl.publicUrl}?t=${new Date(resume.updated_at).getTime()}`
 
             return (
-              <ResumeBlock key={resume.id} data={resume} snapshotUrl={snapshotUrl.publicUrl || ""} />
+              <ResumeBlock key={resume.id} data={resume} snapshotUrl={finalUrl} />
             )
           })}
         </div>

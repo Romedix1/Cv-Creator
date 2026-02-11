@@ -4,19 +4,22 @@ import { ArrowLeft, CloudUpload, DownloadIcon, PenSquare } from "lucide-react";
 import { useTranslations } from "use-intl";
 import Link from "next/link";
 import { useResume } from "@/context/ResumeContext";
-import { useDebounce } from "@/hooks/useDebounce";
-import { useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { handleDownload } from "@/lib/resume/client";
+import { useState } from "react";
 
 type CvBuilderNavProps = {
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
+    resumeId: string;
 }
 
-export default function CvBuilderNav({ isAuthenticated }: CvBuilderNavProps) {
+export default function CvBuilderNav({ isAuthenticated, resumeId }: CvBuilderNavProps) {
     const tBuilderNav = useTranslations("BuilderNav")
     const tAria = useTranslations("Aria")
+    const tDocuments = useTranslations("Dashboard.MyCVs")
 
     const { isSaving, title, setTitle } = useResume()
+
+    const [isDownloading, setIsDownloading] = useState(false)
 
     return (
         <nav className="relative bg-bg-main p-3 border-b border-border flex items-center justify-between">
@@ -46,7 +49,7 @@ export default function CvBuilderNav({ isAuthenticated }: CvBuilderNavProps) {
                     <CloudUpload aria-hidden="true" className="w-5 h-5 lg:w-6 lg:h-6" />
                 </div>
 
-                <button type="button" aria-label={tAria("downloadPDF")} className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2">
+                <button type="button" aria-label={tAria("downloadPDF")} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments)} className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2">
                     <span className="hidden sm:block text-sm lg:text-[17x] font-bold">{tBuilderNav("download")}</span>
                     <DownloadIcon aria-hidden="true" className="w-5 h-5" />
                 </button>

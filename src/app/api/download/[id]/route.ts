@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getBrowserInstance } from '@/lib/browser';
 
-export async function GET(request: Request) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
     const { searchParams } = new URL(request.url)
-    const id = searchParams.get('id')
+    const { id } = await params
     const title = searchParams.get('title')
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
