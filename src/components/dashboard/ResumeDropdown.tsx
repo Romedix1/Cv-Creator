@@ -10,6 +10,7 @@ import { copyResume } from "@/actions/resume";
 import { toast } from "react-toastify";
 import ConfirmDelete from "./ConfirmDelete";
 import { cn } from "@/lib/utils";
+import { handleDownload } from "@/lib/resume/client";
 
 type ResumeDropdownType = {
     resumeId: string;
@@ -64,48 +65,9 @@ export default function ResumeDropdown({ resumeId, title, onClose }: ResumeDropd
         })
     }
 
-    const handleDownload = async () => {
-        if (isDownloading) return
-
-        setIsDownloading(true)
-        const toastId = toast.info(`${tDocuments("generating")}...`, { autoClose: false })
-
-        try {
-            const response = await fetch(`/api/download?id=${resumeId}&title=${encodeURIComponent(title)}`)
-
-            if (!response.ok) {
-                throw new Error("Internal server error")
-            }
-
-            const blob = await response.blob()
-
-            const url = window.URL.createObjectURL(blob)
-            const a = document.createElement('a')
-            a.href = url
-
-            const fileName = title ? title.replace(/\s+/g, '_') : `cv-${resumeId}`
-
-            a.download = `${fileName}.pdf`
-
-            document.body.appendChild(a)
-            a.click()
-
-            window.URL.revokeObjectURL(url)
-            document.body.removeChild(a)
-
-            toast.dismiss(toastId)
-            toast.success(tDocuments("downloadSuccess"))
-        } catch  {
-            toast.dismiss(toastId)
-            toast.error(tDocuments("downloadFailed"))
-        } finally {
-            setIsDownloading(false)
-        }
-    }
-
     return (
         <div ref={menuRef} className="absolute right-4 top-16 px-2 py-3 bg-surface-hover border-2 rounded-[8px] flex flex-col gap-2 z-60 animate-in fade-in zoom-in-95 slide-in-from-top-2 duration-300 origin-top-right">
-            <Link href={`/cv-builder?resumeId=${resumeId}`} className="flex gap-3 w-full items-center hover:bg-default-hover rounded-[10px] px-1.5 py-1 cursor-pointer duration-200">
+            <Link href={`/cv-builder/${resumeId}`} className="flex gap-3 w-full items-center hover:bg-default-hover rounded-[10px] px-1.5 py-1 cursor-pointer duration-200">
                 <PenSquare />
                 {tDocuments("edit")}
             </Link>
@@ -118,7 +80,7 @@ export default function ResumeDropdown({ resumeId, title, onClose }: ResumeDropd
                 {tDocuments("copy")}
             </DropdownItem>
 
-            <DropdownItem icon={Download} onClick={handleDownload}>
+            <DropdownItem icon={Download} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments)}>
                 {tDocuments("download")}
             </DropdownItem>
 

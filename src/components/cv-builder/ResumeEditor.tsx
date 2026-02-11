@@ -15,7 +15,7 @@ import { Award, BriefcaseBusiness, FileText, GraduationCap, Heart, Languages, Pl
 import { Interests } from "@/types/interests";
 import { Rodo as RodoSectionType } from "@/types/rodo"
 import { Settings } from "@/types/settings"
-import { redirect, useSearchParams } from "next/navigation"
+import { redirect } from "next/navigation"
 import PersonalDataSection from "./PersonalDataSection";
 import ExperienceSection from "./ExperienceSection";
 import EducationSection from "./EducationSection";
@@ -36,6 +36,9 @@ import { useResume } from "@/context/ResumeContext";
 import { toJpeg } from "html-to-image";
 
 type ResumeEditorProps = {
+    initialData: ResumeData | null;
+    resumeId: string;
+    template: string;
     isAuthenticated: boolean;
     avatarUrl: string | null;
     initials: string | null;
@@ -46,15 +49,11 @@ type ResumeEditorProps = {
     phone: string | null;
 }
 
-export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, userFirstName, userLastName, jobTitle, email, phone }: ResumeEditorProps) {
+export default function ResumeEditor({ initialData, resumeId, template, isAuthenticated, avatarUrl, initials, userFirstName, userLastName, jobTitle, email, phone }: ResumeEditorProps) {
     const tCvBuilderSteps = useTranslations("BuilderSteps")
     const tCvBuilder = useTranslations("Builder")
     const tBuilderNav = useTranslations("BuilderNav")
     const tButton = useTranslations("Button")
-
-    const searchParams = useSearchParams()
-    const template = searchParams.get('template')
-    const resumeId = searchParams.get('resumeId')
 
     if (!resumeId) redirect("/")
 
@@ -82,7 +81,20 @@ export default function ResumeEditor({ isAuthenticated, avatarUrl, initials, use
 
     const previewRef = useRef<HTMLDivElement>(null)
 
-    const [data, setData] = useState<ResumeData>({
+    useEffect(() => {
+        if (!isAuthenticated) {
+            const localData = localStorage.getItem(`guest_resume_${resumeId}`);
+            if (localData) {
+                try {
+                    setData(JSON.parse(localData));
+                } catch {
+                    console.error("Cookies error");
+                }
+            }
+        }
+    }, [isAuthenticated, resumeId]);
+
+    const [data, setData] = useState<ResumeData>(initialData ? initialData : {
         personalInfo: {
             avatarUrl: avatarUrl || null,
             firstName: userFirstName || "",
