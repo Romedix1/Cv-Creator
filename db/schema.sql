@@ -85,5 +85,16 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER on_resume_updated BEFORE UPDATE ON public.resumes
-  FOR EACH ROW EXECUTE PROCEDURE public.handle_updated_at();
+CREATE TRIGGER on_resume_updated BEFORE UPDATE ON public.resumes FOR EACH ROW EXECUTE PROCEDURE public.handle_updated_at();
+
+CREATE OR REPLACE FUNCTION check_resume_limit() RETURNS TRIGGER AS $$
+BEGIN
+  IF (SELECT COUNT(*) FROM resumes WHERE user_id = NEW.user_id) > 5 THEN
+    RAISE EXCEPTION 'LIMIT_REACHED: Resumes limit reached (max. 5)';
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER enforce_resume_limit BEFORE INSERT ON resumes FOR EACH ROW EXECUTE FUNCTION check_resume_limit();
