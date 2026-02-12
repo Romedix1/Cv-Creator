@@ -1,3 +1,4 @@
+
 "use client"
 
 import Image, { StaticImageData } from "next/image"
@@ -5,6 +6,7 @@ import Button from "./Button"
 import { X } from "lucide-react"
 import { useEffect } from "react"
 import { useTranslations } from "next-intl"
+import Modal from "./Modal"
 
 type TemplatePreviewProps = {
     onClose: () => void
@@ -23,26 +25,30 @@ export default function TemplatePreview({ onClose, name, image, id }: TemplatePr
     }, [])
 
     return (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-8" onClick={onClose}>
-            <div className="relative bg-surface border h-[90vh] rounded-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-85 duration-200" onClick={(e) => e.stopPropagation()}>
-                <div className="flex items-center justify-between p-4 border-b bg-bg-main">
+
+        <Modal onClose={onClose} containerClassName="xl:w-[650px]"
+            header={
+                <div className="flex items-center justify-between py-4 border-b w-full">
                     <h2 className="text-xl font-bold">{name}</h2>
                     <button aria-label={tButton("close")} onClick={onClose} className="p-2 hover:text-text-muted duration-200 cursor-pointer">
                         <X size={24} ariat-hidden="true" />
                     </button>
                 </div>
-
-                <div className="flex-1 overflow-y-auto p-6 flex justify-center">
-                    <div className="relative w-150 ">
-                         <Image src={image} alt={name} className="w-full h-auto" />
+            }
+            footer={(close)=> (
+                    <div className="py-4 flex flex-col flex-col-reverse sm:flex-row justify-end gap-3 w-full">
+                        <Button variant="secondary" className="px-8" text={tButton("close")} onClick={close}  />
+                        <Button variant="primary" text={tButton("select")} className="px-8" href={`/cv-builder?template=${id}`}/>
+                    </div>
+            )}
+        >
+            <div className="w-full flex flex-col items-center justify-start overflow-hidden">
+                <div className="w-full overflow-y-auto pr-1" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+                    <div className="relative w-full overflow-hidden">
+                        <Image src={image} alt={name} width={800} height={1100} className="w-full h-auto" priority quality={100} />
                     </div>
                 </div>
-
-                <div className="p-4 flex justify-end gap-3">
-                    <Button variant="secondary" className="px-8" text={tButton("close")} onClick={onClose}  />
-                    <Button variant="primary" text={tButton("select")} className="px-8" href={`/cv-builder?template=${id}`}/>
-                </div>
             </div>
-        </div>
+        </Modal>
     )
 }

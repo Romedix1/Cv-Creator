@@ -18,7 +18,7 @@ const TEMPLATES_DATA = [
   { id: 'swiss-minimalist', name: 'Swiss Minimalist', category: "minimalist", image: swissTemplate },
   { id: 'tech-minimal', name: 'Tech Minimal', category: "minimalist", image: techTemplate },
   { id: 'timeline-modern', name: 'Timeline Modern', category: "modern", image: timelineTemplate },
-];
+]
 
 export default function FilterBar() {
     const [search, setSearch] = useState("")
@@ -45,7 +45,7 @@ export default function FilterBar() {
             <div className="grid gap-8 lg:gap-10 lg:grid-cols-2 xl:grid-cols-3 2xl:mt-6">
                 {filteredTemplates.map((template, index) => {
                     return (
-                        <Template key={index} id={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate}/>
+                        <Template key={index} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate}/>
                     )
                 })}
             </div>

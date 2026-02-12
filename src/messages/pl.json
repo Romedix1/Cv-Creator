@@ -346,7 +346,8 @@
     "ImgAlt": {
         "userProfile": "Zdjęcie profilowe",
         "template": "Szablon",
-        "userImage": "Zdjęcie"
+        "userImage": "Zdjęcie",
+        "preview": "Podgląd CV"
     },
     "Aria": {
         "backToDashboard": "Wróć do dokumentów",
