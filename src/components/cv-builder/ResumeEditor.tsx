@@ -54,8 +54,11 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
     const tCvBuilder = useTranslations("Builder")
     const tBuilderNav = useTranslations("BuilderNav")
     const tButton = useTranslations("Button")
+    const tError = useTranslations("Errors")
 
     if (!resumeId) redirect("/")
+
+    const isFirstRender = useRef(true)
 
     const iconStyles = "w-7 h-7"
 
@@ -77,7 +80,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
     const [isEditingMode, setIsEditingMode] = useState(false)
     const [viewMode, setViewMode] = useState<Settings["skillsType"]>("categories")
 
-    const { title, setIsSaving } = useResume()
+    const { title, setIsSaving, setSaveError } = useResume()
 
     const previewRef = useRef<HTMLDivElement>(null)
 
@@ -141,12 +144,22 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
     const supabase = createClient()
 
     useEffect(() => {
+        if (isFirstRender.current) return
+
         setIsSaving(true)
     }, [data, title, setIsSaving])
 
     useEffect(() => {
         const saveData = async () => {
+            if (isFirstRender.current) {
+                isFirstRender.current = false
+                setIsSaving(false)
+                return
+            }
+
             if (!resumeId) return
+
+            setSaveError(null)
 
             if (!isAuthenticated) {
                 try {
@@ -170,6 +183,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                             return
                         }
 
+                        setSaveError(tError("saving"))
                         throw error
                     }
                 } catch {

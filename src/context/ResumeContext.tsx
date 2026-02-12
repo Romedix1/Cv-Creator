@@ -8,6 +8,8 @@ type ResumeContextType = {
     setIsSaving: (value: boolean) => void;
     title: string;
     setTitle: (value: string) => void;
+    saveError: string | null;
+    setSaveError: (value: string | null) => void;
 }
 
 type ResumeProviderType = {
@@ -24,6 +26,7 @@ export function ResumeProvider({ children, initialTitle, isAuthenticated, resume
 
     const [isSaving, setIsSaving] = useState(false)
     const [title, setTitle] = useState(initialTitle || tBuilderNav("documentName"))
+    const [saveError, setSaveError] = useState<string | null>(null)
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -38,7 +41,7 @@ export function ResumeProvider({ children, initialTitle, isAuthenticated, resume
     }, [isAuthenticated, resumeId, title])
 
     return (
-        <ResumeContext.Provider value={{ isSaving, setIsSaving, title, setTitle }}>
+        <ResumeContext.Provider value={{ isSaving, setIsSaving, title, setTitle, saveError, setSaveError }}>
             {children}
         </ResumeContext.Provider>
     )

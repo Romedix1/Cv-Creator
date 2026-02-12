@@ -1,11 +1,12 @@
 "use client"
 
-import { ArrowLeft, CloudUpload, DownloadIcon, PenSquare } from "lucide-react";
+import { ArrowLeft, CloudAlert, CloudCheck, CloudUpload, DownloadIcon, PenSquare } from "lucide-react";
 import { useTranslations } from "use-intl";
 import Link from "next/link";
 import { useResume } from "@/context/ResumeContext";
 import { handleDownload } from "@/lib/resume/client";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 type CvBuilderNavProps = {
     isAuthenticated: boolean;
@@ -17,9 +18,11 @@ export default function CvBuilderNav({ isAuthenticated, resumeId }: CvBuilderNav
     const tAria = useTranslations("Aria")
     const tDocuments = useTranslations("Dashboard.MyCVs")
 
-    const { isSaving, title, setTitle } = useResume()
+    const { isSaving, title, setTitle, saveError } = useResume()
 
     const [isDownloading, setIsDownloading] = useState(false)
+
+    const saveIconStyles = "w-5 h-5 lg:w-6 lg:h-6"
 
     return (
         <nav className="relative bg-bg-main p-3 border-b border-border flex items-center justify-between">
@@ -45,8 +48,8 @@ export default function CvBuilderNav({ isAuthenticated, resumeId }: CvBuilderNav
 
             <div className="flex items-center gap-1">
                 <div role="status" aria-live="polite" className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-2 lg:gap-3 text-text-main pointer-events-none select-none">
-                    <span className="text-sm font-medium lg:text-[18px]">{isSaving ? tBuilderNav("saving") : tBuilderNav("saved")}</span>
-                    <CloudUpload aria-hidden="true" className="w-5 h-5 lg:w-6 lg:h-6" />
+                    <span className={cn("text-sm font-medium lg:text-[18px]", saveError && "text-error")}>{saveError ? saveError : isSaving ? tBuilderNav("saving") : tBuilderNav("saved")}</span>
+                    {saveError ? <CloudAlert aria-hidden={true} className={cn("text-error", saveIconStyles)} /> : isSaving ? <CloudUpload aria-hidden={true} className={saveIconStyles} /> : <CloudCheck aria-hidden={true} className={saveIconStyles} />}
                 </div>
 
                 <button type="button" aria-label={tAria("downloadPDF")} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments)} className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2">
