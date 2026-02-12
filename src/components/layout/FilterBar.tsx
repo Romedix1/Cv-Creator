@@ -20,7 +20,11 @@ const TEMPLATES_DATA = [
   { id: 'timeline-modern', name: 'Timeline Modern', category: "modern", image: timelineTemplate },
 ]
 
-export default function FilterBar() {
+type FilterBarType = {
+    canCreate: boolean;
+}
+
+export default function FilterBar({ canCreate }: FilterBarType) {
     const [search, setSearch] = useState("")
     const [selectedCategory, setSelectedCategory] = useState("all")
     const [selectedTemplate, setSelectedTemplate] = useState("")
@@ -43,15 +47,15 @@ export default function FilterBar() {
         <>
             <SearchBar setSelectedCategory={setSelectedCategory} search={search} setSearch={setSearch}/>
             <div className="grid gap-8 lg:gap-10 lg:grid-cols-2 xl:grid-cols-3 2xl:mt-6">
-                {filteredTemplates.map((template, index) => {
+                {filteredTemplates.map((template) => {
                     return (
-                        <Template key={index} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate}/>
+                        <Template key={template.id} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate} canCreate={canCreate}/>
                     )
                 })}
             </div>
 
             {(selectedTemplate && activeTemplate) && (
-                <TemplatePreview onClose={handleClose} id={activeTemplate.id} name={activeTemplate.name} image={activeTemplate.image} />
+                <TemplatePreview onClose={handleClose} id={activeTemplate.id} templateId={activeTemplate.id} name={activeTemplate.name} image={activeTemplate.image} canCreate={canCreate}/>
             )}
         </>
     )

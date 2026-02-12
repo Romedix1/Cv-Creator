@@ -1,11 +1,19 @@
 import CreateCvBlock from "@/components/dashboard/CreateResumeBlock";
 import ResumeBlock from "@/components/dashboard/ResumeBlock";
+import DashboardLimitAlert from "@/components/ui/DashboardLimitError";
 import { getResumeList } from "@/lib/resume/server";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function DashboardSettings() {
+type DashboardProps = {
+  searchParams: Promise<{ error?: string }>;
+};
+
+export default async function Dashboard({ searchParams }: DashboardProps) {
   const { resumes, userId } = await getResumeList()
   const supabase = await createClient()
+  const sParams = await searchParams
+
+  const hasLimitError = sParams.error === "limit_reached"
 
   const itemCount = (resumes && resumes.length < 5) ? resumes.length + 1 : 5
 
@@ -25,6 +33,8 @@ export default async function DashboardSettings() {
             )
           })}
         </div>
+
+        {hasLimitError && <DashboardLimitAlert />}
       </main>
   );
 }

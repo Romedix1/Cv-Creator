@@ -1,7 +1,8 @@
 import ResumeEditor from "@/components/cv-builder/ResumeEditor";
 import { getUserProfile } from "@/lib/getUserProfile";
-import { getResumeById } from "@/lib/resume/server";
+import { getResumeById, getUserResumeCount } from "@/lib/resume/server";
 import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 
 type CvBuilderProps = {
     params: Promise<{ resumeId: string }>;
@@ -21,6 +22,14 @@ export default async function CvBuilder({ params, searchParams }: CvBuilderProps
 
     if (isAuthenticated) {
         [userProfile, initialData] = await Promise.all([ getUserProfile(), getResumeById(resumeId) ])
+
+        if (!initialData) {
+            const count = await getUserResumeCount()
+
+            if (count && count >= 5) {
+                redirect("/dashboard?error=limit_reached")
+            }
+        }
     }
 
     const activeTemplate = template || "modern-blue"

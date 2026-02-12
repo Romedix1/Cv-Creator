@@ -1,12 +1,13 @@
-import { useTranslations } from "next-intl"
 import classicTemplate from '../../../public/images/Templates/classic-corporate.png';
 import swissTemplate from '../../../public/images/Templates/swiss-minimalist.png';
 import techTemplate from '../../../public/images/Templates/tech-minimal.png';
 import Button from "../ui/Button"
 import Template from "../ui/Template"
+import { canCreateMoreResumes } from "@/lib/resume/server";
+import { getTranslations } from "next-intl/server";
 
-export default function TemplatesSection() {
-    const tTemplates = useTranslations("TemplatesSection");
+export default async function TemplatesSection() {
+    const tTemplates = await getTranslations("TemplatesSection");
 
     const TEMPLATES_DATA = [
         { id: 'classic-corporate', name: 'Classic Corporate', category: "classic", image: classicTemplate },
@@ -14,6 +15,7 @@ export default function TemplatesSection() {
         { id: 'tech-minimal', name: 'Tech Minimal', category: "minimalist", image: techTemplate },
     ]
 
+    const canCreate = await canCreateMoreResumes()
 
     return (
         <section id="templates-section" className="px-5 py-16 bg-surface-hover flex flex-col gap-16 scroll-mt-[50px]">
@@ -24,7 +26,7 @@ export default function TemplatesSection() {
             <div className="flex flex-col gap-7.5 items-center lg:flex-row lg:gap-5 2xl:justify-center 2xl:gap-7.5">
                 {TEMPLATES_DATA.map((template, index) => {
                     return (
-                        <Template key={index} templateId={template.id} name={template.name} image={template.image} enablePreview={false} />
+                        <Template key={index} templateId={template.id} name={template.name} image={template.image} enablePreview={false} canCreate={canCreate} />
                     )
                 })}
             </div>

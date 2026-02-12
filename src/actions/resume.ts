@@ -39,7 +39,7 @@ export async function copyResume(resumeId: string) {
             return { error: tError("unauthorized") }
         }
 
-        const { count, error: countError } = await supabase.from("resumes").select("*", { count: 'exact', head: true }).eq("user_id", user.id)
+        const { count, error: countError } = await supabase.from("resumes").select("*", { count: "exact", head: true }).eq("user_id", user.id)
 
         if (count && count >= 5) {
             return { error: tError("resumeLimit") }

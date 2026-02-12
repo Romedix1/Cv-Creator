@@ -159,9 +159,19 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                 }
             } else {
                 try {
+                    const { data: { user } } = await supabase.auth.getUser()
+                    if (!user) return
+
                     const { error } = await supabase.from('resumes').upsert({ id: resumeId, content: debouncedData, template: debouncedData.settings.template, title: debouncedTitle || tBuilderNav("documentName"), user_id: (await supabase.auth.getUser()).data.user?.id, updated_at: new Date().toISOString() })
 
-                    if (error) throw error
+                    if (error) {
+                        if (error.message.includes("LIMIT_REACHED")) {
+                            window.location.href = "/dashboard?error=limit_reached"
+                            return
+                        }
+
+                        throw error
+                    }
                 } catch {
                     console.error("Saving error")
                 } finally {

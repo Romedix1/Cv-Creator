@@ -100,7 +100,9 @@
         "close": "Zamknij",
         "addInterests": "Dodaj zainteresowanie",
         "clause": "klauzule",
-        "cancel": "Anuluj"
+        "cancel": "Anuluj",
+        "understand": "Rozumiem",
+        "manageResumes": "Zarządzaj moimi CV"
     },
     "OAuth": {
         "or": "lub"
@@ -146,7 +148,9 @@
             "modern": "Nowoczesne",
             "classic": "Klasyczne"
         },
-        "filterByCategory": "Filtruj według kategorii"
+        "filterByCategory": "Filtruj według kategorii",
+        "limitHeader": "Osiągnięto limit dokumentów",
+        "limitText": "Osiągnąłeś maksymalny limit 5 dokumentów. Aby stworzyć nowe CV, musisz usunąć jeden z istniejących dokumentów ze swojej listy"
     },
     "Dashboard": {
         "header": "Cześć",
