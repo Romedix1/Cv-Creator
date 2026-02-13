@@ -1,4 +1,4 @@
-import DeleteAccountSection from "@/components/layout/DeleteAccountSection";
+import DeleteAccountSection from "@/app/[locale]/(main)/dashboard/_components/DeleteAccountSection";
 import PasswordSection from "@/components/layout/PasswordSection";
 import PersonalDataSection from "@/components/layout/PersonalDataSection";
 import { getUserProfile } from "@/lib/getUserProfile";

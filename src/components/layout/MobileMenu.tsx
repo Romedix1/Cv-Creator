@@ -1,10 +1,10 @@
-import LanguageSwitcher from "../ui/LanguageSwitcher";
+import LanguageSwitcher from "../LanguageSwitcher";
 import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher";
 import NavLink from "../ui/NavLink";
 import { useTranslations } from "next-intl";
 import Button from "../ui/Button";
 import { Separator } from "../ui/separator";
-import UserMenu from "../ui/UserMenu";
+import UserMenu from "./UserMenu";
 
 type MobileMenuProps = {
     isAuthenticated: boolean;

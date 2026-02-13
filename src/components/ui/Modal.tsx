@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { Container, X } from "lucide-react";
+import { X } from "lucide-react";
 import { ReactNode, useState } from "react"
 
 type ModalType = {

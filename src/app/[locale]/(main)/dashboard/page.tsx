@@ -1,6 +1,6 @@
-import CreateCvBlock from "@/components/dashboard/CreateResumeBlock";
-import ResumeBlock from "@/components/dashboard/ResumeBlock";
-import DashboardLimitAlert from "@/components/ui/DashboardLimitError";
+import CreateCvBlock from "@/app/[locale]/(main)/dashboard/_components/CreateResumeBlock";
+import ResumeBlock from "@/app/[locale]/(main)/dashboard/_components/ResumeBlock";
+import DashboardLimitAlert from "@/app/[locale]/(main)/dashboard/_components/DashboardLimitError";
 import { getResumeList } from "@/lib/resume/server";
 import { createClient } from "@/lib/supabase/server";
 

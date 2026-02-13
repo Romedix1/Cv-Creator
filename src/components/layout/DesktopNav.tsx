@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server"
 import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher"
-import LanguageSwitcher from "../ui/LanguageSwitcher"
+import LanguageSwitcher from "../LanguageSwitcher"
 import NavLink from "../ui/NavLink"
 import Button from "../ui/Button"
-import UserMenu from "../ui/UserMenu"
+import UserMenu from "./UserMenu"
 
 type DesktopNavProps = {
     isAuthenticated: boolean;
@@ -29,9 +29,7 @@ export default async function DesktopNav({ isAuthenticated, avatarUrl, initials 
                 }
 
                 <Button className="w-36" variant="primary" text={tButton("createCV")} />
-                {isAuthenticated &&
-                    <UserMenu avatarUrl={avatarUrl} initials={initials}/>
-                }
+                {isAuthenticated && <UserMenu avatarUrl={avatarUrl} initials={initials}/>}
             </div>
         </div>
     )
