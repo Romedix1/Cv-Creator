@@ -102,7 +102,9 @@
         "clause": "klauzule",
         "cancel": "Anuluj",
         "understand": "Rozumiem",
-        "manageResumes": "Zarządzaj moimi CV"
+        "manageResumes": "Zarządzaj moimi CV",
+        "backToMainPage": "Wróć do strony głównej",
+        "tryAgain": "Spróbuj ponownie"
     },
     "OAuth": {
         "or": "lub"
@@ -402,7 +404,11 @@
         "chrome": "Zdefiniuj CHROME_PATH w pliku .env.local",
         "emptyTitle": "Tytuł dokumentu nie może być pusty",
         "cvNotFound": "Nie znaleziono dokumentu",
-        "saving": "Błąd zapisu"
+        "saving": "Błąd zapisu",
+        "profileLoadingHeader": "Nie udało się załadować profilu użytkownika",
+        "profileLoadingText": "Spróbuj odświeżyć stronę lub zalogować się ponownie",
+        "mainErrorHeader": "Wystąpił błąd",
+        "mainErrorText": "Odśwież stronę lub spróbuj ponownie później"
     },
     "Loading": {
         "loadingText": "Ładowanie"
