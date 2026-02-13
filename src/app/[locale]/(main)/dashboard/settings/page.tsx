@@ -15,7 +15,9 @@ export default async function DashboardSettings() {
   const isAuthenticated = !!user
   const isEmailProvider = providers.includes('email')
 
-  if (!userProfile) return <div>Error</div> // TODO: ADD ERROR BLOCK
+  if (!userProfile) {
+    throw new Error("SETTINGS_LOAD_FAILED")
+  }
 
   return (
     <main className="mt-[52px] flex flex-col justify-center px-8 gap-8 pb-[100px] lg:items-center">

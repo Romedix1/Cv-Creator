@@ -9,7 +9,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
 
     return (
         <main className="bg-surface-hover">
-            <DashboardNav firstName={firstName} />
+            {userProfile && <DashboardNav firstName={firstName} />}
 
             <ToastContainer position="top-right" autoClose={3000} theme="colored"/>
             {children}
