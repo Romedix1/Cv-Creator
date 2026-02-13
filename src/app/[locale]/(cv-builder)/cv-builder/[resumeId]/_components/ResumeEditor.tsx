@@ -25,7 +25,6 @@ import CertificatesSection from "./CertificatesSection";
 import InterestsSection from "./IntrestsSection";
 import CustomSection from "./CustomSection";
 import RodoSection from "./RODOSection";
-import Button from "../../../../../../components/ui/Button";
 import ResumePreview from "./ResumePreview";
 import Capsule from "./Capsule";
 import SummarySection from "./SummarySection";
@@ -34,6 +33,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { createClient } from "@/lib/supabase/client";
 import { useResume } from "@/context/ResumeContext";
 import { toJpeg } from "html-to-image";
+import Button from "@/components/ui/Button";
 
 type ResumeEditorProps = {
     initialData: ResumeData | null;

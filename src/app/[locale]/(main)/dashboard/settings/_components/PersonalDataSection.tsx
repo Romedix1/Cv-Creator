@@ -1,12 +1,12 @@
 "use client"
 
-import Input from "../ui/Input"
-import Button from "../ui/Button"
-import AvatarUpload from "../ui/AvatarUpload"
 import { FormEvent, useState } from "react"
 import { useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import Input from "@/components/ui/Input"
+import Button from "@/components/ui/Button"
+import AvatarUpload from "@/components/AvatarUpload"
 
 type PersonalDataProps = {
     isAuthenticated: boolean;
@@ -34,7 +34,7 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
 
     const router = useRouter()
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoading(true)
         setMessage(null)
@@ -109,18 +109,18 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
             <AvatarUpload isAuthenticated={isAuthenticated} avatarUrl={avatarUrl} uploadedAvatarUrl={uploadedAvatarUrl} initials={initials} setUploadedAvatarUrl={setUploadedAvatarUrl} setSelectedFile={setSelectedFile} />
 
             <div className="flex flex-col gap-5 md:grid md:grid-cols-2">
-                <Input name="firstName" type="text" label={tSettings("firstNameLabel")} defaultValue={firstName || ""} />
-                <Input name="lastName" type="text" label={tSettings("lastNameLabel")} defaultValue={lastName || ""} />
-                <Input name="jobTitle" type="text" label={tSettings("jobTitleLabel")} defaultValue={jobTitle || ""} />
+                <Input name="firstName" type="text" label={tSettings("firstNameLabel")} value={firstName || ""} />
+                <Input name="lastName" type="text" label={tSettings("lastNameLabel")} value={lastName || ""} />
+                <Input name="jobTitle" type="text" label={tSettings("jobTitleLabel")} value={jobTitle || ""} />
                 <div className="flex flex-col gap-1">
-                    <Input name="email" type="email" label={tSettings("emailLabel")} defaultValue={email || ""} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)}/>
+                    <Input name="email" type="email" label={tSettings("emailLabel")} value={email || ""} onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setEmailValue(e.target.value)}/>
                     {isEmailChanged && (
                         <div className="bg-error/40 text-text-main p-2 rounded-md border border-error mt-2 flex gap-2 items-start">
                             <p>{tSettings("emailNotice")}</p>
                         </div>
                     )}
                 </div>
-                <Input name="phone" type="phone" label={tSettings("phoneLabel")} defaultValue={phone || ""} className="md:col-span-2" />
+                <Input name="phone" type="phone" label={tSettings("phoneLabel")} value={phone || ""} className="md:col-span-2" />
             </div>
 
             {message && <p className={`font-semibold ${message.type === "success" ? "text-success" : "text-error"}`}>{message.text}</p>}

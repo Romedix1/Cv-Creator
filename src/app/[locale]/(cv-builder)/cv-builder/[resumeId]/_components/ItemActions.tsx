@@ -1,4 +1,4 @@
-import Button from "../../../../../../components/ui/Button";
+import Button from "@/components/ui/Button";
 import { PenSquare, Trash2 } from "lucide-react";
 
 type ItemActionsProps = {

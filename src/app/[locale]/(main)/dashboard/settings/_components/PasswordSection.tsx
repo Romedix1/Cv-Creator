@@ -1,10 +1,10 @@
 "use client"
 
-import Input from "../ui/Input"
-import Button from "../ui/Button"
 import { FormEvent, useState } from "react"
 import { useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
+import Button from "@/components/ui/Button"
+import Input from "@/components/ui/Input"
 
 type PasswordSectionProps = {
     email: string

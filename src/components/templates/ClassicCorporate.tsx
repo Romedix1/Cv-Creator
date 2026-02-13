@@ -1,5 +1,4 @@
 import { ResumeData } from "@/types/resumeData";
-import { Separator } from "@radix-ui/react-separator";
 import { Dot } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Merriweather } from "next/font/google";
@@ -7,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import SectionHeader from "./shared/SectionHeader";
+import { Separator } from "../ui/separator";
 
 const merriweather = Merriweather({
     subsets: ["latin"],

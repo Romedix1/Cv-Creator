@@ -1,8 +1,8 @@
-import { useTranslations } from "next-intl"
-import Button from "../../../../components/ui/Button";
-import CvPreview from '../../../public/images/Templates/modern-blue.png'
+import HeroImage from '@public/images/Templates/modern-blue.png';
 import Image from "next/image";
 import ScrollButton from "./ScrollButton";
+import Button from "@/components/ui/Button";
+import { useTranslations } from 'next-intl';
 
 export default function HeroSection() {
     const tHero = useTranslations("Hero");
@@ -26,7 +26,7 @@ export default function HeroSection() {
             <div>
                 <div className="aspect-3/4 relative w-75 2xl:w-[400px]">
                     <div className="absolute w-75 2xl:w-[500px] h-[400px] 2xl:h-[500px] bg-default -left-[25px] rounded-full opacity-25 blur-[100px]"></div>
-                    <Image src={CvPreview} alt={tAlt("preview")} fill className="object-contain" />
+                    <Image src={HeroImage} alt={tAlt("preview")} fill className="object-contain" priority/>
                 </div>
             </div>
         </section>

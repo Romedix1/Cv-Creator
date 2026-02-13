@@ -1,9 +1,9 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import SortableList from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/SortableList"
-import SectionHeader from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/SectionHeader"
-import Input from "../../../../../../components/ui/Input"
+import Input from "@/components/ui/Input"
+import SortableList from "./SortableList";
+import SectionHeader from "./SectionHeader";
 
 type SummarySectionProps = {
     sections: string[];

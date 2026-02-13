@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
-import Button from "../../../../../../components/ui/Button";
 import { Plus } from "lucide-react";
+import Button from "@/components/ui/Button";
 
 type ElementAddButtonProps = {
     step: string;

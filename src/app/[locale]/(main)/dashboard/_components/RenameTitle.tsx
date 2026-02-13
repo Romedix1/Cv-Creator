@@ -1,13 +1,13 @@
 "use client"
 
 import { useTranslations } from "next-intl";
-import Input from "../../../../../components/ui/Input";
-import Button from "../../../../../components/ui/Button";
 import { Dispatch, SetStateAction, useState, useTransition } from "react";
 import { changeResumeTitle } from "@/actions/resume";
 import { toast } from "react-toastify";
-import Modal from "../../../../../components/ui/Modal";
 import { cn } from "@/lib/utils";
+import Button from "@/components/ui/Button";
+import Modal from "@/components/ui/Modal";
+import Input from "@/components/ui/Input";
 
 type RenameTitleType = {
     resumeId: string;

@@ -1,12 +1,12 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import Button from "../../../../../../components/ui/Button"
-import Input from "../../../../../../components/ui/Input"
 import { AlertTriangle } from "lucide-react"
 import { FormEvent, useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { deleteAccountAction } from "@/actions/auth"
+import Button from "@/components/ui/Button"
+import Input from "@/components/ui/Input"
 
 type ConfirmDeleteProps = {
     email: string;
@@ -14,7 +14,7 @@ type ConfirmDeleteProps = {
     setConfirmDelete: (state: boolean) => void;
 }
 
-export default function ConfirmDelete({ email, hasPassword, setConfirmDelete }: ConfirmDeleteProps) {
+export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDelete }: ConfirmDeleteProps) {
     const tSettings = useTranslations("Dashboard.Settings.ConfirmDelete")
     const tValidation = useTranslations("Validation")
 

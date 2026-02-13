@@ -1,8 +1,8 @@
-import DeleteAccountSection from "@/app/[locale]/(main)/dashboard/_components/DeleteAccountSection";
-import PasswordSection from "@/components/layout/PasswordSection";
-import PersonalDataSection from "@/components/layout/PersonalDataSection";
 import { getUserProfile } from "@/lib/getUserProfile";
 import { createClient } from "@/lib/supabase/server";
+import PersonalDataSection from "./_components/PersonalDataSection";
+import PasswordSection from "./_components/PasswordSection";
+import DeleteAccountSection from "./_components/DeleteAccountSection";
 
 export default async function DashboardSettings() {
   const supabase = await createClient()

@@ -1,7 +1,7 @@
 "use client"
 
+import LimitReachedModal from "@/components/LimitReachedModal"
 import { useState } from "react"
-import LimitReachedModal from "../../../../../components/LimitReachedModal"
 
 export default function DashboardLimitAlert() {
     const [showLimitModal, setShowLimitModal] = useState(true)

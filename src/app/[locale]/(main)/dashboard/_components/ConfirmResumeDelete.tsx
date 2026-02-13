@@ -2,12 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import { AlertTriangle } from "lucide-react";
-import Button from "../../../../../components/ui/Button";
 import { Dispatch, SetStateAction, useTransition } from "react";
 import { deleteResume } from "@/actions/resume";
 import { toast } from "react-toastify";
-import Modal from "../../../../../components/ui/Modal";
 import { cn } from "@/lib/utils";
+import Modal from "@/components/ui/Modal";
+import Button from "@/components/ui/Button";
 
 type ConfirmDeleteType = {
     resumeId: string;

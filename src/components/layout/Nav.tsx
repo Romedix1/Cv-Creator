@@ -1,10 +1,10 @@
-import NavLink from "../ui/NavLink";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import Link from "next/link";
 import { User } from "@supabase/supabase-js";
 import { getTranslations } from "next-intl/server";
 import { getUserProfile } from "@/lib/getUserProfile";
+import NavLink from "../ui/NavLink";
 
 type NavProps = {
     authPage?: boolean;

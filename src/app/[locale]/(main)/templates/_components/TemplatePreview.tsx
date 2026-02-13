@@ -1,19 +1,19 @@
 
 "use client"
 
-import Image, { StaticImageData } from "next/image"
-import Button from "../../../../../components/ui/Button"
+import Image from "next/image"
 import { X } from "lucide-react"
 import { useEffect } from "react"
 import { useTranslations } from "next-intl"
-import Modal from "../../../../../components/ui/Modal"
 import useCreateResume from "@/hooks/useCreateResume"
-import LimitReachedModal from "../../../../../components/LimitReachedModal"
+import Modal from "@/components/ui/Modal"
+import Button from "@/components/ui/Button"
+import LimitReachedModal from "@/components/LimitReachedModal"
 
 type TemplatePreviewProps = {
     onClose: () => void
     name: string;
-    image: StaticImageData;
+    image: string;
     id: string;
     canCreate: boolean;
     templateId: string;

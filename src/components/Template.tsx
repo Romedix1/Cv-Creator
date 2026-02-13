@@ -10,7 +10,7 @@ import LimitReachedModal from "./LimitReachedModal";
 type TemplateProps = {
     templateId: string;
     name: string;
-    image: StaticImageData;
+    image: string | StaticImageData;
     onPreview?: (id: string) => void;
     enablePreview?: boolean;
     canCreate: boolean;
@@ -25,7 +25,7 @@ export default function Template({ templateId, name, image, onPreview, enablePre
     return (
         <article className="group px-2.5 py-2.5 bg-surface border rounded-2xl lg:w-87.5 2xl:w-112.5">
             <div className="relative overflow-y-hidden h-95 sm:h-200 lg:h-120 2xl:h-135">
-                <Image src={image} alt={`${tAlt("template")} ${name}`} className="w-full" />
+                <Image src={image} alt={`${tAlt("template")} ${name}`} className="w-full object-cover object-top" fill />
                 <div className="hidden lg:flex absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 duration-300 flex-col items-center justify-center px-6 gap-4">
                     <Button variant="primary" text={tButton("select")} className="w-full" onClick={handleCreate} />
                     {enablePreview && onPreview && <Button onClick={() => onPreview(templateId)} variant="secondary" text={tButton("preview")} className="w-full translate-y-4 group-hover:translate-y-0 duration-300 delay-75"/>}

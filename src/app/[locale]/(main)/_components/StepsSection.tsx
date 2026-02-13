@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
-import StepCard from "../ui/StepCard";
-import Button from "../ui/Button";
 import { Download, LayoutTemplate, Pen } from "lucide-react";
+import StepCard from "./StepCard";
+import Button from "@/components/ui/Button";
 
 export default function StepsSection() {
     const tSteps = useTranslations("StepsSection");

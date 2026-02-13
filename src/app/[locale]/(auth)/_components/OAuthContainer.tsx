@@ -2,11 +2,11 @@
 
 import { useTranslations } from "next-intl"
 import OAuthCard from "./OAuthCard"
-import { Separator } from "../../../../components/ui/separator"
 import { createClient } from "@/lib/supabase/client"
 import { Provider } from "@supabase/supabase-js"
 import { BsGoogle } from "react-icons/bs"
 import { FaFacebook, FaGithub } from "react-icons/fa6"
+import { Separator } from "@/components/ui/separator"
 
 export default function OAuthContainer() {
     const tOAuth = useTranslations("OAuth")

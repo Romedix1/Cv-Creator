@@ -2,15 +2,15 @@
 
 import { Copy, Download, LucideIcon, PenSquare, Tag, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Separator } from "../ui/separator";
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState, useTransition } from "react";
-import RenameTitle from "../../app/[locale]/(main)/dashboard/_components/RenameTitle";
 import { copyResume } from "@/actions/resume";
 import { toast } from "react-toastify";
-import ConfirmDelete from "./ConfirmDelete";
+import ConfirmDelete from "./ConfirmResumeDelete";
 import { cn } from "@/lib/utils";
 import { handleDownload } from "@/lib/resume/client";
+import RenameTitle from "./RenameTitle";
+import { Separator } from "@/components/ui/separator";
 
 type ResumeDropdownType = {
     resumeId: string;

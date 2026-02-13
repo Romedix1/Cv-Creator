@@ -1,6 +1,6 @@
 "use client"
 
-import AvatarUpload from "@/components/ui/AvatarUpload";
+import AvatarUpload from "@/components/AvatarUpload";
 import Button from "@/components/ui/Button";
 import ElementAddButton from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/ElementAddButton";
 import Input from "@/components/ui/Input";

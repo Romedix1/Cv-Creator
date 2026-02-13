@@ -1,23 +1,17 @@
 "use client"
 
-import SearchBar from "../ui/SearchBar";
-import classicTemplate from '../../../public/images/Templates/classic-corporate.png';
-import creativeTemplate from '../../../public/images/Templates/creative-accent.png';
-import modernTemplate from '../../../public/images/Templates/modern-blue.png';
-import swissTemplate from '../../../public/images/Templates/swiss-minimalist.png';
-import techTemplate from '../../../public/images/Templates/tech-minimal.png';
-import timelineTemplate from '../../../public/images/Templates/timeline-modern.png';
-import Template from "../ui/Template";
 import { useState } from "react";
-import TemplatePreview from "../ui/TemplatePreview";
+import SearchBar from './SearchBar';
+import Template from '@/components/Template';
+import TemplatePreview from './TemplatePreview';
 
 const TEMPLATES_DATA = [
-  { id: 'classic-corporate', name: 'Classic Corporate', category: "classic", image: classicTemplate },
-  { id: 'creative-accent', name: 'Creative Accent', category: "modern",  image: creativeTemplate },
-  { id: 'modern-blue', name: 'Modern Blue', category: "modern",  image: modernTemplate },
-  { id: 'swiss-minimalist', name: 'Swiss Minimalist', category: "minimalist", image: swissTemplate },
-  { id: 'tech-minimal', name: 'Tech Minimal', category: "minimalist", image: techTemplate },
-  { id: 'timeline-modern', name: 'Timeline Modern', category: "modern", image: timelineTemplate },
+  { id: 'classic-corporate', name: 'Classic Corporate', category: "classic", image: "/images/Templates/classic-corporate.png" },
+  { id: 'creative-accent', name: 'Creative Accent', category: "modern",  image: "/images/Templates/creative-accent.png" },
+  { id: 'modern-blue', name: 'Modern Blue', category: "modern",  image: "/images/Templates/modern-blue.png" },
+  { id: 'swiss-minimalist', name: 'Swiss Minimalist', category: "minimalist", image: "/images/Templates/swiss-minimalist.png" },
+  { id: 'tech-minimal', name: 'Tech Minimal', category: "minimalist", image: "/images/Templates/tech-minimal.png" },
+  { id: 'timeline-modern', name: 'Timeline Modern', category: "modern", image: "/images/Templates/timeline-modern.png" },
 ]
 
 type FilterBarType = {

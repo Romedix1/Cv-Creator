@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
-import FilterCapsule from "../../../../../components/ui/FilterCapsule"
 import { Dispatch, SetStateAction } from "react";
 import { Search } from "lucide-react";
+import FilterCapsule from "./FilterCapsule";
 
 type SearchBarProps = {
     setSelectedCategory: Dispatch<SetStateAction<string>>;

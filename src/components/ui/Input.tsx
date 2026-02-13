@@ -11,12 +11,12 @@ type SelectOption = {
 type InputProps = {
     name: string;
     label: string;
-    type: "text" | "password" | "select";
+    type: "text" | "password" | "phone" | "email" | "select";
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
     placeholderValue?: string;
     showPasswordIcon?: ReactNode;
-    autoFocus: boolean,
+    autoFocus?: boolean,
     className?: string;
     inputClassName?: string;
     error?: string;
@@ -24,7 +24,7 @@ type InputProps = {
     disabled?: boolean;
 }
 
-export default function Input({ name, label, type, value, placeholderValue, showPasswordIcon, autoFocus, className, error, onChange, options = [], disabled, inputClassName }: InputProps) {
+export default function Input({ name, label, type, value, placeholderValue, showPasswordIcon, autoFocus=false, className, error, onChange, options = [], disabled, inputClassName }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
     const isPasswordType = type === "password";

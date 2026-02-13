@@ -1,10 +1,10 @@
-import classicTemplate from '../../../public/images/Templates/classic-corporate.png';
-import swissTemplate from '../../../public/images/Templates/swiss-minimalist.png';
-import techTemplate from '../../../public/images/Templates/tech-minimal.png';
-import Button from "../../../../components/ui/Button"
-import Template from "../../../../components/Template"
+import Button from '@/components/ui/Button';
+import classicTemplate from '@public/images/Templates/classic-corporate.png';
+import swissTemplate from '@public/images/Templates/swiss-minimalist.png';
+import techTemplate from '@public/images/Templates/tech-minimal.png';
 import { canCreateMoreResumes } from "@/lib/resume/server";
 import { getTranslations } from "next-intl/server";
+import Template from '@/components/Template';
 
 export default async function TemplatesSection() {
     const tTemplates = await getTranslations("TemplatesSection");

@@ -1,8 +1,8 @@
 "use client"
 
+import NavLink from "@/components/ui/NavLink"
 import { useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
-import NavLink from "../../../../../components/ui/NavLink"
 
 type DashboardNavProps = {
     firstName: string

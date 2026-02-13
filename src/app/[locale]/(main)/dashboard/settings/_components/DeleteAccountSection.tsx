@@ -1,9 +1,9 @@
 "use client"
 
-import Button from "../../../../../components/ui/Button"
+import Button from "@/components/ui/Button";
 import { useTranslations } from "next-intl"
 import { useState } from "react"
-import ConfirmDelete from "../settings/_components/ConfirmDelete"
+import ConfirmAccountDelete from "./ConfirmAccountDelete";
 
 type DeleteAccountSectionProps = {
     email: string;
@@ -17,7 +17,7 @@ export default function DeleteAccountSection({ email, hasPassword }: DeleteAccou
 
     return (
         <>
-            {confirmDelete && <ConfirmDelete email={email} hasPassword={hasPassword} setConfirmDelete={setConfirmDelete}/>}
+            {confirmDelete && <ConfirmAccountDelete email={email} hasPassword={hasPassword} setConfirmDelete={setConfirmDelete}/>}
             <section className="flex flex-col gap-5">
                 <h3 className="text-[20px] font-semibold text-error">{tSettings("deleteHeader")}</h3>
                 <p className="w-full text-[14px] lg:text-[16px] text-text-muted">{tSettings("warningText")}</p>

@@ -2,10 +2,10 @@
 
 import { RefObject, useState } from "react"
 import { Eye, ZoomIn } from "lucide-react"
-import FullScreenTemplate from "../cv-builder/FullScreenTemplate"
 import { useTranslations } from "next-intl"
 import { ResumeData } from "@/types/resumeData"
 import { getTemplate } from "@/lib/getTemplate"
+import FullScreenTemplate from "./FullScreenTemplate"
 
 type ResumePreviewProps = {
     previewRef: RefObject<HTMLDivElement | null>;

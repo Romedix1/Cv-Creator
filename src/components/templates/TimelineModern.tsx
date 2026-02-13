@@ -7,9 +7,9 @@ import Link from "next/link";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
 import TemplateHeader from "./shared/SectionHeader";
-import { LinkIcon } from "../../app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { createLine } from "./shared/TemplateLine"
+import { LinkIcon } from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
 
 const manrope = Manrope({
     subsets: ["latin"],

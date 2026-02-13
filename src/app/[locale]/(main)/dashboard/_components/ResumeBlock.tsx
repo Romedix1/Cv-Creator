@@ -1,9 +1,9 @@
 import { formatDistanceToNow } from "date-fns";
 import { enUS, pl } from "date-fns/locale";
 import { cookies } from "next/headers";
-import ResumeSnapshot from "../../../../../components/dashboard/ResumeSnapshot";
 import Link from "next/link";
-import ResumeInfobar from "../../../../../components/dashboard/ResumeInfoBar";
+import ResumeSnapshot from "./ResumeSnapshot";
+import ResumeInfobar from "./ResumeInfoBar";
 
 type ResumeDataType = {
     id: string;

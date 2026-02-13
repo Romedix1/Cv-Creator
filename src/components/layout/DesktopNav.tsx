@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server"
-import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher"
-import LanguageSwitcher from "../LanguageSwitcher"
-import NavLink from "../ui/NavLink"
-import Button from "../ui/Button"
 import UserMenu from "./UserMenu"
+import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher";
+import LanguageSwitcher from "../LanguageSwitcher";
+import NavLink from "../ui/NavLink";
+import Button from "../ui/Button";
 
 type DesktopNavProps = {
     isAuthenticated: boolean;

@@ -3,9 +3,9 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
-import NavLink from "../ui/NavLink";
 import { useSignOut } from "@/hooks/useSignOut"
 import { Separator } from "@/components/ui/separator";
+import NavLink from "../ui/NavLink";
 
 type UserNameProps = {
     initials: string;
