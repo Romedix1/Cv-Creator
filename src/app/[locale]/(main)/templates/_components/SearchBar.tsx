@@ -16,7 +16,7 @@ export default function SearchBar({ setSelectedCategory, search, setSearch }: Se
     const tAria = useTranslations("Aria")
 
     return (
-        <div role="search" className="flex flex-col items-center gap-8">
+        <div role="search" className="flex flex-col items-center gap-8 w-full">
             <div className="w-full cursor-text bg-surface-hover rounded-full flex items-center px-5 py-2 gap-4 border-2 border-transparent hover:border-text-muted focus-within:hover:border-default focus-within:border-default transition-all duration-300 sm:w-125 md:mt-3 md:w-150 lg:w-175 2xl:w-212.5">
                 <Search className="w-6 h-6" aria-hidden="true"/>
                 <input aria-label={tAria("searchTemplate")} id="search" value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder={tTemplates("searchBarPlaceholder")} className="outline-none w-full py-2 rounded-full text-ellipsis 2xl:text-[18px]" />
