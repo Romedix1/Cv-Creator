@@ -69,10 +69,9 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
 
         try {
             if(selectedFile) {
-                const fileExt = selectedFile.name.split(".").pop()
-                const filePath = `${uid}/${crypto.randomUUID()}.${fileExt}`
+                const filePath = `${uid}/profile_avatar`
 
-                const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, selectedFile)
+                const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, selectedFile,{ upsert: true, cacheControl: "0", contentType: selectedFile.type })
 
                 if (uploadError) {
                     throw uploadError
@@ -80,7 +79,7 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
 
                 const { data: { publicUrl } } = supabase.storage.from("avatars").getPublicUrl(filePath)
 
-                updates.avatar_url = publicUrl
+                updates.avatar_url = `${publicUrl}?t=${Date.now()}`
             }
 
             if (Object.keys(updates).length === 0) {
@@ -95,6 +94,7 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
             }
 
             setMessage({ type: 'success', text: tSettings("dataUpdated")})
+            setSelectedFile(null)
             router.refresh()
         } catch {
             setMessage({ type: 'error', text: tValidation("genericSaveError")})
@@ -127,7 +127,7 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
             {message && <p className={cn("font-semibold", message.type === "success" ? "text-success" : "text-error")}>{message.text}</p>}
 
             <div className="flex w-full md:justify-end">
-                <Button variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />
+                <Button type="submit" variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />
             </div>
         </form>
     )

@@ -220,10 +220,9 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                 const { data: { user } } = await supabase.auth.getUser()
                 if (!user) return
 
-                const fileExt = selectedFile.name.split('.').pop()
-                const filePath = `${user.id}/${resumeId}/avatar/avatar.${fileExt}`
+                const filePath = `${user.id}/${resumeId}/avatar/avatar`
 
-                const { error: uploadError } = await supabase.storage.from('cv-images').upload(filePath, selectedFile, { upsert: true, cacheControl: "0" })
+                const { error: uploadError } = await supabase.storage.from('cv-images').upload(filePath, selectedFile, { upsert: true, cacheControl: "0", contentType: selectedFile.type })
 
                 if (uploadError) throw uploadError
 
