@@ -418,5 +418,24 @@
     },
     "Loading": {
         "loadingText": "Ładowanie"
+    },
+    "Privacy": {
+        "title": "Polityka Prywatności",
+        "currentDate": "14 lutego 2026 r.",
+        "lastUpdate": "Ostatnia aktualizacja: {date}",
+        "back": "Powrót",
+        "section1": "1. Administrator i Dane",
+        "section1Text": "Administratorem danych osobowych w serwisie <bold>{appName}</bold> jest <bold>{creatorName}</bold> z siedzibą w {address}, e-mail: <mailStyle>{email}</mailStyle>.",        "section2": "2. Jakie dane przetwarzamy?",
+        "section2Text": "Przetwarzamy dane, które dobrowolnie wprowadzasz do formularzy w celu wygenerowania CV:",
+        "section2Item1": "<bold>Dane identyfikacyjne:</bold> imię, nazwisko, data urodzenia.",
+        "section2Item2": "<bold>Dane kontaktowe:</bold> adres e-mail, numer telefonu, linki do profili społecznościowych.",
+        "section2Item3": "<bold>Wizerunek:</bold> zdjęcie profilowe (awatar) przesyłane do serwisu.",
+        "section2Item4": "<bold>Dane zawodowe:</bold> historia zatrudnienia, wykształcenie, umiejętności, certyfikaty.",
+        "section3": "3. Przechowywanie danych (Cloud Computing)",
+        "section3Text": "Twoje dane są przechowywane u sprawdzonych dostawców infrastruktury chmurowej: <bold>Supabase</bold> (Baza danych oraz Storage plików graficznych) oraz <bold>Vercel</bold> (Hosting aplikacji). Wszystkie dane są zabezpieczone i przetwarzane zgodnie z obowiązującymi standardami bezpieczeństwa i przepisami RODO.",
+        "section4": "4. Prawo do usunięcia danych",
+        "section4Text": "Użytkownikowi przysługuje tzw. <bold>\"prawo do bycia zapomnianym\"</bold>. Możesz w każdej chwili usunąć swoje CV lub całe konto z poziomu panelu użytkownika, co skutkuje nieodwracalnym usunięciem danych z naszych baz oraz magazynów plików (Storage).",
+        "section5": "5. Kontakt",
+        "section5Text": "W przypadku pytań dotyczących przetwarzania danych osobowych, prosimy o kontakt pod adresem: <mailStyle>{email}</mailStyle>."
     }
 }
