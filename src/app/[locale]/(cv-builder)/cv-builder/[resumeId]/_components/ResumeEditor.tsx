@@ -253,7 +253,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
             const { data: { user } } = await supabase.auth.getUser()
             if (!user) return
 
-            const dataUrl = await toJpeg(previewRef.current, { quality: 0.9,  pixelRatio: 1,  backgroundColor: "#ffffff", cacheBust: true, includeQueryParams: true, fetchRequestInit: { cache: "no-cache" }})
+            const dataUrl = await toJpeg(previewRef.current, { quality: 0.9,  pixelRatio: 3, style: { transform: "scale(1)", transformOrigin: "top left" }, backgroundColor: "#ffffff", cacheBust: true, includeQueryParams: true, fetchRequestInit: { cache: "no-cache" }})
 
             const res = await fetch(dataUrl)
             const blob = await res.blob()
