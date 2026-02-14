@@ -11,10 +11,11 @@ import { cn } from "@/lib/utils";
 type UserNameProps = {
     initials: string;
     avatarUrl: string | undefined;
+    onClose?: () => void;
     fullName?: string;
 }
 
-export default function UserMenu({ initials, avatarUrl, fullName }: UserNameProps) {
+export default function UserMenu({ initials, avatarUrl, onClose, fullName }: UserNameProps) {
     const tNav = useTranslations("Nav")
 
     const { signOut, loading } = useSignOut()
@@ -23,8 +24,8 @@ export default function UserMenu({ initials, avatarUrl, fullName }: UserNameProp
     // TODO: ADD USER PROFILE PICTURE FROM ACCOUNT SETTINGS
 
     const menuItems = [
-        { key: "settings", label: tNav("settings") },
-        { key: "myCV", label: tNav("myCV") },
+        { key: "dashboard/settings", label: tNav("settings") },
+        { key: "dashboard", label: tNav("myCV") },
     ]
 
     const mobileClasses = "font-semibold text-xl hover:text-text-main"
@@ -34,7 +35,7 @@ export default function UserMenu({ initials, avatarUrl, fullName }: UserNameProp
         return (
             <>
                 {menuItems.map((item) => (
-                    <NavLink key={item.key} className={cn(isMobile ? mobileClasses : desktopClasses)} page={item.label} />
+                    <NavLink key={item.key} className={cn(isMobile ? mobileClasses : desktopClasses)} onClick={onClose} text={item.label} href={`/${item.key}`} />
                 ))}
 
                 <button onClick={signOut} className={cn(isMobile ? mobileClasses : desktopClasses, "text-error text-left")}>{tNav("logout")}</button>

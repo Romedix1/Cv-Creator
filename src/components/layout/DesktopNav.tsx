@@ -24,7 +24,7 @@ export default async function DesktopNav({ isAuthenticated, avatarUrl, initials 
             <div className="flex items-center gap-4">
                 {!isAuthenticated &&
                     <div className="w-14 text-right">
-                        <NavLink page={tNav("login")}/>
+                        <NavLink text={tNav("login")} href="/login" />
                     </div>
                 }
 

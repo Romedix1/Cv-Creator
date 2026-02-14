@@ -38,7 +38,7 @@ export default async function Nav({ authPage = false, user }: NavProps) {
                     <Link href="/">
                         <span className="text-main text-2xl font-medium">CV Creator</span>
                     </Link>
-                    {!authPage && (<NavLink className="hidden md:block text-text-muted" page={t("templates")} />)}
+                    {!authPage && (<NavLink className="hidden md:block text-text-muted" text={t("templates")} href="/templates" />)}
                 </div>
                 {!authPage && (
                     <div className="flex items-center">
