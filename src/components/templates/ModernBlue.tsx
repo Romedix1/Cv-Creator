@@ -291,7 +291,7 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex", inter.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#EFF6FF] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
-                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-25 h-25 object-cover"/>
+                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={532} quality={100} className="rounded-full w-25 h-25 object-cover"/>
 
                 {sectionsToRender.map((section, index) => {
                     if(section.position === "left") {
