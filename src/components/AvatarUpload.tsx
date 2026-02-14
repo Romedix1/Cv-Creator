@@ -7,7 +7,6 @@ import AppImage from "./ui/AppImage";
 
 type AvatarUploadProps = {
     className?: string
-    isAuthenticated: boolean;
     avatarUrl: string | null;
     uploadedAvatarUrl: string | null;
     initials: string | null;
@@ -15,7 +14,7 @@ type AvatarUploadProps = {
     setSelectedFile: Dispatch<SetStateAction<File | null>>;
 }
 
-export default function AvatarUpload({ className, isAuthenticated, avatarUrl, uploadedAvatarUrl, initials, setUploadedAvatarUrl, setSelectedFile }: AvatarUploadProps) {
+export default function AvatarUpload({ className, avatarUrl, uploadedAvatarUrl, initials, setUploadedAvatarUrl, setSelectedFile }: AvatarUploadProps) {
     const tSettings = useTranslations("Dashboard.Settings")
     const tAlt = useTranslations("ImgAlt")
     const tValidation = useTranslations("Validation")
@@ -25,8 +24,6 @@ export default function AvatarUpload({ className, isAuthenticated, avatarUrl, up
     const [uploadError, setUploadError] = useState<string | null>(null)
 
     const uploadAvatar = (event: ChangeEvent<HTMLInputElement>) => {
-        if(!isAuthenticated) return
-
             try {
                 setUploadError(null)
 

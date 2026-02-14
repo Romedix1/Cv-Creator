@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
@@ -120,7 +120,7 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <h3 className="text-[20px] font-semibold">{tSettings("dataHeader")}</h3>
 
-            <AvatarUpload isAuthenticated={isAuthenticated} avatarUrl={avatarUrl} uploadedAvatarUrl={uploadedAvatarUrl} initials={initials} setUploadedAvatarUrl={setUploadedAvatarUrl} setSelectedFile={setSelectedFile} />
+            <AvatarUpload avatarUrl={avatarUrl} uploadedAvatarUrl={uploadedAvatarUrl} initials={initials} setUploadedAvatarUrl={setUploadedAvatarUrl} setSelectedFile={setSelectedFile} />
 
             <div className="flex flex-col gap-5 md:grid md:grid-cols-2">
                 <Input name="firstName" type="text" label={tInputs("firstNameLabel")} value={formData.firstName ||  ""} onChange={handleInputChange}/>
