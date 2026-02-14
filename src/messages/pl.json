@@ -457,5 +457,27 @@
         "section4Text": "Wszelkie szablony graficzne, układ graficzny oraz kod źródłowy aplikacji są moją własnością. Użytkownik otrzymuje prawo do korzystania z wygenerowanych przez siebie dokumentów CV w celach związanych z poszukiwaniem pracy.",
         "section5": "5. Kontakt i reklamacje",
         "section5Text": "Wszelkie uwagi, błędy lub reklamacje dotyczące działania aplikacji proszę kierować na adres e-mail: <mailStyle>{email}</mailStyle>."
+    },
+    "Metadata": {
+        "mainPage": {
+            "title": "CV Creator | Profesjonalny Kreator CV",
+            "description": "Stwórz profesjonalne CV w kilka minut",
+            "siteName": "CV Creator"
+        },
+        "authPages": {
+            "title": "Zaloguj się",
+            "description": "Zaloguj się, aby zarządzać swoimi CV"
+        },
+        "dashboard": {
+            "title": "Moje CV",
+            "description": "Zarządzaj swoimi CV, edytuj, kopiuj lub pobieraj wygenerowane dokumenty"
+        },
+        "templatesPage": {
+            "title": "Szablony CV",
+            "description": "Przeglądaj darmowe szablony CV i wybierz ten, który najlepiej pasuje do Twojej branży"
+        },
+        "editorPage": {
+            "editing": "Edytowanie dokumentu"
+        }
     }
 }

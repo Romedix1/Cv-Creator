@@ -369,7 +369,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex flex-col", inter.className, "w-full text-black")}>
             {/* TOP */}
             <div className="flex w-full py-11 relative" style={{ background: userColor }}>
-                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={532} quality={100} className="w-full h-full object-cover" containerClassName="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 bottom-0 translate-y-1/2"/>
+                {data.personalInfo.avatarUrl && <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={532} quality={100} className="w-full h-full object-cover" containerClassName="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 bottom-0 translate-y-1/2"/>}
 
                 {(data.personalInfo.firstName || data.personalInfo.lastName || data.personalInfo.jobTitle) &&
                     <div className="text-left w-full pl-42">
