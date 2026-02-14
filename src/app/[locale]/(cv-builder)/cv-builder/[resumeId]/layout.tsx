@@ -12,6 +12,15 @@ type MainLayoutType = {
     params: Promise<{ resumeId: string}>;
 }
 
+export async function generateMetadata() {
+    const tMetadata = await getTranslations("Metadata.editorPage")
+
+    return {
+        title: `${tMetadata("editing")}`,
+        robots: { index: false },
+    }
+}
+
 export default async function MainLayout({ children, params }: MainLayoutType) {
     const tTemplate = await getTranslations("Template")
 
