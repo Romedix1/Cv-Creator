@@ -17,6 +17,7 @@ type UserNameProps = {
 
 export default function UserMenu({ initials, avatarUrl, onClose, fullName }: UserNameProps) {
     const tNav = useTranslations("Nav")
+    const tAlt = useTranslations("ImgAlt")
 
     const { signOut, loading } = useSignOut()
 
@@ -47,7 +48,7 @@ export default function UserMenu({ initials, avatarUrl, onClose, fullName }: Use
             <button onClick={() => setIsOpened((prev) => !prev)} className="cursor-pointer gap-6 flex items-center focus:outline-none">
                 {avatarUrl ? (
                     <div className="relative w-[50px] h-[50px] shrink-0 overflow-hidden rounded-full">
-                        <AppImage referrerPolicy="no-referrer" src={avatarUrl} alt={tNav("userProfileAlt")} fill className="object-cover" containerClassName="w-full h-full" />
+                        <AppImage referrerPolicy="no-referrer" src={avatarUrl} alt={tAlt("userProfile")} fill className="object-cover" containerClassName="w-full h-full" />
                     </div>
                 ) : (
                     <div className="w-15 h-15 rounded-full bg-surface-hover flex justify-center items-center hover:border-border">

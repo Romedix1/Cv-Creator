@@ -17,6 +17,7 @@ type AvatarUploadProps = {
 
 export default function AvatarUpload({ className, isAuthenticated, avatarUrl, uploadedAvatarUrl, initials, setUploadedAvatarUrl, setSelectedFile }: AvatarUploadProps) {
     const tSettings = useTranslations("Dashboard.Settings")
+    const tAlt = useTranslations("ImgAlt")
     const tValidation = useTranslations("Validation")
 
     const fileInputRef = useRef<HTMLInputElement>(null)
@@ -72,7 +73,7 @@ export default function AvatarUpload({ className, isAuthenticated, avatarUrl, up
                 {uploadedAvatarUrl ? (
                     <div className="relative">
                         <div className="relative w-15 h-15 sm:w-18 sm:h-18 shrink-0 overflow-hidden rounded-full border border-border">
-                            <AppImage referrerPolicy="no-referrer" src={uploadedAvatarUrl || ""} alt={tSettings("userProfileAlt")} fill className="object-cover" containerClassName="w-full h-full" />
+                            <AppImage referrerPolicy="no-referrer" src={uploadedAvatarUrl || ""} alt={tAlt("userProfile")} fill className="object-cover" containerClassName="w-full h-full" />
                         </div>
 
                         {uploadedAvatarUrl !== avatarUrl && (
