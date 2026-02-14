@@ -79,7 +79,7 @@ export async function deleteResume(resumeId: string) {
             return { error: tError("unauthorized") }
         }
 
-        const { error: storageError } = await supabase.storage.from("cv-images").remove([`${user.id}/${resumeId}/preview/preview.jpg`])
+        const { error: storageError } = await supabase.storage.from("cv-images").remove([`${user.id}/${resumeId}/preview/preview.jpg`, `${user.id}/${resumeId}/avatar/avatar.jpg`])
 
         if (storageError) {
             console.error("Unable to delete snapshot")

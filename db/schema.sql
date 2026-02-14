@@ -101,3 +101,6 @@ CREATE TRIGGER enforce_resume_limit BEFORE INSERT ON resumes FOR EACH ROW EXECUT
 
 -- SNAPSHOT POLICY
 CREATE POLICY "User can delete own snapshots" ON storage.objects FOR DELETE TO authenticated USING (bucket_id = 'cv-images' AND (storage.foldername(name))[1] = auth.uid()::text);
+CREATE POLICY "User can upload snapshots" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'cv-images' AND (storage.foldername(name))[1] = auth.uid()::text);
+CREATE POLICY "User can update own snapshots" ON storage.objects FOR UPDATE TO authenticated USING (bucket_id = 'cv-images' AND (storage.foldername(name))[1] = auth.uid()::text);
+CREATE POLICY "User can view own snapshots" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'cv-images' AND (storage.foldername(name))[1] = auth.uid()::text);

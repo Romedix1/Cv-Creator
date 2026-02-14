@@ -154,7 +154,6 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
         const saveData = async () => {
             if (isFirstRender.current) {
                 isFirstRender.current = false
-                setIsSaving(false)
                 return
             }
 
@@ -176,7 +175,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                     const { data: { user } } = await supabase.auth.getUser()
                     if (!user) return
 
-                    const { error } = await supabase.from('resumes').upsert({ id: resumeId, content: debouncedData, template: debouncedData.settings.template, title: debouncedTitle || tBuilderNav("documentName"), user_id: (await supabase.auth.getUser()).data.user?.id, updated_at: new Date().toISOString() })
+                    const { error } = await supabase.from('resumes').upsert({ id: resumeId, content: debouncedData, template: debouncedData.settings.template, title: debouncedTitle || tBuilderNav("documentName"), user_id: user.id, updated_at: new Date().toISOString() })
 
                     if (error) {
                         if (error.message.includes("LIMIT_REACHED")) {
@@ -196,7 +195,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
         }
 
         saveData()
-    }, [debouncedData, resumeId, isAuthenticated, setIsSaving, supabase, tBuilderNav, debouncedTitle])
+    }, [debouncedData, debouncedTitle])
 
     useEffect(() => {
         const uploadImage = async () => {
@@ -224,13 +223,15 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                 const fileExt = selectedFile.name.split('.').pop()
                 const filePath = `${user.id}/${resumeId}/avatar/avatar.${fileExt}`
 
-                const { error: uploadError } = await supabase.storage.from('cv-images').upload(filePath, selectedFile, { upsert: true })
+                const { error: uploadError } = await supabase.storage.from('cv-images').upload(filePath, selectedFile, { upsert: true, cacheControl: "0" })
 
                 if (uploadError) throw uploadError
 
                 const { data: { publicUrl } } = supabase.storage.from('cv-images').getPublicUrl(filePath)
 
-                handleSectionChange("personalInfo", { ...data.personalInfo, avatarUrl: publicUrl })
+                const freshUrl = `${publicUrl}?t=${Date.now()}`
+
+                setData(prev => ({...prev, personalInfo: { ...prev.personalInfo, avatarUrl: freshUrl }}))
             } catch {
                 console.error("Uploading error")
             } finally {
@@ -252,7 +253,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
             const { data: { user } } = await supabase.auth.getUser()
             if (!user) return
 
-            const dataUrl = await toJpeg(previewRef.current, { quality: 0.9,  pixelRatio: 1,  backgroundColor: "#ffffff", cacheBust: true,  fetchRequestInit: { cache: "no-cache" }})
+            const dataUrl = await toJpeg(previewRef.current, { quality: 0.9,  pixelRatio: 1,  backgroundColor: "#ffffff", cacheBust: true, includeQueryParams: true, fetchRequestInit: { cache: "no-cache" }})
 
             const res = await fetch(dataUrl)
             const blob = await res.blob()
@@ -267,7 +268,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
 
             const { data: { publicUrl } } = supabase.storage.from("cv-images").getPublicUrl(filePath)
 
-            const freshUrl = `${publicUrl}?time=${Date.now()}`
+            const freshUrl = `${publicUrl}?t=${Date.now()}`
 
             await supabase.from('resumes').update({ preview_url: freshUrl }).eq('id', resumeId)
         } catch {
