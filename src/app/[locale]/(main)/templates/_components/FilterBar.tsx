@@ -40,7 +40,7 @@ export default function FilterBar({ canCreate }: FilterBarType) {
     return (
         <>
             <SearchBar setSelectedCategory={setSelectedCategory} search={search} setSearch={setSearch}/>
-            <div className="grid gap-8 lg:gap-10 lg:grid-cols-2 xl:grid-cols-3 2xl:mt-6">
+            <div className="grid w-full grid-cols-1 gap-8 lg:gap-10 md:w-8/12 lg:w-auto lg:grid-cols-2 xl:grid-cols-3 2xl:mt-6">
                 {filteredTemplates.map((template) => {
                     return (
                         <Template key={template.id} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate} canCreate={canCreate} className="w-full"/>
