@@ -28,7 +28,7 @@ export default async function DesktopNav({ isAuthenticated, avatarUrl, initials 
                     </div>
                 }
 
-                <Button className="w-36" variant="primary" text={tButton("createCV")} />
+                <Button className="w-36" variant="primary" text={tButton("createCV")} href="/templates"/>
                 {isAuthenticated && <UserMenu avatarUrl={avatarUrl} initials={initials}/>}
             </div>
         </div>
