@@ -77,7 +77,7 @@ export default function LoginPage() {
             <Button variant="primary" text={tLogin("loginBtn")} className="mt-8 w-full"/>
 
             <p className="text-text-light text-[14px] text-center mt-6">{tLogin.rich("dontHaveAccount", { login: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200" href={"/register"}>{chunks}</Link>)})}</p>
-            <p className="text-text-light text-[14px] mt-8">{tLogin.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy-policy"}>{chunks}</Link>)})}</p>
+            <p className="text-text-light text-center text-[14px] mt-8">{tLogin.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy-policy"}>{chunks}</Link>)})}</p>
         </form>
     )
 }
