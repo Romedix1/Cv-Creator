@@ -1,11 +1,11 @@
 import { ResumeData } from "@/types/resumeData";
 import { useTranslations } from "next-intl";
 import { Inter } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { Dot } from "lucide-react";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { cn } from "@/lib/utils";
+import AppImage from "../ui/AppImage";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -295,7 +295,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
 
                 {data.personalInfo.avatarUrl && (
                     <div className="absolute right-0 top-0 shrink-0">
-                        <Image src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={400} quality={100} className="w-30 h-30 object-cover" />
+                        <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={400} quality={100} className="w-30 h-30 object-cover" />
                     </div>
                 )}
             </div>

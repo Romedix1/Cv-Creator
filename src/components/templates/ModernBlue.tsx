@@ -2,7 +2,6 @@ import { ResumeData } from "@/types/resumeData";
 import { AtSign, Dot, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Inter } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
@@ -10,6 +9,7 @@ import SectionHeader from "./shared/SectionHeader";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { LinkIcon } from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
 import { cn } from "@/lib/utils";
+import AppImage from "../ui/AppImage";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -291,7 +291,7 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex", inter.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#EFF6FF] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
-                <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-25 h-25 object-cover"/>
+                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-25 h-25 object-cover"/>
 
                 {sectionsToRender.map((section, index) => {
                     if(section.position === "left") {

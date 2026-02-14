@@ -2,7 +2,6 @@ import { ResumeData } from "@/types/resumeData";
 import { AtSign, Award, Briefcase, Dot, GraduationCap, Heart, Layers, Mail, Phone, Star, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Inter } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
@@ -11,6 +10,7 @@ import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { createLine } from "./shared/TemplateLine";
 import { LinkIcon } from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
 import { cn } from "@/lib/utils";
+import AppImage from "../ui/AppImage";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -369,7 +369,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex flex-col", inter.className, "w-full text-black")}>
             {/* TOP */}
             <div className="flex w-full py-11 relative" style={{ background: userColor }}>
-                <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 bottom-0 translate-y-1/2"/>
+                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 bottom-0 translate-y-1/2"/>
 
                 {(data.personalInfo.firstName || data.personalInfo.lastName || data.personalInfo.jobTitle) &&
                     <div className="text-left w-full pl-42">

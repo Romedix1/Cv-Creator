@@ -43,7 +43,7 @@ export default function FilterBar({ canCreate }: FilterBarType) {
             <div className="grid gap-8 lg:gap-10 lg:grid-cols-2 xl:grid-cols-3 2xl:mt-6">
                 {filteredTemplates.map((template) => {
                     return (
-                        <Template key={template.id} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate} canCreate={canCreate}/>
+                        <Template key={template.id} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate} canCreate={canCreate} className="w-full"/>
                     )
                 })}
             </div>

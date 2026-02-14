@@ -2,7 +2,6 @@ import { ResumeData } from "@/types/resumeData";
 import { AtSign, Check, Dot, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Manrope, Space_Grotesk } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
@@ -11,6 +10,7 @@ import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { createLine } from "./shared/TemplateLine"
 import { LinkIcon } from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
 import { cn } from "@/lib/utils";
+import AppImage from "../ui/AppImage";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -336,7 +336,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex", manrope.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#F3F4F6] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
-                <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover ring-4 ring-white"/>
+                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover ring-4 ring-white"/>
 
                 {sectionsToRender.map((section, index) => {
                     if(section.position === "left") {

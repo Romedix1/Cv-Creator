@@ -2,12 +2,12 @@ import { ResumeData } from "@/types/resumeData";
 import { Dot } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Merriweather } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import SectionHeader from "./shared/SectionHeader";
 import { Separator } from "../ui/separator";
 import { cn } from "@/lib/utils";
+import AppImage from "../ui/AppImage";
 
 const merriweather = Merriweather({
     subsets: ["latin"],
@@ -264,7 +264,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
 
                 {data.personalInfo.avatarUrl && (
                     <div className="absolute right-0 top-0 shrink-0">
-                        <Image src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={532} quality={100} className="w-25 h-33.25 object-cover" />
+                        <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={532} quality={100} className="w-25 h-33.25 object-cover" />
                     </div>
                 )}
             </div>

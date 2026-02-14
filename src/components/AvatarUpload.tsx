@@ -2,8 +2,8 @@
 
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import AppImage from "./ui/AppImage";
 
 type AvatarUploadProps = {
     className?: string
@@ -72,7 +72,7 @@ export default function AvatarUpload({ className, isAuthenticated, avatarUrl, up
                 {uploadedAvatarUrl ? (
                     <div className="relative">
                         <div className="relative w-15 h-15 sm:w-18 sm:h-18 shrink-0 overflow-hidden rounded-full border border-border">
-                            <Image priority referrerPolicy="no-referrer" src={uploadedAvatarUrl || ""} alt={tSettings("userProfileAlt")} fill className="object-cover" />
+                            <AppImage referrerPolicy="no-referrer" src={uploadedAvatarUrl || ""} alt={tSettings("userProfileAlt")} fill className="object-cover" containerClassName="w-full h-full" />
                         </div>
 
                         {uploadedAvatarUrl !== avatarUrl && (

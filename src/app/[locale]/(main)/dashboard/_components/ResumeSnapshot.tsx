@@ -1,7 +1,7 @@
 "use client"
 
+import AppImage from "@/components/ui/AppImage";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { useState } from "react";
 
 type ResumeSnapshotType = {
@@ -23,6 +23,6 @@ export default function ResumeSnapshot({ src, alt }: ResumeSnapshotType) {
     }
 
     return (
-        <Image src={src} alt={alt} fill className="object-cover object-top group-hover:scale-105 duration-400" onError={() => setError(true)}/>
+        <AppImage src={src} alt={alt} fill className="object-cover object-top group-hover:scale-105 duration-400" containerClassName="h-full w-full" onError={() => setError(true)}/>
     )
 }
