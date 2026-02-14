@@ -25,7 +25,7 @@ type DropdownItemType = {
     className?: string;
 }
 
-const DropdownItem = ({ onClick, icon: Icon, children, className = "" }: DropdownItemType) => (
+const DropdownItem = ({ onClick, icon: Icon, children, className }: DropdownItemType) => (
     <button type="button" onClick={onClick} className={cn("flex gap-3 w-full items-center hover:bg-default-hover rounded-[10px] px-1.5 py-1 cursor-pointer duration-200", className)}>
         <Icon size={24} />
         {children}

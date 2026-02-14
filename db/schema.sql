@@ -98,3 +98,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER enforce_resume_limit BEFORE INSERT ON resumes FOR EACH ROW EXECUTE FUNCTION check_resume_limit();
+
+-- SNAPSHOT POLICY
+CREATE POLICY "User can delete own snapshots" ON storage.objects FOR DELETE TO authenticated USING (bucket_id = 'cv-images' AND (storage.foldername(name))[1] = auth.uid()::text);
