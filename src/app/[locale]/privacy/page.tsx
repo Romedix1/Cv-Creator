@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ArrowLeft, ShieldCheck, Database, Trash2, EyeOff, Mail } from 'lucide-react';
@@ -11,12 +11,12 @@ const SITE_CONFIG = {
 }
 
 export default function PrivacyPage() {
-    const t = useTranslations('Privacy');
+    const t = useTranslations('Privacy')
 
     const richFormat = {
-        bold: (chunks: React.ReactNode) => <strong className="text-text-main font-semibold">{chunks}</strong>,
-        mailStyle: (chunks: React.ReactNode) => <span className="text-default underline decoration-default/30">{chunks}</span>,
-    };
+        bold: (chunks: ReactNode) => <strong className="text-text-main font-semibold">{chunks}</strong>,
+        mailStyle: (chunks: ReactNode) => <span className="text-default underline decoration-default/30">{chunks}</span>,
+    }
 
     return (
         <div className="min-h-screen bg-surface-hover py-12 px-4 sm:px-6 lg:px-8">
@@ -77,14 +77,14 @@ export default function PrivacyPage() {
                         </section>
 
                         <section className="pt-6 border-t border-border">
-                        <div className="flex items-center gap-3">
-                            <Mail className="w-5 h-5 text-default shrink-0" />
-                            <p>{t.rich('section1Text', { ...SITE_CONFIG, ...richFormat })}</p>
-                        </div>
-                    </section>
-                </div>
-            </main>
+                            <div className="flex items-center gap-3">
+                                <Mail className="w-5 h-5 text-default shrink-0" />
+                                <p>{t.rich('section1Text', { ...SITE_CONFIG, ...richFormat })}</p>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </div>
         </div>
-    </div>
-  );
+    )
 }
