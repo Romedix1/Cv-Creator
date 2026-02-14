@@ -17,6 +17,7 @@ type ValidationErrors = {
 
 export default function RegisterPage() {
     const tRegister = useTranslations("Register");
+    const tInput = useTranslations("Inputs");
     const tError = useTranslations("Errors");
 
     const [error, setError] = useState<ValidationErrors>({});
@@ -50,7 +51,7 @@ export default function RegisterPage() {
         setIsLoading(false);
     }
 
-    if (true) {
+    if (success) {
         return <RegistrationSuccess />
     }
 
@@ -70,15 +71,15 @@ export default function RegisterPage() {
             )}
 
             <div className="flex flex-col gap-5">
-                <Input name="name" label={tRegister("nameLabel")} type="text" placeholderValue={tRegister("namePlaceholder")} error={error.name?.[0]} />
-                <Input name="email" label={tRegister("emailLabel")} type="email" placeholderValue={tRegister("emailPlaceholder")} error={error.email?.[0]}/>
-                <Input name="password" label={tRegister("passwordLabel")} type="password" placeholderValue={"***********"} error={error.password?.[0]}/>
+                <Input name="name" label={tInput("nameLabel")} type="text" placeholderValue={tInput("namePlaceholder")} error={error.name?.[0]} />
+                <Input name="email" label={tInput("emailLabel")} type="email" placeholderValue={tInput("emailPlaceholder")} error={error.email?.[0]}/>
+                <Input name="password" label={tInput("passwordLabel")} type="password" placeholderValue={"***********"} error={error.password?.[0]}/>
             </div>
 
             <Button type="submit" variant="primary" text={tRegister("registerBtn")} className="mt-8 w-full"/>
 
             <p className="text-text-light text-[14px] text-center mt-6">{tRegister.rich("haveAccount", { login: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200" href={"/login"}>{chunks}</Link>)})}</p>
-            <p className="text-text-light text-[14px] mt-8">{tRegister.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy-policy"}>{chunks}</Link>)})}</p>
+            <p className="text-text-light text-[14px] mt-8">{tRegister.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy"}>{chunks}</Link>)})}</p>
         </form>
     )
 }

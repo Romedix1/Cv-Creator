@@ -16,6 +16,7 @@ type ValidationErrors = {
 
 export default function LoginPage() {
     const tLogin = useTranslations("Login");
+    const tInput = useTranslations("Inputs");
     const router = useRouter()
 
     const [error, setError] = useState<ValidationErrors>({});
@@ -70,14 +71,14 @@ export default function LoginPage() {
             )}
 
             <div className="flex flex-col gap-5">
-                <Input name="email" label={tLogin("emailLabel")} type="email" placeholderValue={tLogin("emailPlaceholder")} error={error.email?.[0]} />
-                <Input name="password" label={tLogin("passwordLabel")} type="password" placeholderValue={"***********"} error={error.password?.[0]} />
+                <Input name="email" label={tInput("emailLabel")} type="email" placeholderValue={tInput("emailPlaceholder")} error={error.email?.[0]} />
+                <Input name="password" label={tInput("passwordLabel")} type="password" placeholderValue={"***********"} error={error.password?.[0]} />
             </div>
 
-            <Button variant="primary" text={tLogin("loginBtn")} className="mt-8 w-full"/>
+            <Button disabled={isLoading} type="submit" variant="primary" text={tLogin("loginBtn")} className="mt-8 w-full"/>
 
             <p className="text-text-light text-[14px] text-center mt-6">{tLogin.rich("dontHaveAccount", { login: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200" href={"/register"}>{chunks}</Link>)})}</p>
-            <p className="text-text-light text-center text-[14px] mt-8">{tLogin.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy-policy"}>{chunks}</Link>)})}</p>
+            <p className="text-text-light text-center text-[14px] mt-8">{tLogin.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy"}>{chunks}</Link>)})}</p>
         </form>
     )
 }

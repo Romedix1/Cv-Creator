@@ -16,6 +16,7 @@ type ConfirmDeleteProps = {
 
 export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDelete }: ConfirmDeleteProps) {
     const tSettings = useTranslations("Dashboard.Settings.ConfirmDelete")
+    const tButton = useTranslations("Button")
     const tValidation = useTranslations("Validation")
 
     const [error, setError] = useState<string | null>(null)
@@ -59,7 +60,7 @@ export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDel
             }
 
             await deleteAccountAction()
-        } catch (err) {
+        } catch {
             setError(tValidation("deleteAccount"))
             setIsDeleting(false)
         }
@@ -85,8 +86,8 @@ export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDel
                     </div>
 
                     <div className="grid grid-cols-2 gap-3 mt-8">
-                        <Button onClick={() => setConfirmDelete(false)} variant="secondary" text={tSettings("cancelBtn")}/>
-                        <Button disabled={isDeleting} variant="primary" className="bg-error hover:bg-red-700 border-none" text={tSettings("deleteBtn")} />
+                        <Button onClick={() => setConfirmDelete(false)} variant="secondary" text={tButton("cancel")}/>
+                        <Button disabled={isDeleting} type="submit" variant="primary" className="bg-error hover:bg-red-700 border-none" text={tButton("delete")} />
                     </div>
                 </form>
             </div>

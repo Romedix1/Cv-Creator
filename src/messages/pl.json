@@ -334,6 +334,7 @@
         "languageValueLabel": "Język",
         "languageLevelLabel": "Poziom",
         "nameLabel": "Nazwa",
+        "namePlaceholder": "Jan",
         "organizerLabel": "Organizator",
         "dateLabel": "Data",
         "interestsLabel": "Opis zainteresowania",

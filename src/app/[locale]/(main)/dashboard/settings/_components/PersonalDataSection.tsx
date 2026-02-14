@@ -23,6 +23,7 @@ type PersonalDataProps = {
 
 export default function PersonalDataSection({ isAuthenticated, uid, firstName, lastName, avatarUrl, jobTitle, email, phone, initials }: PersonalDataProps) {
     const tSettings = useTranslations("Dashboard.Settings")
+    const tInputs = useTranslations("Inputs")
     const tValidation = useTranslations("Validation")
 
     const [uploadedAvatarUrl, setUploadedAvatarUrl] = useState<string | null>(avatarUrl || null)
@@ -102,7 +103,7 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
             setIsLoading(false)
         }
     }
-
+// TODO: ADD ONCHANGE
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <h3 className="text-[20px] font-semibold">{tSettings("dataHeader")}</h3>
@@ -110,24 +111,24 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
             <AvatarUpload isAuthenticated={isAuthenticated} avatarUrl={avatarUrl} uploadedAvatarUrl={uploadedAvatarUrl} initials={initials} setUploadedAvatarUrl={setUploadedAvatarUrl} setSelectedFile={setSelectedFile} />
 
             <div className="flex flex-col gap-5 md:grid md:grid-cols-2">
-                <Input name="firstName" type="text" label={tSettings("firstNameLabel")} value={firstName || ""} />
-                <Input name="lastName" type="text" label={tSettings("lastNameLabel")} value={lastName || ""} />
-                <Input name="jobTitle" type="text" label={tSettings("jobTitleLabel")} value={jobTitle || ""} />
+                <Input name="firstName" type="text" label={tInputs("firstNameLabel")} value={firstName ||  ""} />
+                <Input name="lastName" type="text" label={tInputs("lastNameLabel")} value={lastName ||  ""} />
+                <Input name="jobTitle" type="text" label={tInputs("jobTitleLabel")} value={jobTitle ||  ""} />
                 <div className="flex flex-col gap-1">
-                    <Input name="email" type="email" label={tSettings("emailLabel")} value={email || ""} onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setEmailValue(e.target.value)}/>
+                    <Input name="email" type="email" label={tInputs("emailLabel")} value={email ||  ""} onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setEmailValue(e.target.value)}/>
                     {isEmailChanged && (
                         <div className="bg-error/40 text-text-main p-2 rounded-md border border-error mt-2 flex gap-2 items-start">
                             <p>{tSettings("emailNotice")}</p>
                         </div>
                     )}
                 </div>
-                <Input name="phone" type="phone" label={tSettings("phoneLabel")} value={phone || ""} className="md:col-span-2" />
+                <Input name="phone" type="phone" label={tInputs("phoneLabel")} value={phone || ""} className="md:col-span-2" />
             </div>
 
             {message && <p className={cn("font-semibold", message.type === "success" ? "text-success" : "text-error")}>{message.text}</p>}
 
             <div className="flex w-full md:justify-end">
-                <Button type="submit" variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />
+                <Button disabled={isLoading} type="submit" variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />
             </div>
         </form>
     )
