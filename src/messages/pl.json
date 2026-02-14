@@ -437,5 +437,24 @@
         "section4Text": "Użytkownikowi przysługuje tzw. <bold>\"prawo do bycia zapomnianym\"</bold>. Możesz w każdej chwili usunąć swoje CV lub całe konto z poziomu panelu użytkownika, co skutkuje nieodwracalnym usunięciem danych z naszych baz oraz magazynów plików (Storage).",
         "section5": "5. Kontakt",
         "section5Text": "W przypadku pytań dotyczących przetwarzania danych osobowych, prosimy o kontakt pod adresem: <mailStyle>{email}</mailStyle>."
+    },
+    "Terms": {
+        "title": "Regulamin Serwisu",
+        "lastUpdate": "Ostatnia aktualizacja: {date}",
+        "currentDate": "14 lutego 2026 r.",
+        "back": "Powrót",
+        "section1": "1. Postanowienia ogólne",
+        "section1Text": "Niniejszy regulamin określa zasady korzystania z aplikacji <bold>{appName}</bold>, której właścicielem jest <bold>{creatorName}</bold> działający w {address}. Korzystanie z serwisu oznacza akceptację poniższych warunków.",
+        "section2": "2. Świadczone usługi",
+        "section2Text": "Serwis udostępnia narzędzia online do samodzielnego tworzenia, edycji i generowania dokumentów aplikacyjnych (CV). Usługa obejmuje czasowe przechowywanie wprowadzonych danych oraz generowanie plików podglądu i dokumentów końcowych.",
+        "section3": "3. Odpowiedzialność",
+        "section3Text": "Jako administrator dokładam wszelkich starań, aby serwis działał poprawnie, jednak należy pamiętać, że:",
+        "section3Item1": "Serwis jest narzędziem wspomagającym — nie gwarantuję uzyskania zatrudnienia ani zaproszenia na rozmowę kwalifikacyjną.",
+        "section3Item2": "Użytkownik ponosi pełną odpowiedzialność za prawdziwość i poprawność danych wpisanych do dokumentu.",
+        "section3Item3": "Nie odpowiadam za przerwy w działaniu serwisu wynikające z awarii dostawców zewnętrznych (np. Vercel, Supabase).",
+        "section4": "4. Prawa autorskie",
+        "section4Text": "Wszelkie szablony graficzne, układ graficzny oraz kod źródłowy aplikacji są moją własnością. Użytkownik otrzymuje prawo do korzystania z wygenerowanych przez siebie dokumentów CV w celach związanych z poszukiwaniem pracy.",
+        "section5": "5. Kontakt i reklamacje",
+        "section5Text": "Wszelkie uwagi, błędy lub reklamacje dotyczące działania aplikacji proszę kierować na adres e-mail: <mailStyle>{email}</mailStyle>."
     }
 }
