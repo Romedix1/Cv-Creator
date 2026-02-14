@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Dot } from "lucide-react";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -265,7 +266,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
                                             <ul className="list-none gap-1 flex flex-col w-full min-w-0">
                                                 {item.elements?.map((element) => {
                                                     return (
-                                                        <li className={`text-[10px] flex items-start justify-items-start w-full min-w-0 ${element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5"}`} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
+                                                        <li className={cn("text-[10px] flex items-start justify-items-start w-full min-w-0", element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5")} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
                                                     )
                                                 })}
                                             </ul>
@@ -284,7 +285,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={`bg-white flex flex-col gap-8 ${inter.className} w-full text-black p-10`}>
+        <div className={cn("bg-white flex flex-col gap-8", inter.className, "w-full text-black p-10")}>
             {/* NAME */}
             <div className="relative flex w-full min-h-33.25">
                 <div className="flex flex-col w-9/12">

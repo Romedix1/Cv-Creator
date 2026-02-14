@@ -1,6 +1,6 @@
-import FilterBar from "@/components/layout/FilterBar"
 import { canCreateMoreResumes } from "@/lib/resume/server"
 import { getTranslations } from "next-intl/server"
+import FilterBar from "./_components/FilterBar"
 
 export default async function Templates() {
     const tTemplates = await getTranslations("Templates")

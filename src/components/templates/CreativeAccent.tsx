@@ -7,9 +7,10 @@ import Link from "next/link";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
 import SectionHeader from "./shared/SectionHeader";
-import { LinkIcon } from "../ui/LinkIcon";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { createLine } from "./shared/TemplateLine";
+import { LinkIcon } from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -317,7 +318,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                                             <ul className="list-none gap-1 flex flex-col w-full min-w-0">
                                                 {item.elements?.map((element) => {
                                                     return (
-                                                        <li className={`text-[10px] flex items-start justify-items-start w-full min-w-0 ${element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5"}`} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
+                                                        <li className={cn("text-[10px] flex items-start justify-items-start w-full min-w-0", element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5")} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
                                                     )
                                                 })}
                                             </ul>
@@ -365,7 +366,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={`bg-white flex flex-col ${inter.className} w-full text-black`}>
+        <div className={cn("bg-white flex flex-col", inter.className, "w-full text-black")}>
             {/* TOP */}
             <div className="flex w-full py-11 relative" style={{ background: userColor }}>
                 <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 bottom-0 translate-y-1/2"/>

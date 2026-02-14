@@ -4,6 +4,7 @@ import { DM_Sans } from "next/font/google";
 import {ThemeProvider as NextThemesProvider} from "next-themes";
 import { cookies } from "next/headers";
 import { NextIntlClientProvider } from "next-intl";
+import { cn } from "@/lib/utils";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -23,7 +24,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <html lang="en" className={theme} suppressHydrationWarning>
-        <body className={`${dmSans.variable} transition-[background-color,color,border-color] duration-500 bg-background text-main antialiased`}>
+        <body className={cn("transition-[background-color,color,border-color] duration-500 bg-background text-main antialiased", dmSans.variable)}>
           <NextIntlClientProvider>
             <NextThemesProvider attribute="class" defaultTheme={theme} enableSystem={false}>
               {children}

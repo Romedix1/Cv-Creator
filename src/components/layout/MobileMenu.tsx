@@ -1,10 +1,11 @@
-import LanguageSwitcher from "../ui/LanguageSwitcher";
-import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher";
-import NavLink from "../ui/NavLink";
 import { useTranslations } from "next-intl";
-import Button from "../ui/Button";
+import UserMenu from "./UserMenu";
+import NavLink from "../ui/NavLink";
 import { Separator } from "../ui/separator";
-import UserMenu from "../ui/UserMenu";
+import LanguageSwitcher from "../LanguageSwitcher";
+import DynamicThemeSwitcher from "../ui/DynamicThemeSwitcher";
+import Button from "../ui/Button";
+import { cn } from "@/lib/utils";
 
 type MobileMenuProps = {
     isAuthenticated: boolean;
@@ -20,13 +21,13 @@ export default function MobileMenu({ isAuthenticated, isOpen, onClose, avatarUrl
     const tButton = useTranslations("Button");
 
     return (
-        <div className={`h-screen w-full absolute top-[65px] left-0 p-6 flex flex-col gap-8 z-60 ease-in-out duration-200 bg-background ${isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-5 invisible"}`}>
+        <div className={cn("h-screen w-full absolute top-[65px] left-0 p-6 flex flex-col gap-8 z-60 ease-in-out duration-200 bg-background", isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-5 invisible")}>
             {isAuthenticated &&
-                <UserMenu avatarUrl={avatarUrl} initials={initials} fullName={fullName}/>
+                <UserMenu avatarUrl={avatarUrl} initials={initials} onClose={onClose} fullName={fullName}/>
             }
 
-            <NavLink className="font-semibold text-xl hover:text-text-main" onClick={onClose} page={tNav("templates")} />
-            {!isAuthenticated && <NavLink className="font-semibold text-xl hover:text-text-main" onClick={onClose} page={tNav("login")} />}
+            <NavLink className="font-semibold text-xl hover:text-text-main" onClick={onClose} text={tNav("templates")} href="/templates" />
+            {!isAuthenticated && <NavLink className="font-semibold text-xl hover:text-text-main" onClick={onClose} text={tNav("login")} href="/login" />}
 
             <div className="flex justify-center w-full">
                 <Separator />

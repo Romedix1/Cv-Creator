@@ -1,4 +1,4 @@
-import DashboardNav from "@/components/layout/DashboardNav";
+import DashboardNav from "@/app/[locale]/(main)/dashboard/_components/DashboardNav";
 import { getUserProfile } from "@/lib/getUserProfile";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";

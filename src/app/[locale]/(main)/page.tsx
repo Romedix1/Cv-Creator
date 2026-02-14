@@ -1,7 +1,7 @@
-import FeaturesSection from "@/components/layout/FeaturesSection";
-import HeroSection from "@/components/layout/HeroSection";
-import StepsSection from "@/components/layout/StepsSection";
-import TemplatesSection from "@/components/layout/TemplatesSection";
+import FeaturesSection from "@/app/[locale]/(main)/_components/FeaturesSection";
+import HeroSection from "@/app/[locale]/(main)/_components/HeroSection";
+import TemplatesSection from "@/app/[locale]/(main)/_components/TemplatesSection";
+import StepsSection from "./_components/StepsSection";
 
 export default function Home() {
   return (

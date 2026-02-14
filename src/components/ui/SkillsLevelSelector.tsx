@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 type SkillLevelSelectorProps = {
     selectedLevel: number;
@@ -30,14 +31,14 @@ export default function SkillLevelSelector({ selectedLevel = 0, onChange }: Skil
 
                     return (
                         <button key={item.value} type="button" onClick={() => onChange(item.value)} onMouseEnter={() => setHovered(item.value)} className="group relative focus:outline-none transition-transform duration-200 p-1 cursor-pointer hover:scale-110" aria-label={item.text}>
-                            <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border duration-200 ${isActive ? "bg-default border-default" : "bg-surface border-border group-hover:border-text-muted"}`}></div>
+                            <div className={cn("w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border duration-200", isActive ? "bg-default border-default" : "bg-surface border-border group-hover:border-text-muted")}></div>
                         </button>
                     )
                 })}
             </div>
 
             <div className="h-4 flex items-center justify-center">
-                <span className={`text-[10px] font-medium text-text-muted duration-200 ${currentText ? "opacity-100" : "opacity-0"}`}>{currentText}</span>
+                <span className={cn("text-[10px] font-medium text-text-muted duration-200", currentText ? "opacity-100" : "opacity-0")}>{currentText}</span>
             </div>
         </div>
     )

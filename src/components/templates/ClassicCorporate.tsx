@@ -1,5 +1,4 @@
 import { ResumeData } from "@/types/resumeData";
-import { Separator } from "@radix-ui/react-separator";
 import { Dot } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Merriweather } from "next/font/google";
@@ -7,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import SectionHeader from "./shared/SectionHeader";
+import { Separator } from "../ui/separator";
+import { cn } from "@/lib/utils";
 
 const merriweather = Merriweather({
     subsets: ["latin"],
@@ -233,7 +234,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
                                             <ul className="list-none gap-1 flex flex-col w-full min-w-0">
                                                 {item.elements?.map((element) => {
                                                     return (
-                                                        <li className={`text-[10px] flex items-start justify-items-start w-full min-w-0 ${element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5"}`} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
+                                                        <li className={cn("text-[10px] flex items-start justify-items-start w-full min-w-0", element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5")} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
                                                     )
                                                 })}
                                             </ul>
@@ -251,7 +252,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={`bg-white flex flex-col gap-8 ${merriweather.className} w-full text-black p-12.5`}>
+        <div className={cn("bg-white flex flex-col gap-8", merriweather.className, "w-full text-black p-12.5")}>
             {/* NAME */}
             <div className="relative flex justify-center items-start w-full min-h-33.25">
                 <div className="flex flex-col gap-2.5 items-center text-center">

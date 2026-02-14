@@ -7,9 +7,10 @@ import Link from "next/link";
 import { PiAddressBook } from "react-icons/pi";
 import LeftSectionHeader from "./shared/LeftSectionHeader";
 import TemplateHeader from "./shared/SectionHeader";
-import { LinkIcon } from "../ui/LinkIcon";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { createLine } from "./shared/TemplateLine"
+import { LinkIcon } from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
+import { cn } from "@/lib/utils";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -32,12 +33,12 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
             position: "left",
             content: (
                 <ul className="text-[10px] gap-2 flex flex-col">
-                    {data.personalInfo.phone && <li className={`flex gap-2 items-center break-all ${spaceGrotesk.className}`}><span className="shrink-0"><Phone className="w-3 h-3" /></span> {data.personalInfo.phone}</li>}
-                    {data.personalInfo.email && <li className={`flex gap-2 items-center break-all ${spaceGrotesk.className}`}><span className="shrink-0"><AtSign className="w-3 h-3" /></span> {data.personalInfo.email}</li>}
-                    {data.personalInfo.address && <li className={`flex gap-2 items-center break-all ${spaceGrotesk.className}`}><span className="shrink-0"><PiAddressBook className="w-3 h-3" /></span> {data.personalInfo.address}</li>}
+                    {data.personalInfo.phone && <li className={cn("flex gap-2 items-center break-all", spaceGrotesk.className)}><span className="shrink-0"><Phone className="w-3 h-3" /></span> {data.personalInfo.phone}</li>}
+                    {data.personalInfo.email && <li className={cn("flex gap-2 items-center break-all", spaceGrotesk.className)}><span className="shrink-0"><AtSign className="w-3 h-3" /></span> {data.personalInfo.email}</li>}
+                    {data.personalInfo.address && <li className={cn("flex gap-2 items-center break-all", spaceGrotesk.className)}><span className="shrink-0"><PiAddressBook className="w-3 h-3" /></span> {data.personalInfo.address}</li>}
                     {data.personalInfo.links?.map((link) => {
                         return (
-                            <li key={link.id} className={`flex gap-2 items-center break-all ${spaceGrotesk.className}`}><span className="shrink-0">{<LinkIcon platform={link.platform} />}</span> <Link href={link.url} className="break-all underline">{link.url}</Link></li>
+                            <li key={link.id} className={cn("flex gap-2 items-center break-all", spaceGrotesk.className)}><span className="shrink-0">{<LinkIcon platform={link.platform} />}</span> <Link href={link.url} className="break-all underline">{link.url}</Link></li>
                         )
                     })}
                 </ul>
@@ -65,7 +66,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                     <div>
                                         <div className="flex justify-between items-baseline">
                                             <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.position}</h3>
-                                            <span className={`text-[10px] text-text-muted font-medium whitespace-nowrap ${spaceGrotesk.className}`}>{item.startDate} - {item.endDate}</span>
+                                            <span className={cn("text-[10px] text-text-muted font-medium whitespace-nowrap", spaceGrotesk.className)}>{item.startDate} - {item.endDate}</span>
                                         </div>
                                         <p className="text-[11px] font-semibold text-[#2563EB] mb-1 wrap-break-word flex-1 min-w-0">{item.company}</p>
                                     </div>
@@ -100,7 +101,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                     <div>
                                         <div className="flex justify-between items-baseline">
                                             <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.institution}</h3>
-                                            <span className={`text-[10px] text-text-muted font-medium whitespace-nowrap ${spaceGrotesk.className}`}>{item.startDate} - {item.endDate}</span>
+                                            <span className={cn("text-[10px] text-text-muted font-medium whitespace-nowrap", spaceGrotesk.className)}>{item.startDate} - {item.endDate}</span>
                                         </div>
                                     </div>
 
@@ -129,7 +130,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
 
                                     <ul className="flex flex-col gap-3">
                                         {cat.skills.map((skill) => (
-                                            <li key={skill.id} className={`font-medium wrap-break-word px-2 flex items-center gap-2 ${spaceGrotesk.className}`}>
+                                            <li key={skill.id} className={cn("font-medium wrap-break-word px-2 flex items-center gap-2", spaceGrotesk.className)}>
                                                 <span><Check className="shrink-0" /></span>
                                                 {skill.name}
                                             </li>
@@ -141,7 +142,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                     ) : (
                         <ul className="flex flex-col gap-3">
                             {data.skillsCat.flatMap(cat => cat.skills).map((skill) => (
-                                <li key={skill.id} className={`font-medium wrap-break-word flex items-center gap-2 ${spaceGrotesk.className}`}>
+                                <li key={skill.id} className={cn("font-medium wrap-break-word flex items-center gap-2", spaceGrotesk.className)}>
                                     <span><Check className="shrink-0" /></span>
                                     {skill.name}
                                 </li>
@@ -159,7 +160,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                 <div className="text-[11px] w-full">
                     <ul className="flex flex-col gap-3">
                         {data.languages.map((language) => (
-                                <li key={language.id} className={`px-2 wrap-break-word flex items-center gap-2 ${spaceGrotesk.className}`}>
+                                <li key={language.id} className={cn("px-2 wrap-break-word flex items-center gap-2", spaceGrotesk.className)}>
                                     <span><Check className="shrink-0" /></span>
                                     <span className="font-bold">{language.value}</span> - {language.level}
                                 </li>
@@ -185,7 +186,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                     <div>
                                         <div className="flex justify-between items-baseline">
                                             <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.name}</h3>
-                                            <span className={`text-[10px] text-text-muted font-medium whitespace-nowrap ${spaceGrotesk.className}`}>{item.date}</span>
+                                            <span className={cn("text-[10px] text-text-muted font-medium whitespace-nowrap", spaceGrotesk.className)}>{item.date}</span>
                                         </div>
                                     </div>
 
@@ -250,7 +251,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                                 <div>
                                                     <div className="flex justify-between items-baseline">
                                                         <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.title}</h3>
-                                                        <span className={`text-[10px] text-text-muted font-medium whitespace-nowrap ${spaceGrotesk.className}`}>{item.startDate} - {item.endDate}</span>
+                                                        <span className={cn("text-[10px] text-text-muted font-medium whitespace-nowrap", spaceGrotesk.className)}>{item.startDate} - {item.endDate}</span>
                                                     </div>
                                                 </div>
 
@@ -274,14 +275,14 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                                 <div>
                                                     <div className="flex justify-between items-baseline">
                                                         <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.title}</h3>
-                                                        <span className={`text-[10px] text-text-muted font-medium whitespace-nowrap ${spaceGrotesk.className}`}>{item.startDate} - {item.endDate}</span>
+                                                        <span className={cn("text-[10px] text-text-muted font-medium whitespace-nowrap", spaceGrotesk.className)}>{item.startDate} - {item.endDate}</span>
                                                     </div>
                                                 </div>
 
                                                 <ul className="list-none gap-1 flex flex-col w-full min-w-0">
                                                     {item.elements?.map((element) => {
                                                         return (
-                                                            <li className={`text-[10px] flex items-start justify-items-start w-full min-w-0 ${element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5"}`} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
+                                                            <li className={cn("text-[10px] flex items-start justify-items-start w-full min-w-0", element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5")} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
                                                         )
                                                     })}
                                                 </ul>
@@ -332,7 +333,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={`bg-white flex ${manrope.className} w-full text-black`}>
+        <div className={cn("bg-white flex", manrope.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#F3F4F6] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
                 <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover ring-4 ring-white"/>
@@ -353,7 +354,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                 {/* NAME */}
                 {(data.personalInfo.firstName || data.personalInfo.lastName || data.personalInfo.jobTitle) && <div className="mb-6">
                     {(data.personalInfo.firstName || data.personalInfo.lastName) && <h1 className="font-bold text-3xl upper wrap-break-word">{data.personalInfo.firstName}{data.personalInfo.lastName && ` ${data.personalInfo.lastName}`}</h1>}
-                    {data.personalInfo.jobTitle && <p className={`text-[14px] break-all text-[#2563EB] font-bold ${spaceGrotesk.className}`}>{data.personalInfo.jobTitle}</p>}
+                    {data.personalInfo.jobTitle && <p className={cn("text-[14px] break-all text-[#2563EB] font-bold", spaceGrotesk.className)}>{data.personalInfo.jobTitle}</p>}
                 </div>}
 
                 <div className="flex flex-col gap-8">

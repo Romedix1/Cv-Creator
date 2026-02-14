@@ -2,6 +2,7 @@
 
 import { useState, ReactNode } from "react"
 import { Eye, EyeOff } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type SelectOption = {
     label: string;
@@ -11,12 +12,12 @@ type SelectOption = {
 type InputProps = {
     name: string;
     label: string;
-    type: "text" | "password" | "select";
+    type: "text" | "password" | "phone" | "email" | "select";
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
     placeholderValue?: string;
     showPasswordIcon?: ReactNode;
-    autoFocus: boolean,
+    autoFocus?: boolean,
     className?: string;
     inputClassName?: string;
     error?: string;
@@ -24,7 +25,7 @@ type InputProps = {
     disabled?: boolean;
 }
 
-export default function Input({ name, label, type, value, placeholderValue, showPasswordIcon, autoFocus, className, error, onChange, options = [], disabled, inputClassName }: InputProps) {
+export default function Input({ name, label, type, value, placeholderValue, showPasswordIcon, autoFocus=false, className, error, onChange, options = [], disabled, inputClassName }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
     const isPasswordType = type === "password";
@@ -36,13 +37,13 @@ export default function Input({ name, label, type, value, placeholderValue, show
     const errorId = `${name}-error`;
 
     return (
-        <div className={`flex flex-col gap-2 w-full ${className}`}>
+        <div className={cn("flex flex-col gap-2 w-full", className)}>
             <label htmlFor={name} className="text-text-main text-[14px] font-medium">{label}</label>
 
             <div className="relative flex items-center">
                 {isSelectType ? (
                     <div className="relative w-full">
-                        <select id={name} name={name} value={value} onChange={onChange} className={`${baseStyles} pr-10 cursor-pointer`}>
+                        <select id={name} name={name} value={value} onChange={onChange} className={cn(baseStyles, "pr-10 cursor-pointer")}>
                             {options.map((opt) => (
                                 <option key={opt.value} value={opt.value}>
                                     {opt.label}
@@ -58,7 +59,7 @@ export default function Input({ name, label, type, value, placeholderValue, show
                     </div>
                 ) : (
                     <>
-                        <input id={name} disabled={disabled} autoFocus={autoFocus} onChange={onChange} value={value} name={name} className={`w-full p-3 bg-bg-main border border-border rounded-xl placeholder:text-text-muted outline-none duration-200 hover:border-text-muted focus:border-default ${showPasswordIcon ? "pl-12" : ""}${isPasswordType ? "pr-12" : ""} ${inputClassName}`} type={currentType} placeholder={placeholderValue}  />
+                        <input id={name} disabled={disabled} autoFocus={autoFocus} onChange={onChange} value={value} name={name} className={cn("w-full p-3 bg-bg-main border border-border rounded-xl placeholder:text-text-muted outline-none duration-200 hover:border-text-muted focus:border-default", showPasswordIcon ? "pl-12" : "", isPasswordType ? "pr-12" : "", inputClassName)} type={currentType} placeholder={placeholderValue}  />
 
                         {isPasswordType && (
                             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 text-text-muted hover:text-text-main duration-200 cursor-pointer">

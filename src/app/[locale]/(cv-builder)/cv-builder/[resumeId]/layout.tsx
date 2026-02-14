@@ -1,4 +1,4 @@
-import CvBuilderNav from "@/components/cv-builder/Nav";
+import CvBuilderNav from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/Nav";
 import Footer from "@/components/layout/Footer";
 import { ResumeProvider } from "@/context/ResumeContext";
 import { getResumeById } from "@/lib/resume/server";

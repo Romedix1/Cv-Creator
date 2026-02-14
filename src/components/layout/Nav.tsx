@@ -1,10 +1,11 @@
-import NavLink from "../ui/NavLink";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import Link from "next/link";
 import { User } from "@supabase/supabase-js";
 import { getTranslations } from "next-intl/server";
 import { getUserProfile } from "@/lib/getUserProfile";
+import NavLink from "../ui/NavLink";
+import { cn } from "@/lib/utils";
 
 type NavProps = {
     authPage?: boolean;
@@ -31,13 +32,13 @@ export default async function Nav({ authPage = false, user }: NavProps) {
     }
 
     return (
-        <nav className={`bg-background px-5 md:px-8 sticky top-0 z-40 border-b border-border ${authPage ? "md:py-1" : " md:py-4"}`}>
+        <nav className={cn("bg-background px-5 md:px-8 sticky top-0 z-40 border-b border-border", authPage ? "md:py-1" : " md:py-4")}>
             <div className="flex justify-between w-full h-16 gap-8">
                 <div className="flex gap-8 items-center">
                     <Link href="/">
                         <span className="text-main text-2xl font-medium">CV Creator</span>
                     </Link>
-                    {!authPage && (<NavLink className="hidden md:block text-text-muted" page={t("templates")} />)}
+                    {!authPage && (<NavLink className="hidden md:block text-text-muted" text={t("templates")} href="/templates" />)}
                 </div>
                 {!authPage && (
                     <div className="flex items-center">

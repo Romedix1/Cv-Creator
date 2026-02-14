@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import HamburgerMenu from "../ui/HamburgerMenu";
+import HamburgerMenu from "./HamburgerMenu";
 import MobileMenu from "./MobileMenu";
 
 type MobileNavProps = {
