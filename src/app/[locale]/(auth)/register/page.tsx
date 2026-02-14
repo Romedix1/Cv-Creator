@@ -20,35 +20,35 @@ export default function RegisterPage() {
     const tInput = useTranslations("Inputs");
     const tError = useTranslations("Errors");
 
-    const [error, setError] = useState<ValidationErrors>({});
-    const [apiError, setApiError] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<ValidationErrors>({})
+    const [apiError, setApiError] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
 
     const handleSubmit = async (formData: FormData) => {
         setIsLoading(true)
         setError({})
         setApiError(null)
 
-        const res = await signUp(formData);
+        const res = await signUp(formData)
 
         if(!res?.success) {
             if(res?.errors) {
-                setError(res.errors);
+                setError(res.errors)
             }
 
             if (res?.apiError) {
                 if (res.apiError.toLowerCase().includes("rate limit")) {
-                    setApiError(tError("emailRateLimit"));
+                    setApiError(tError("emailRateLimit"))
                 } else {
-                    setApiError(res.apiError);
+                    setApiError(res.apiError)
                 }
             }
         } else {
-            setSuccess(true);
+            setSuccess(true)
         }
 
-        setIsLoading(false);
+        setIsLoading(false)
     }
 
     if (success) {
@@ -76,7 +76,7 @@ export default function RegisterPage() {
                 <Input name="password" label={tInput("passwordLabel")} type="password" placeholderValue={"***********"} error={error.password?.[0]}/>
             </div>
 
-            <Button type="submit" variant="primary" text={tRegister("registerBtn")} className="mt-8 w-full"/>
+            <Button type="submit" variant="primary" text={tRegister("registerBtn")} className="mt-8 w-full" disabled={isLoading}/>
 
             <p className="text-text-light text-[14px] text-center mt-6">{tRegister.rich("haveAccount", { login: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200" href={"/login"}>{chunks}</Link>)})}</p>
             <p className="text-text-light text-[14px] mt-8">{tRegister.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy"}>{chunks}</Link>)})}</p>

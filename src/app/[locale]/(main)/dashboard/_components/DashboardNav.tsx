@@ -25,7 +25,7 @@ export default function DashboardNav({ firstName }: DashboardNavProps) {
 
     return (
         <div className="flex flex-col items-center pt-6 gap-2">
-            <h2 className="text-[28px] lg:text-[40px] font-semibold">{tDashboard("header")}, {firstName}</h2>
+            <h2 className="text-[28px] lg:text-[40px] font-semibold wrap-break-word w-8/12 text-center">{tDashboard("header")}, {firstName}</h2>
 
             <div className="flex justify-center gap-6 px-4 items-center">
                 <NavLink className={cn(getLinkClass("/dashboard"), "lg:text-[17px]")} href="/dashboard" text={tDashboard("myCVs")} />
