@@ -1,12 +1,12 @@
 "use client"
 
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { useState } from "react";
 import { useSignOut } from "@/hooks/useSignOut"
 import { Separator } from "@/components/ui/separator";
 import NavLink from "../ui/NavLink";
 import { cn } from "@/lib/utils";
+import AppImage from "../ui/AppImage";
 
 type UserNameProps = {
     initials: string;
@@ -48,7 +48,7 @@ export default function UserMenu({ initials, avatarUrl, onClose, fullName }: Use
             <button onClick={() => setIsOpened((prev) => !prev)} className="cursor-pointer gap-6 flex items-center focus:outline-none">
                 {avatarUrl ? (
                     <div className="relative w-[50px] h-[50px] shrink-0 overflow-hidden rounded-full">
-                        <Image priority referrerPolicy="no-referrer" src={avatarUrl} alt={tNav("userProfileAlt")} fill className="object-cover" />
+                        <AppImage referrerPolicy="no-referrer" src={avatarUrl} alt={tNav("userProfileAlt")} fill className="object-cover" containerClassName="w-full h-full" />
                     </div>
                 ) : (
                     <div className="w-15 h-15 rounded-full bg-surface-hover flex justify-center items-center hover:border-border">

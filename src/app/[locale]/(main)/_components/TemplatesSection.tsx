@@ -23,7 +23,7 @@ export default async function TemplatesSection() {
                 <h2 className="text-[28px] text-text-main font-semibold leading-9 text-center 2xl:text-[40px] 2xl:leading-12">{tTemplates("header")}</h2>
                 <p className="text-[16px] text-text-muted leading-6 text-center 2xl:text-[18px]">{tTemplates("subtitle")}</p>
             </div>
-            <div className="flex flex-col gap-7.5 items-center lg:flex-row lg:gap-5 2xl:justify-center 2xl:gap-7.5">
+            <div className="flex flex-col gap-7.5 items-stretch lg:flex-row lg:gap-5 2xl:justify-center 2xl:gap-7.5 w-full">
                 {TEMPLATES_DATA.map((template, index) => {
                     return (
                         <Template key={index} templateId={template.id} name={template.name} image={template.image} enablePreview={false} canCreate={canCreate} />
