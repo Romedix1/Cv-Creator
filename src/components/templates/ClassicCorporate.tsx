@@ -264,7 +264,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
 
                 {data.personalInfo.avatarUrl && (
                     <div className="absolute right-0 top-0 shrink-0">
-                        <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={532} className="w-full h-full object-cover" containerClassName="w-25 h-33.25 overflow-hidden"/>
+                        <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={532} quality={100} className="w-full h-full object-cover" containerClassName="w-25 h-33.25 overflow-hidden"/>
                     </div>
                 )}
             </div>
