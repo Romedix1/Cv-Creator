@@ -26,7 +26,7 @@ export default function PrivacyPage() {
                     {t('back')}
                 </Link>
 
-                <div className="bg-bg-main rounded-2xl border border-border px-4 py-8 md:p-12">
+                <main className="bg-bg-main rounded-2xl border border-border px-4 py-8 md:p-12">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="p-3 bg-default/10 rounded-xl">
                             <ShieldCheck className="w-8 h-8 text-default" />
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
                         </div>
                     </section>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
   );
