@@ -21,7 +21,6 @@ export default function UserMenu({ initials, avatarUrl, onClose, fullName }: Use
     const { signOut, loading } = useSignOut()
 
     const [isOpen, setIsOpened] = useState(false)
-    // TODO: ADD USER PROFILE PICTURE FROM ACCOUNT SETTINGS
 
     const menuItems = [
         { key: "dashboard/settings", label: tNav("settings") },
