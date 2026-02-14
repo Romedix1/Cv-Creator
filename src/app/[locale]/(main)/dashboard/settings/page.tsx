@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import PersonalDataSection from "./_components/PersonalDataSection";
 import PasswordSection from "./_components/PasswordSection";
 import DeleteAccountSection from "./_components/DeleteAccountSection";
+import { profile } from "console";
 
 export default async function DashboardSettings() {
   const supabase = await createClient()

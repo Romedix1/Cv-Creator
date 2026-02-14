@@ -83,8 +83,8 @@ export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDel
                     </div>
 
                     <div className="grid grid-cols-2 gap-3 mt-8">
-                        <Button onClick={() => setConfirmDelete(false)} variant="secondary" text={tSettings("cancelBtn")}/>
-                        <Button type="submit" disabled={isDeleting} variant="primary" className="bg-error hover:bg-red-700 border-none" text={tSettings("deleteBtn")} />
+                        <Button onClick={() => setConfirmDelete(false)} variant="secondary" text={tButton("cancel")}/>
+                        <Button type="submit" disabled={isDeleting} variant="primary" className="bg-error hover:bg-red-700 border-none" text={tButton("delete")} />
                     </div>
                 </form>
             </div>
