@@ -32,18 +32,15 @@ export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDel
         const form = new FormData(e.currentTarget)
         const inputValue = form.get("deleteAccount")?.toString().trim()
 
-        if(!inputValue) {
+        if (!inputValue) {
             setError(tValidation("incorrectPassword"))
             setIsDeleting(false)
             return
         }
 
         try {
-            if(hasPassword) {
-                const { error: signInError } = await supabase.auth.signInWithPassword({
-                    email: email,
-                    password: inputValue
-                })
+            if (hasPassword) {
+                const { error: signInError } = await supabase.auth.signInWithPassword({ email: email, password: inputValue })
 
                 if (signInError) {
                     setError(tValidation("incorrectPassword"))
@@ -51,15 +48,15 @@ export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDel
                     return
                 }
             } else {
-                if(inputValue !== CONFIRMATION_WORD) {
-                    setError(tValidation("incorrectPassword"))
+                if (inputValue !== CONFIRMATION_WORD) {
+                    setError(tValidation("incorrectConfirmationWord"))
                     setIsDeleting(false)
                     return
                 }
             }
 
             await deleteAccountAction()
-        } catch (err) {
+        } catch {
             setError(tValidation("deleteAccount"))
             setIsDeleting(false)
         }
@@ -86,7 +83,7 @@ export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDel
 
                     <div className="grid grid-cols-2 gap-3 mt-8">
                         <Button onClick={() => setConfirmDelete(false)} variant="secondary" text={tSettings("cancelBtn")}/>
-                        <Button disabled={isDeleting} variant="primary" className="bg-error hover:bg-red-700 border-none" text={tSettings("deleteBtn")} />
+                        <Button type="submit" disabled={isDeleting} variant="primary" className="bg-error hover:bg-red-700 border-none" text={tSettings("deleteBtn")} />
                     </div>
                 </form>
             </div>
