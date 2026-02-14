@@ -9,6 +9,7 @@ import LeftSectionHeader from "./shared/LeftSectionHeader";
 import SectionHeader from "./shared/SectionHeader";
 import { useSectionOrder } from "@/hooks/useSectionOrder";
 import { LinkIcon } from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/LinkIcon";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -243,7 +244,7 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
                                             <ul className="list-none gap-1 flex flex-col w-full min-w-0">
                                                 {item.elements?.map((element) => {
                                                     return (
-                                                        <li className={`text-[10px] flex items-start justify-items-start w-full min-w-0 ${element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5"}`} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
+                                                        <li className={cn("text-[10px] flex items-start justify-items-start w-full min-w-0", element.type ==="label" ? "text-text-muted font-semibold text-[11px]" : "mb-0.5")} key={element.id}><span className="flex-1 min-w-0 wrap-break-word">{element.value}</span></li>
                                                     )
                                                 })}
                                             </ul>
@@ -287,7 +288,7 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={`bg-white flex ${inter.className} w-full text-black`}>
+        <div className={cn("bg-white flex", inter.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#EFF6FF] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
                 <Image src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={100} height={100} className="rounded-full w-25 h-25 object-cover"/>

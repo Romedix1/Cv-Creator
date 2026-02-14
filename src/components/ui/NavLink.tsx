@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link"
 
 type NavLinkProps = {
@@ -24,6 +25,6 @@ export default function NavLink({className, onClick, page}: NavLinkProps) {
     const url = URL_MAP[page];
 
     return (
-        <Link className={`${className} hover:text-default duration-200`} onClick={onClick} href={url}>{page}</Link>
+        <Link className={cn("hover:text-default duration-200", className)} onClick={onClick} href={url}>{page}</Link>
     )
 }

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import Input from "@/components/ui/Input"
 import Button from "@/components/ui/Button"
 import AvatarUpload from "@/components/AvatarUpload"
+import { cn } from "@/lib/utils"
 
 type PersonalDataProps = {
     isAuthenticated: boolean;
@@ -123,7 +124,7 @@ export default function PersonalDataSection({ isAuthenticated, uid, firstName, l
                 <Input name="phone" type="phone" label={tSettings("phoneLabel")} value={phone || ""} className="md:col-span-2" />
             </div>
 
-            {message && <p className={`font-semibold ${message.type === "success" ? "text-success" : "text-error"}`}>{message.text}</p>}
+            {message && <p className={cn("font-semibold", message.type === "success" ? "text-success" : "text-error")}>{message.text}</p>}
 
             <div className="flex w-full md:justify-end">
                 <Button variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSignOut } from "@/hooks/useSignOut"
 import { Separator } from "@/components/ui/separator";
 import NavLink from "../ui/NavLink";
+import { cn } from "@/lib/utils";
 
 type UserNameProps = {
     initials: string;
@@ -33,10 +34,10 @@ export default function UserMenu({ initials, avatarUrl, fullName }: UserNameProp
         return (
             <>
                 {menuItems.map((item) => (
-                    <NavLink key={item.key} className={isMobile ? mobileClasses : desktopClasses} page={item.label} />
+                    <NavLink key={item.key} className={cn(isMobile ? mobileClasses : desktopClasses)} page={item.label} />
                 ))}
 
-                <button onClick={signOut} className={`${isMobile ? mobileClasses : desktopClasses} text-error text-left`}>{tNav("logout")}</button>
+                <button onClick={signOut} className={cn(isMobile ? mobileClasses : desktopClasses, "text-error text-left")}>{tNav("logout")}</button>
             </>
         )
     }
@@ -62,7 +63,7 @@ export default function UserMenu({ initials, avatarUrl, fullName }: UserNameProp
 
             <Separator className="block md:hidden"/>
 
-            <div className={`border flex-col bg-surface absolute top-20 right-0 w-[270px] rounded-[12px] overflow-hidden hidden md:flex shadow-xl transition-all origin-top-right ${isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"}`}>
+            <div className={cn("border flex-col bg-surface absolute top-20 right-0 w-[270px] rounded-[12px] overflow-hidden hidden md:flex shadow-xl transition-all origin-top-right", isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible")}>
                 {renderLinks(false)}
             </div>
         </div>

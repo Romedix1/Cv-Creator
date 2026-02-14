@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react"
 
 type ToggleOption<T extends string = string> = {
@@ -25,7 +26,7 @@ export default function Toggle<T extends string>({ value, onChange, options, nam
             {options.map((option) => (
                 <label key={option.value} className="relative flex-1 text-center cursor-pointer">
                     <input type="radio" name={name} value={option.value} checked={value === option.value} onChange={() => onChange(option.value)} className="sr-only peer" />
-                    <span className={`${textStyles} ${value !== option.value && "hover:text-text-main hover:bg-default-hover"}`}>
+                    <span className={cn(textStyles, value !== option.value && "hover:text-text-main hover:bg-default-hover")}>
                         {option.label}
                     </span>
                 </label>

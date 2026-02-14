@@ -11,6 +11,7 @@ import SectionHeader from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_co
 import ToggleLevelBar from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/ToggleLevelBar"
 import { Settings } from "@/types/settings"
 import SkillsLevelSelector from "@/components/ui/SkillsLevelSelector"
+import { cn } from "@/lib/utils"
 
 type SkillsSectionProps = {
     settings: Settings;
@@ -100,7 +101,7 @@ export default function SkillsSection({ settings, categories, viewMode, setViewM
                                 <div role="list">
                                     {cat.skills.map((skill, index) => (
                                         <Fragment  key={skill.id}>
-                                            <div className={`flex items-center gap-3 ${!settings.showSkillsLevel && "mt-2"}`}>
+                                            <div className={cn("flex items-center gap-3", !settings.showSkillsLevel && "mt-2")}>
                                                 <Dot className="mt-7 stroke-6 sm:stroke-2" aria-hidden="true"/>
                                                 <Input label={`${tInput("element")} ${index+1}`} name={`skill-${skill.id}`} type="text" placeholderValue={tInput("skillNamePlaceholder")} value={skill.name || ""} onChange={(e) => handleSkillNameChange(cat.id, skill.id, e.target.value)} />
 

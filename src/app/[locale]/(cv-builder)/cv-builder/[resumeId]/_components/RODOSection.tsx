@@ -6,6 +6,7 @@ import Input from "@/components/ui/Input";
 import Toggle from "@/components/ui/Toggle";
 import Button from "@/components/ui/Button";
 import { Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type RodoSectionProps = {
     rodo: RodoType[]
@@ -84,7 +85,7 @@ export default function RodoSection({ rodo, onRodoChange }: RodoSectionProps) {
 
                     <div className="flex flex-col">
                         <label htmlFor="clauseText">{tInput("clauseTextLabel")}</label>
-                        <textarea disabled={!isCustom} id="clauseText" className={`w-full h-37.5 p-3 border rounded-md focus:border-default outline-none placeholder:text-text-muted mt-6 ${!isCustom && "bg-text-muted/20 text-text-muted cursor-not-allowed"}`} placeholder={tInput("insertText")} value={clauseItem.value || ""} onChange={(e) => handleChange("value", e.target.value)} />
+                        <textarea disabled={!isCustom} id="clauseText" className={cn("w-full h-37.5 p-3 border rounded-md focus:border-default outline-none placeholder:text-text-muted mt-6", !isCustom && "bg-text-muted/20 text-text-muted cursor-not-allowed")} placeholder={tInput("insertText")} value={clauseItem.value || ""} onChange={(e) => handleChange("value", e.target.value)} />
                     </div>
 
                     <Button className="border dark:bg-[#1F0A0A] bg-[#FEF2F2] border-error w-full mt-6" variant="secondary" icon={<Trash2 aria-hidden="true" className="w-6 h-6"/>} text={`${tButton("delete")} ${tButton("clause")}`} onClick={() => handleRemove()} />

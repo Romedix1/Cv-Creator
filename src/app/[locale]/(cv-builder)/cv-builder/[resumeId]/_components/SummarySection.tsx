@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl"
 import Input from "@/components/ui/Input"
 import SortableList from "./SortableList";
 import SectionHeader from "./SectionHeader";
+import { cn } from "@/lib/utils";
 
 type SummarySectionProps = {
     sections: string[];
@@ -77,7 +78,7 @@ export default function SummarySection({ sections, onSectionsOrderChange, custom
                             <div className="flex gap-2.5 mb-2">
                                     {TEMPLATE_COLORS.map((col, index) => {
                                         return (
-                                            <button aria-label={`${tAria("selectColor")}: ${COLOR_NAMES[col] || col}`} onClick={() => onColorChange(col)} key={index} style={{ background: col }} className={`w-10 h-10 rounded-full cursor-pointer hover:scale-110 duration-200 ${col === color && "ring-2 ring-text-main"}`} />
+                                            <button aria-label={`${tAria("selectColor")}: ${COLOR_NAMES[col] || col}`} onClick={() => onColorChange(col)} key={index} style={{ background: col }} className={cn("w-10 h-10 rounded-full cursor-pointer hover:scale-110 duration-200", col === color && "ring-2 ring-text-main")} />
                                         )
                                     })}
                             </div>

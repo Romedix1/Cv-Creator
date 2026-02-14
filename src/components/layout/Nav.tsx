@@ -5,6 +5,7 @@ import { User } from "@supabase/supabase-js";
 import { getTranslations } from "next-intl/server";
 import { getUserProfile } from "@/lib/getUserProfile";
 import NavLink from "../ui/NavLink";
+import { cn } from "@/lib/utils";
 
 type NavProps = {
     authPage?: boolean;
@@ -31,7 +32,7 @@ export default async function Nav({ authPage = false, user }: NavProps) {
     }
 
     return (
-        <nav className={`bg-background px-5 md:px-8 sticky top-0 z-40 border-b border-border ${authPage ? "md:py-1" : " md:py-4"}`}>
+        <nav className={cn("bg-background px-5 md:px-8 sticky top-0 z-40 border-b border-border", authPage ? "md:py-1" : " md:py-4")}>
             <div className="flex justify-between w-full h-16 gap-8">
                 <div className="flex gap-8 items-center">
                     <Link href="/">

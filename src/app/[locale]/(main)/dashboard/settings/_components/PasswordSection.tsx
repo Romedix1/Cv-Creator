@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
 import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
+import { cn } from "@/lib/utils"
 
 type PasswordSectionProps = {
     email: string
@@ -70,7 +71,7 @@ export default function PasswordSection({ email }: PasswordSectionProps) {
             <Input name="currentPassword" label={tSettings("currentPassword")} type="password" placeholderValue="**********" />
             <Input name="newPassword" label={tSettings("newPassword")} type="password" placeholderValue="**********" />
 
-            {message && <p className={`font-semibold ${message.type === "success" ? "text-success" : "text-error"}`}>{message.text}</p>}
+            {message && <p className={cn("font-semibold", message.type === "success" ? "text-success" : "text-error")}>{message.text}</p>}
 
             <div className="flex w-full md:justify-end">
                 <Button variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />

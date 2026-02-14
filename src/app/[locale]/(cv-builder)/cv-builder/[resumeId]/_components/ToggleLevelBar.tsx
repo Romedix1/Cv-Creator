@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 type ToggleLevelBarProps = {
     label: string;
     checked: boolean;
@@ -11,8 +13,8 @@ export default function ToggleLevelBar({ label, checked, onChange }: ToggleLevel
 
             <div className="relative">
                 <input onChange={(e) => onChange(e.target.checked)} type="checkbox" className="sr-only" />
-                <div className={`block w-12 h-7 rounded-full transition-colors duration-300 ease-in-out ${checked ? "bg-default" : "bg-text-muted"}`}></div>
-                    <div className={`absolute left-1 top-1 bg-text-main w-5 h-5 rounded-full duration-200 ease-in-out flex items-center justify-center ${checked ? "translate-x-5" : "translate-x-0"}`}>
+                <div className={cn("block w-12 h-7 rounded-full transition-colors duration-300 ease-in-out", checked ? "bg-default" : "bg-text-muted")}></div>
+                    <div className={cn("absolute left-1 top-1 bg-text-main w-5 h-5 rounded-full duration-200 ease-in-out flex items-center justify-center", checked ? "translate-x-5" : "translate-x-0")}>
                 </div>
             </div>
         </label>

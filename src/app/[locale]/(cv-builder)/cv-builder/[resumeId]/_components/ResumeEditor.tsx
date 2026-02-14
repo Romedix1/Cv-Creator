@@ -34,6 +34,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useResume } from "@/context/ResumeContext";
 import { toJpeg } from "html-to-image";
 import Button from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 
 type ResumeEditorProps = {
     initialData: ResumeData | null;
@@ -342,7 +343,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                 {displaySection(currentStep)}
                 {!isEditingMode && (
                     <div className="w-full grid grid-cols-2 gap-8 mt-16 px-3 sm:px-12">
-                        <Button variant="secondary" className={`w-full ${STEPS.findIndex(link => link.key === currentStep) === 0 ? "invisible pointer-events-none transition-none" : ""}`} text={tButton("prevBtn")} onClick={() => handlePrevButton(currentStep)} />
+                        <Button variant="secondary" className={cn("w-full", STEPS.findIndex(link => link.key === currentStep) === 0 ? "invisible pointer-events-none transition-none" : "")} text={tButton("prevBtn")} onClick={() => handlePrevButton(currentStep)} />
                         <Button variant="primary" className="w-full" text={tButton("nextBtn")} onClick={() => handleNextButton(currentStep)} />
                     </div>
                 )}
