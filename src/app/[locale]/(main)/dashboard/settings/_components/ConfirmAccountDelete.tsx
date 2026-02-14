@@ -16,6 +16,7 @@ type ConfirmDeleteProps = {
 
 export default function ConfirmAccountDelete({ email, hasPassword, setConfirmDelete }: ConfirmDeleteProps) {
     const tSettings = useTranslations("Dashboard.Settings.ConfirmDelete")
+    const tButton = useTranslations("Button")
     const tValidation = useTranslations("Validation")
 
     const [error, setError] = useState<string | null>(null)

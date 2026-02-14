@@ -8,7 +8,7 @@ export default function HeroSection() {
     const tHero = useTranslations("Hero");
     const tNav = useTranslations("Nav");
     const tButton = useTranslations("Button");
-    const tAlt = useTranslations("Alt");
+    const tAlt = useTranslations("ImgAlt");
 
     return (
         <section className="py-12 px-5 flex flex-col gap-16 items-center lg:flex-row lg:px-24 2xl:px-30">
