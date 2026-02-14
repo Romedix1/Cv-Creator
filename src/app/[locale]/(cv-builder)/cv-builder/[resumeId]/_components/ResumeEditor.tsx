@@ -80,23 +80,11 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [isEditingMode, setIsEditingMode] = useState(false)
     const [viewMode, setViewMode] = useState<Settings["skillsType"]>("categories")
+    const [isHydrated, setIsHydrated] = useState(isAuthenticated)
 
-    const { title, setIsSaving, setSaveError } = useResume()
+    const { title, setTitle, setIsSaving, setSaveError } = useResume()
 
     const previewRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            const localData = localStorage.getItem(`guest_resume_${resumeId}`);
-            if (localData) {
-                try {
-                    setData(JSON.parse(localData));
-                } catch {
-                    console.error("Cookies error");
-                }
-            }
-        }
-    }, [isAuthenticated, resumeId]);
 
     const [data, setData] = useState<ResumeData>(initialData ? initialData : {
         personalInfo: {
@@ -145,6 +133,26 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
     const supabase = createClient()
 
     useEffect(() => {
+        if (!isAuthenticated) {
+            const localData = localStorage.getItem(`guest_resume_${resumeId}`)
+            const localTitle = localStorage.getItem(`guest_title_${resumeId}`) || tBuilderNav("documentName")
+
+            setTitle(localTitle)
+
+            if (localData) {
+                try {
+                    const parsedData = JSON.parse(localData)
+                    setData(parsedData)
+                } catch {
+                    console.error("Cookies error")
+                }
+            }
+
+            setIsHydrated(true)
+        }
+    }, [isAuthenticated, resumeId])
+
+    useEffect(() => {
         if (isFirstRender.current) return
 
         setIsSaving(true)
@@ -157,6 +165,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                 return
             }
 
+            if (!isAuthenticated && !isHydrated) return
             if (!resumeId) return
 
             setSaveError(null)
@@ -195,7 +204,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
         }
 
         saveData()
-    }, [debouncedData, debouncedTitle])
+    }, [debouncedData, debouncedTitle, title, isHydrated, isAuthenticated, resumeId, supabase, tBuilderNav, tError])
 
     useEffect(() => {
         const uploadImage = async () => {
@@ -206,7 +215,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                 reader.onloadend = () => {
                     const base64String = reader.result as string
 
-                    handleSectionChange("personalInfo", { ...data.personalInfo, avatarUrl: base64String })
+                    setData(prev => ({ ...prev, personalInfo: { ...prev.personalInfo, avatarUrl: base64String }}))
 
                     setSelectedFile(null)
                 }

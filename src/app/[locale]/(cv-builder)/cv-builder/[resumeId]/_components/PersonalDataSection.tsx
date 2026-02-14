@@ -66,7 +66,7 @@ export default function PersonalDataSection({ personalData, onPersonalInfoChange
         <section className="px-3 mt-6 flex flex-col gap-6 sm:px-12 sm:grid sm:grid-cols-2">
             <SectionHeader step="personalData" />
 
-            <AvatarUpload className="col-span-2" isAuthenticated={isAuthenticated} initials={initials} avatarUrl={personalData.avatarUrl} uploadedAvatarUrl={personalData.avatarUrl} setUploadedAvatarUrl={(newUrl) => handleChange("avatarUrl", newUrl)} setSelectedFile={setSelectedFile} />
+            <AvatarUpload className="col-span-2" initials={initials} avatarUrl={personalData.avatarUrl} uploadedAvatarUrl={personalData.avatarUrl} setUploadedAvatarUrl={(newUrl) => handleChange("avatarUrl", newUrl)} setSelectedFile={setSelectedFile} />
             <Input onChange={(e) => handleChange("firstName", e.target.value)} name="firstName" label={tInput("firstNameLabel")} value={personalData.firstName || ""} placeholderValue={tInput("firstNameLabel")} type="text" />
             <Input onChange={(e) => handleChange("lastName", e.target.value)} name="lastName" label={tInput("lastNameLabel")} value={personalData.lastName || ""} placeholderValue={tInput("lastNamePlaceholder")} type="text" />
             <Input onChange={(e) => handleChange("jobTitle", e.target.value)} name="jobTitle" label={tInput("jobTitleLabel")} value={personalData.jobTitle || ""} placeholderValue={tInput("jobTitlePlaceholder")} type="text" />
