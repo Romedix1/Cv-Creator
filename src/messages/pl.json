@@ -114,7 +114,12 @@
         "subtitle": "Zarejestruj się, aby tworzyć i zapisywać CV.",
         "registerBtn": "Zarejestruj się",
         "haveAccount": "Masz już konto? <login>Zaloguj się</login>",
-        "agreementText": "Rejestrując się, akceptujesz <terms>Regulamin</terms> i <privacy>Politykę Prywatności</privacy>."
+        "agreementText": "Rejestrując się, akceptujesz <terms>Regulamin</terms> i <privacy>Politykę Prywatności</privacy>",
+        "successHeader": "Sprawdź pocztę",
+        "successSubtitle": "Wysłaliśmy link aktywacyjny na Twój adres e-mail. Kliknij go, aby dokończyć rejestrację",
+        "dontGetEmail": "Nie widzisz wiadomości?",
+        "dontGetEmailText": "Sprawdź folder Spam lub poczekaj kilka minut (limity serwera demo)",
+        "backToLogin": "Wróć do logowania"
     },
     "Login":{
         "header": "Witaj ponownie",
@@ -408,7 +413,8 @@
         "profileLoadingHeader": "Nie udało się załadować profilu użytkownika",
         "profileLoadingText": "Spróbuj odświeżyć stronę lub zalogować się ponownie",
         "mainErrorHeader": "Wystąpił błąd",
-        "mainErrorText": "Odśwież stronę lub spróbuj ponownie później"
+        "mainErrorText": "Odśwież stronę lub spróbuj ponownie później",
+        "emailRateLimit": "Osiągnięto limit wysyłki maili. Jako że to projekt do portfolio, limity są bardzo ścisłe - przepraszamy! Skorzystaj z logowania Google/GitHub/Facebook powyżej, aby wejść bez czekania"
     },
     "Loading": {
         "loadingText": "Ładowanie"

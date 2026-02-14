@@ -5,7 +5,7 @@ import Input from "@/components/ui/Input";
 import OAuthContainer from "@/app/[locale]/(auth)/_components/OAuthContainer";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { signUp } from "@/actions/auth"
 import RegistrationSuccess from "./_components/RegistrationSuccess";
 
@@ -17,6 +17,7 @@ type ValidationErrors = {
 
 export default function RegisterPage() {
     const tRegister = useTranslations("Register");
+    const tError = useTranslations("Errors");
 
     const [error, setError] = useState<ValidationErrors>({});
     const [apiError, setApiError] = useState<string | null>(null);
@@ -35,8 +36,12 @@ export default function RegisterPage() {
                 setError(res.errors);
             }
 
-            if(res?.apiError) {
-                setApiError(res.apiError);
+            if (res?.apiError) {
+                if (res.apiError.toLowerCase().includes("rate limit")) {
+                    setApiError(tError("emailRateLimit"));
+                } else {
+                    setApiError(res.apiError);
+                }
             }
         } else {
             setSuccess(true);
@@ -45,7 +50,7 @@ export default function RegisterPage() {
         setIsLoading(false);
     }
 
-    if (success) {
+    if (true) {
         return <RegistrationSuccess />
     }
 
