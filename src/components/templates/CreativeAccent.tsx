@@ -91,7 +91,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
             content: (
                 <div className="flex">
                     {createLine(true, userColor)}
-                    <p className="text-[11px] leading-3.75 wrap-break-word">{data.personalInfo.profile}</p>
+                    <p className="text-[11px] leading-3.75 w-full wrap-break-word">{data.personalInfo.profile}</p>
                 </div>
             )
         },

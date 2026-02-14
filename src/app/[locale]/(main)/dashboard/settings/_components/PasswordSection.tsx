@@ -74,7 +74,7 @@ export default function PasswordSection({ email }: PasswordSectionProps) {
             {message && <p className={cn("font-semibold", message.type === "success" ? "text-success" : "text-error")}>{message.text}</p>}
 
             <div className="flex w-full md:justify-end">
-                <Button variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />
+                <Button type="submit" variant="primary" text={tSettings("saveChangesBtn")} className="mt-6 w-full md:w-[300px]" />
             </div>
         </form>
     )

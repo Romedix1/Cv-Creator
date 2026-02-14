@@ -141,9 +141,9 @@
         "genericSaveError": "Wystąpił problem z zapisem danych. Spróbuj ponownie później",
         "genericPasswordUpdateError": "Nie udało się zaktualizować hasła",
         "uploadPreviewError": "Nie udało się załadować podglądu",
-        "incorrectWordError": "Wpisz poprawnie słowo:",
         "sessionExpired": "Nie jesteś zalogowany lub sesja wygasła",
-        "deleteAccount": "Nie udało się usunąć konta. Spróbuj ponownie później"
+        "deleteAccount": "Nie udało się usunąć konta. Spróbuj ponownie później",
+        "incorrectConfirmationWord": "Nieprawidłowe słowo potwierdzające"
     },
     "Templates": {
         "header": "Znajdź idealny szablon dla siebie",
