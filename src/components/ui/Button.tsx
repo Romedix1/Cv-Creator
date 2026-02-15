@@ -18,7 +18,7 @@ type ButtonProps = {
 export default function Button({ className, type="button", disabled, onClick, variant, text, icon, "aria-label": ariaLabel, href, form }: ButtonProps) {
     const baseStyles = "flex justify-center items-center py-2.5 rounded-lg font-semibold cursor-pointer duration-200";
 
-    const variantStyles = variant === "primary" ? "bg-default text-button-text hover:bg-default-hover" : variant === "secondary" ? "bg-transparent text-text-main border border-border hover:bg-surface-hover" : variant === "remove" ? "text-text-muted hover:text-error" : "text-text-muted hover:text-default"
+    const variantStyles = variant === "primary" ? "bg-default text-button-text hover:bg-default-hover" : variant === "secondary" ? "bg-transparent border border-border hover:bg-surface-hover" : variant === "remove" ? "text-text-muted hover:text-error" : "text-text-muted hover:text-default"
 
     if (href) {
         return (

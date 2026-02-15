@@ -32,7 +32,7 @@ export default function Template({ templateId, name, image, onPreview, enablePre
 
                 <div className="hidden lg:flex absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 duration-300 flex-col items-center justify-center px-6 gap-4">
                     <Button variant="primary" text={tButton("select")} className="w-full" onClick={handleCreate} />
-                    {enablePreview && onPreview && <Button onClick={() => onPreview(templateId)} variant="secondary" text={tButton("preview")} className="w-full translate-y-4 group-hover:translate-y-0 duration-300 delay-75"/>}
+                    {enablePreview && onPreview && <Button onClick={() => onPreview(templateId)} variant="secondary" text={tButton("preview")} className="w-full translate-y-4 group-hover:translate-y-0 duration-300 delay-75 text-button-text hover:text-text-main"/>}
                 </div>
             </div>
             <div className="flex flex-col items-center px-4 relative">

@@ -26,7 +26,7 @@ type DropdownItemType = {
 }
 
 const DropdownItem = ({ onClick, icon: Icon, children, className }: DropdownItemType) => (
-    <button type="button" onClick={onClick} className={cn("flex gap-3 w-full items-center hover:bg-default-hover rounded-[10px] px-1.5 py-1 cursor-pointer duration-200", className)}>
+    <button type="button" onClick={onClick} className={cn("flex gap-3 w-full items-center hover:bg-default-hover hover:text-bg-main dark:hover:text-text-main rounded-[10px] px-1.5 py-1 cursor-pointer duration-200", className)}>
         <Icon size={24} />
         {children}
     </button>
@@ -69,7 +69,7 @@ export default function ResumeDropdown({ resumeId, title, onClose }: ResumeDropd
 
     return (
         <div ref={menuRef} className="absolute right-4 top-16 px-2 py-3 bg-surface-hover border-2 rounded-[8px] flex flex-col gap-2 z-60 animate-in fade-in zoom-in-95 slide-in-from-top-2 duration-300 origin-top-right">
-            <Link href={`/cv-builder/${resumeId}`} className="flex gap-3 w-full items-center hover:bg-default-hover rounded-[10px] px-1.5 py-1 cursor-pointer duration-200">
+            <Link href={`/cv-builder/${resumeId}`} className="flex gap-3 w-full items-center hover:bg-default-hover hover:text-bg-main dark:hover:text-text-main rounded-[10px] px-1.5 py-1 cursor-pointer duration-200">
                 <PenSquare />
                 {tDocuments("edit")}
             </Link>
@@ -87,7 +87,7 @@ export default function ResumeDropdown({ resumeId, title, onClose }: ResumeDropd
             </DropdownItem>
 
             <Separator />
-            <DropdownItem icon={Trash2} onClick={() => setIsDeleting(true)} className="text-error hover:bg-error/30">
+            <DropdownItem icon={Trash2} onClick={() => setIsDeleting(true)} className="text-error hover:bg-error/30 hover:text-error">
                 {tDocuments("delete")}
             </DropdownItem>
 
