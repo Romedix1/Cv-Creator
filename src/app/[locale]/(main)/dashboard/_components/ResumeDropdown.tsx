@@ -1,7 +1,7 @@
 "use client"
 
 import { Copy, Download, LucideIcon, PenSquare, Tag, Trash2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState, useTransition } from "react";
 import { copyResume } from "@/actions/resume";
@@ -42,6 +42,8 @@ export default function ResumeDropdown({ resumeId, title, onClose }: ResumeDropd
 
     const menuRef = useRef<HTMLDivElement>(null)
 
+    const locale = useLocale()
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(event.target as Node) && !isRenaming && !isDeleting) {
@@ -80,7 +82,7 @@ export default function ResumeDropdown({ resumeId, title, onClose }: ResumeDropd
                 {tDocuments("copy")}
             </DropdownItem>
 
-            <DropdownItem icon={Download} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments)}>
+            <DropdownItem icon={Download} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments, locale)}>
                 {tDocuments("download")}
             </DropdownItem>
 
