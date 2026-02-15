@@ -93,3 +93,5 @@ Link do aplikacji: [https://cv-creator-kappa.vercel.app](https://cv-creator-kapp
     ```bash
     npm run dev
     ```
+
+    <img width="1853" height="767" alt="image" src="https://github.com/user-attachments/assets/303c6206-5c8b-4fc5-9713-e880ec1bfd46" />
