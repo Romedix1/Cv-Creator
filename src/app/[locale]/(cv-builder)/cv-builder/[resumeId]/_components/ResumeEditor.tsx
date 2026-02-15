@@ -291,7 +291,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
 
         const timer = setTimeout(() => {
             updatePreviewImage()
-        }, 200)
+        }, 5000)
 
         return () => clearTimeout(timer)
     }, [currentStep, resumeId, isAuthenticated])
