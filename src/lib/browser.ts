@@ -1,6 +1,6 @@
-import chromium from '@sparticuz/chromium';
 import { getTranslations } from 'next-intl/server';
 import puppeteer from 'puppeteer-core';
+import chromium from '@sparticuz/chromium-min'
 
 export async function getBrowserInstance() {
     const tError = await getTranslations("Errors")
@@ -17,5 +17,5 @@ export async function getBrowserInstance() {
         return puppeteer.launch({ args: [], executablePath, headless: true })
     }
 
-    return puppeteer.launch({ args: chromium.args, executablePath: await chromium.executablePath(), headless: true})
+    return puppeteer.launch({ args: chromium.args, executablePath: await chromium.executablePath(process.env.CHROMIUM_URL), headless: true})
 }

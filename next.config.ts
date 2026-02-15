@@ -3,10 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  serverExternalPackages: ['@sparticuz/chromium'],
-  outputFileTracingIncludes: {
-    'api/download/[id]': ['./node_modules/@sparticuz/chromium/bin/**'],
-  },
+  serverExternalPackages: ['@sparticuz/chromium-min'],
   images: {
     remotePatterns: [
       {
