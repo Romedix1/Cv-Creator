@@ -19,8 +19,8 @@ export default function Footer() {
                 <ul className="gap-3.5 flex flex-col text-[14px] text-text-muted md:flex-1">
                     <li><Link href="/templates">{tFooter("templates")}</Link></li>
                     <li><Link href="/login">{tFooter("login")}</Link></li>
-                    <li><Link href="/privacy-policy">{tFooter("policyPrivacy")}</Link></li>
-                    <li><Link href="/terms-of-service">{tFooter("terms")}</Link></li>
+                    <li><Link href="/privacy">{tFooter("policyPrivacy")}</Link></li>
+                    <li><Link href="/terms">{tFooter("terms")}</Link></li>
                 </ul>
             </div>
 
