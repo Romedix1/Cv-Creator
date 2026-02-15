@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { ReactNode } from "react";
 
 export async function generateMetadata() {
-    const tMetadata = await getTranslations("Metadata.templatesPage")
+    const tMetadata = await getTranslations("Metadata.mainPage")
 
     return {
         title: tMetadata("title"),
