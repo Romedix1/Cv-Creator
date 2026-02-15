@@ -11,7 +11,7 @@
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
     "@radix-ui/react-separator": "^1.1.8",
-    "@sparticuz/chromium": "^143.0.4",
+    "@sparticuz/chromium-min": "^143.0.4",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.87.1",
     "class-variance-authority": "^0.7.1",
