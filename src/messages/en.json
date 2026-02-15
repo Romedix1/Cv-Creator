@@ -130,6 +130,23 @@
         "dontHaveAccount": "Don't have an account? <login>Sign up</login>",
         "agreementText": "By logging in, you accept the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
     },
+    "ForgotPassword": {
+        "header": "Reset password",
+        "subtitle": "Enter your email address and we'll send you a link to reset your password",
+        "sendBtn": "Send reset link",
+        "backToLogin": "Back to login",
+        "successHeader": "Check your email",
+        "successSubtitle": "We have sent a password reset link to your email address"
+    },
+    "ResetPassword": {
+        "header": "Set new password",
+        "subtitle": "Please enter and confirm your new password below",
+        "newPasswordLabel": "New password",
+        "confirmPasswordLabel": "Confirm new password",
+        "updateBtn": "Update password",
+        "savingBtn": "Updating...",
+        "passwordUpdated": "Password updated successfully! Redirecting..."
+    },
     "Validation": {
         "nameMin": "Name must be at least 2 characters long",
         "emailInvalid": "Invalid email address",
@@ -144,7 +161,8 @@
         "uploadPreviewError": "Failed to load preview",
         "incorrectWordError": "Type the word correctly:",
         "sessionExpired": "You are not logged in or the session has expired",
-        "deleteAccount": "Failed to delete account. Please try again later"
+        "deleteAccount": "Failed to delete account. Please try again later",
+        "passwordsDontMatch": "Passwords do not match"
     },
     "Templates": {
         "header": "Find the perfect template for you",

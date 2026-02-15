@@ -130,6 +130,23 @@
         "dontHaveAccount": "Nie masz konta? <login>Zarejestruj się</login>",
         "agreementText": "Logując się, akceptujesz <terms>Regulamin</terms> i <privacy>Politykę Prywatności</privacy>."
     },
+    "ForgotPassword": {
+        "header": "Resetowanie hasła",
+        "subtitle": "Wprowadź swój adres e-mail, a wyślemy Ci link do zresetowania hasła.",
+        "sendBtn": "Wyślij link do resetowania",
+        "backToLogin": "Wróć do logowania",
+        "successHeader": "Sprawdź swoją pocztę",
+        "successSubtitle": "Wysłaliśmy link do resetowania hasła na Twój adres e-mail."
+    },
+    "ResetPassword": {
+        "header": "Ustaw nowe hasło",
+        "subtitle": "Wprowadź i potwierdź swoje nowe hasło poniżej",
+        "newPasswordLabel": "Nowe hasło",
+        "confirmPasswordLabel": "Potwierdź nowe hasło",
+        "updateBtn": "Zaktualizuj hasło",
+        "savingBtn": "Aktualizowanie...",
+        "passwordUpdated": "Hasło zostało pomyślnie zaktualizowane! Przekierowanie..."
+    },
     "Validation": {
         "nameMin": "Imię musi mieć co najmniej 2 znaki",
         "emailInvalid": "Niepoprawny adres email",
@@ -144,7 +161,8 @@
         "uploadPreviewError": "Nie udało się załadować podglądu",
         "sessionExpired": "Nie jesteś zalogowany lub sesja wygasła",
         "deleteAccount": "Nie udało się usunąć konta. Spróbuj ponownie później",
-        "incorrectConfirmationWord": "Nieprawidłowe słowo potwierdzające"
+        "incorrectConfirmationWord": "Nieprawidłowe słowo potwierdzające",
+        "passwordsDontMatch": "Hasła nie są takie same"
     },
     "Templates": {
         "header": "Znajdź idealny szablon dla siebie",
