@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowLeft, CloudAlert, CloudCheck, CloudUpload, DownloadIcon, PenSquare } from "lucide-react";
-import { useTranslations } from "use-intl";
+import { useLocale, useTranslations } from "use-intl";
 import Link from "next/link";
 import { useResume } from "@/context/ResumeContext";
 import { handleDownload } from "@/lib/resume/client";
@@ -23,6 +23,8 @@ export default function CvBuilderNav({ isAuthenticated, resumeId }: CvBuilderNav
     const [isDownloading, setIsDownloading] = useState(false)
 
     const saveIconStyles = "w-5 h-5 lg:w-6 lg:h-6"
+
+    const locale = useLocale()
 
     return (
         <nav className="relative bg-bg-main p-3 border-b border-border flex items-center justify-between">
@@ -52,7 +54,7 @@ export default function CvBuilderNav({ isAuthenticated, resumeId }: CvBuilderNav
                     {saveError ? <CloudAlert aria-hidden={true} className={cn("text-error", saveIconStyles)} /> : isSaving ? <CloudUpload aria-hidden={true} className={saveIconStyles} /> : <CloudCheck aria-hidden={true} className={saveIconStyles} />}
                 </div>
 
-                <button type="button" aria-label={tAria("downloadPDF")} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments)} className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2">
+                <button type="button" aria-label={tAria("downloadPDF")} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments, locale)} className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2">
                     <span className="hidden sm:block text-sm lg:text-[17x] font-bold">{tBuilderNav("download")}</span>
                     <DownloadIcon aria-hidden="true" className="w-5 h-5" />
                 </button>
