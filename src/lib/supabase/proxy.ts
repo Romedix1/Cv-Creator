@@ -26,11 +26,16 @@ export async function updateSession(request: NextRequest, response: NextResponse
   const path = url.pathname
 
   const isDashboard = path.includes('/dashboard')
-  const isAuthPage = path.includes('/login') || path.includes('/register')
+  const isAuthPage = path.includes('/login') || path.includes('/register') || path.includes('/forgot-password')
+  const isResetPage = path.includes('/auth/reset-password')
 
   if (!user && isDashboard) {
     url.pathname = '/login'
     return NextResponse.redirect(url)
+  }
+
+  if (user && isResetPage) {
+    return response
   }
 
   if (user && isAuthPage) {

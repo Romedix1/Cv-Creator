@@ -54,7 +54,7 @@ export default function RegisterPage() {
         setIsLoading(false)
     }
 
-    if (true) {
+    if (success) {
         return <RegistrationSuccess email={registeredEmail} />
     }
 
