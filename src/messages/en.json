@@ -113,6 +113,7 @@
         "header": "Create account",
         "subtitle": "Sign up to create and save your CVs.",
         "registerBtn": "Sign up",
+        "registering": "Registering...",
         "haveAccount": "Already have an account? <login>Login</login>",
         "agreementText": "By registering, you accept the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>",
         "successHeader": "Check your email",
@@ -127,6 +128,7 @@
         "subtitle": "Login to manage your CVs.",
         "forgotPassword": "Forgot password?",
         "loginBtn": "Login",
+        "loggingIn": "Logging in...",
         "dontHaveAccount": "Don't have an account? <login>Sign up</login>",
         "agreementText": "By logging in, you accept the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
     },

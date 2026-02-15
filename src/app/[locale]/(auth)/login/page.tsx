@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { signIn } from "@/actions/auth";
 import { useRouter } from "next/navigation";
+import ApiError from "../_components/ApiError";
 
 type ValidationErrors = {
     email?: string[];
@@ -15,8 +16,9 @@ type ValidationErrors = {
 };
 
 export default function LoginPage() {
-    const tLogin = useTranslations("Login");
-    const tInput = useTranslations("Inputs");
+    const tLogin = useTranslations("Login")
+    const tInput = useTranslations("Inputs")
+    const tError = useTranslations("Errors")
     const router = useRouter()
 
     const [error, setError] = useState<ValidationErrors>({});
@@ -38,8 +40,12 @@ export default function LoginPage() {
                 setError(res.errors);
             }
 
-            if(res?.apiError) {
-                setApiError(res.apiError);
+            if (res?.apiError) {
+                if (res.apiError.toLowerCase().includes("rate limit")) {
+                    setApiError(tError("emailRateLimit"))
+                } else {
+                    setApiError(res.apiError)
+                }
             }
         } else {
             setSuccess(true);
@@ -64,11 +70,7 @@ export default function LoginPage() {
 
             <OAuthContainer />
 
-            {apiError && (
-                <div className="bg-red-50 border text-red-600 px-4 py-3 rounded-lg text-sm my-4 text-center">
-                    {apiError}
-                </div>
-            )}
+            {apiError && <ApiError text={apiError} />}
 
             <div className="flex flex-col gap-5">
                 <Input name="email" label={tInput("emailLabel")} type="email" placeholderValue={tInput("emailPlaceholder")} error={error.email?.[0]} />
@@ -79,7 +81,7 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            <Button disabled={isLoading} type="submit" variant="primary" text={tLogin("loginBtn")} className="mt-8 w-full"/>
+            <Button disabled={isLoading} type="submit" variant="primary" text={isLoading ? tLogin("loggingIn") : tLogin("loginBtn")} className="mt-8 w-full"/>
 
             <p className="text-text-light text-[14px] text-center mt-6">{tLogin.rich("dontHaveAccount", { login: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200" href={"/register"}>{chunks}</Link>)})}</p>
             <p className="text-text-light text-center text-[14px] mt-8">{tLogin.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy"}>{chunks}</Link>)})}</p>

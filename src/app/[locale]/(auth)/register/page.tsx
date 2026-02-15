@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signUp } from "@/actions/auth"
 import RegistrationSuccess from "./_components/RegistrationSuccess";
+import ApiError from "../_components/ApiError";
 
 type ValidationErrors = {
     name?: string[];
@@ -67,11 +68,7 @@ export default function RegisterPage() {
 
             <OAuthContainer />
 
-            {apiError && (
-                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm my-4 text-center">
-                    {apiError}
-                </div>
-            )}
+            {apiError && <ApiError text={apiError} />}
 
             <div className="flex flex-col gap-5">
                 <Input name="name" label={tInput("nameLabel")} type="text" placeholderValue={tInput("namePlaceholder")} error={error.name?.[0]} />
@@ -79,7 +76,7 @@ export default function RegisterPage() {
                 <Input name="password" label={tInput("passwordLabel")} type="password" placeholderValue={"***********"} error={error.password?.[0]}/>
             </div>
 
-            <Button type="submit" variant="primary" text={tRegister("registerBtn")} className="mt-8 w-full" disabled={isLoading}/>
+            <Button type="submit" variant="primary" text={isLoading ? tRegister("registering") : tRegister("registerBtn")} className="mt-8 w-full" disabled={isLoading}/>
 
             <p className="text-text-light text-[14px] text-center mt-6">{tRegister.rich("haveAccount", { login: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200" href={"/login"}>{chunks}</Link>)})}</p>
             <p className="text-text-light text-[14px] mt-8">{tRegister.rich("agreementText", { terms: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/terms"}>{chunks}</Link>), privacy: (chunks) => (<Link className="text-default font-medium hover:text-default-hover duration-200 hover:underline" href={"/privacy"}>{chunks}</Link>)})}</p>

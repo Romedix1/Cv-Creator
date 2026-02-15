@@ -7,6 +7,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { ArrowLeft, Mail, CheckCircle2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import ApiError from "../_components/ApiError";
 
 export default function ForgotPasswordPage() {
     const tForgot = useTranslations("ForgotPassword")
@@ -65,11 +66,7 @@ export default function ForgotPasswordPage() {
                 <p className="text-text-muted text-[14px] text-center px-4">{tForgot("subtitle")}</p>
             </div>
 
-            {apiError && (
-                <div className="bg-red-50 border border-red-100 text-red-600 px-4 py-3 rounded-lg text-sm mb-6 text-center">
-                    {apiError}
-                </div>
-            )}
+            {apiError && <ApiError text={apiError} />}
 
             <div className="flex flex-col gap-5">
                 <Input name="email" label={tInput("emailLabel")} type="email" placeholderValue={tInput("emailPlaceholder")} />
