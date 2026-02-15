@@ -73,6 +73,10 @@ export default function LoginPage() {
             <div className="flex flex-col gap-5">
                 <Input name="email" label={tInput("emailLabel")} type="email" placeholderValue={tInput("emailPlaceholder")} error={error.email?.[0]} />
                 <Input name="password" label={tInput("passwordLabel")} type="password" placeholderValue={"***********"} error={error.password?.[0]} />
+
+                <div className="flex justify-end">
+                    <Link href="/forgot-password" className="text-[13px] text-text-muted hover:text-default duration-200">{tLogin("forgotPassword")}</Link>
+                </div>
             </div>
 
             <Button disabled={isLoading} type="submit" variant="primary" text={tLogin("loginBtn")} className="mt-8 w-full"/>
