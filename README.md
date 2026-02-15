@@ -4,7 +4,8 @@
 
 ---
 
-<h2 id="english-section">🇬🇧 English Version</h2>
+<a name="english-version"></a>
+## 🇬🇧 English Version
 
 **CV Creator** is a modern web application for building professional resumes. It offers cloud-based PDF generation, secure data storage, and full bilingual support.
 
@@ -31,7 +32,8 @@ App link: [https://cv-creator-kappa.vercel.app](https://cv-creator-kappa.vercel.
 
 ---
 
-<h2 id="polish-section">🇵🇱 Wersja Polska</h2>
+<a name="wersja-polska"></a>
+## 🇵🇱 Wersja Polska
 
 **CV Creator** to nowoczesna aplikacja webowa do tworzenia profesjonalnych CV. Oferuje generowanie plików PDF w chmurze, bezpieczne przechowywanie danych oraz dwujęzyczność.
 
