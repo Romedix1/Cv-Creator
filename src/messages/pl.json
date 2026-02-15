@@ -119,7 +119,8 @@
         "successSubtitle": "Wysłaliśmy link aktywacyjny na Twój adres e-mail. Kliknij go, aby dokończyć rejestrację",
         "dontGetEmail": "Nie widzisz wiadomości?",
         "dontGetEmailText": "Sprawdź folder Spam lub poczekaj kilka minut (limity serwera demo)",
-        "backToLogin": "Wróć do logowania"
+        "backToLogin": "Wróć do logowania",
+        "resendLink": "Wyślij ponownie link aktywacyjny"
     },
     "Login":{
         "header": "Witaj ponownie",
@@ -415,7 +416,9 @@
         "profileLoadingText": "Spróbuj odświeżyć stronę lub zalogować się ponownie",
         "mainErrorHeader": "Wystąpił błąd",
         "mainErrorText": "Odśwież stronę lub spróbuj ponownie później",
-        "emailRateLimit": "Osiągnięto limit wysyłki maili. Jako że to projekt do portfolio, limity są bardzo ścisłe - przepraszamy! Skorzystaj z logowania Google/GitHub/Facebook powyżej, aby wejść bez czekania"
+        "emailRateLimit": "Osiągnięto limit wysyłki maili. Jako że to projekt do portfolio, limity są bardzo ścisłe - przepraszamy! Skorzystaj z logowania Google/GitHub/Facebook powyżej, aby wejść bez czekania",
+        "resendFailed": "Nie udało się ponownie wysłać maila weryfikacyjnego",
+        "resendSuccess": "Mail weryfikacyjny został ponownie wysłany"
     },
     "Loading": {
         "loadingText": "Ładowanie"

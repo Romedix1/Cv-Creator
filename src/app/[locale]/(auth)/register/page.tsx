@@ -24,6 +24,7 @@ export default function RegisterPage() {
     const [apiError, setApiError] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState(false)
     const [success, setSuccess] = useState(false)
+    const [registeredEmail, setRegisteredEmail] = useState("")
 
     const handleSubmit = async (formData: FormData) => {
         setIsLoading(true)
@@ -45,14 +46,16 @@ export default function RegisterPage() {
                 }
             }
         } else {
+            setRegisteredEmail(formData.get("email") as string)
+
             setSuccess(true)
         }
 
         setIsLoading(false)
     }
 
-    if (success) {
-        return <RegistrationSuccess />
+    if (true) {
+        return <RegistrationSuccess email={registeredEmail} />
     }
 
     return (

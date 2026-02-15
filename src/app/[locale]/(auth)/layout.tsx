@@ -1,6 +1,7 @@
 import Nav from "@/components/layout/Nav";
 import { getTranslations } from "next-intl/server";
 import { ReactNode } from "react";
+import { ToastContainer } from "react-toastify";
 
 export async function generateMetadata() {
     const tMetadata = await getTranslations("Metadata.authPages")
@@ -18,6 +19,8 @@ export default async function AuthLayout({ children }: { children: ReactNode }) 
             <main className="flex justify-center px-5 py-8">
                 {children}
             </main>
+
+            <ToastContainer position="top-right" autoClose={3000} theme="colored"/>
         </>
     )
 }
