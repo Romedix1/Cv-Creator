@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl"
 import { Separator } from "../ui/separator";
+import Link from "next/link";
 
 export default function Footer() {
     const tFooter = useTranslations("Footer");
@@ -16,10 +17,10 @@ export default function Footer() {
                 </div>
 
                 <ul className="gap-3.5 flex flex-col text-[14px] text-text-muted md:flex-1">
-                    <li>{tFooter("templates")}</li>
-                    <li>{tFooter("login")}</li>
-                    <li>{tFooter("policyPrivacy")}</li>
-                    <li>{tFooter("terms")}</li>
+                    <li><Link href="/templates">{tFooter("templates")}</Link></li>
+                    <li><Link href="/login">{tFooter("login")}</Link></li>
+                    <li><Link href="/privacy-policy">{tFooter("policyPrivacy")}</Link></li>
+                    <li><Link href="/terms-of-service">{tFooter("terms")}</Link></li>
                 </ul>
             </div>
 

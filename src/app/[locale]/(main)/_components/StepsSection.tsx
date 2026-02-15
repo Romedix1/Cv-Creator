@@ -23,7 +23,7 @@ export default function StepsSection() {
                 })}
             </div>
 
-            <Button className="w-70 xl:w-[320px] py-4" variant="primary" text={tSteps("startCreatingBtn")}/>
+            <Button className="w-70 xl:w-[320px] py-4" variant="primary" text={tSteps("startCreatingBtn")} href="/templates"/>
         </section>
     )
 }
