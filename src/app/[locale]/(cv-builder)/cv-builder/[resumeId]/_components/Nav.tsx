@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowLeft, CloudAlert, CloudCheck, CloudUpload, DownloadIcon, PenSquare } from "lucide-react";
-import { useLocale, useTranslations } from "use-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useResume } from "@/context/ResumeContext";
 import { handleDownload } from "@/lib/resume/client";
