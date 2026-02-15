@@ -3,6 +3,10 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   /* config options here */
+  serverExternalPackages: ['@sparticuz/chromium'],
+  experimental: {
+    serverComponentsExternalPackages: ['@sparticuz/chromium'],
+  },
   images: {
     remotePatterns: [
       {
