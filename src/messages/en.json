@@ -119,7 +119,8 @@
         "successSubtitle": "We sent an activation link to your email address. Click it to complete registration",
         "dontGetEmail": "Can't see the email?",
         "dontGetEmailText": "Check your Spam folder or wait a few minutes (demo server limits)",
-        "backToLogin": "Back to login"
+        "backToLogin": "Back to login",
+        "resendLink": "Resend activation link"
     },
     "Login": {
         "header": "Welcome back",
@@ -414,7 +415,9 @@
         "profileLoadingText": "Try refreshing the page or logging in again",
         "mainErrorHeader": "An error occurred",
         "mainErrorText": "Refresh the page or try again later",
-        "emailRateLimit": "Email sending limit reached. As this is a portfolio project, limits are very strict - sorry! Use Google/GitHub/Facebook login above to enter without waiting"
+        "emailRateLimit": "Email sending limit reached. As this is a portfolio project, limits are very strict - sorry! Use Google/GitHub/Facebook login above to enter without waiting",
+        "resendFailed": "Failed to resend verification email",
+        "resendSuccess": "Verification email has been resent"
     },
     "Loading": {
         "loadingText": "Loading"

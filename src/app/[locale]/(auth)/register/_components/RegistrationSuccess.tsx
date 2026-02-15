@@ -1,11 +1,42 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
-import { ArrowLeft, CheckCircle2, Mail } from "lucide-react"
+import { ArrowLeft, CheckCircle2, Loader2, Mail } from "lucide-react"
+import { useState } from "react"
+import { createClient } from "@/lib/supabase/client"
+import { toast } from "react-toastify"
 
-export default function RegistrationSuccess() {
+type RegistrationSuccessProps = {
+    email: string;
+}
+
+export default function RegistrationSuccess({ email }: RegistrationSuccessProps) {
     const tRegister = useTranslations("Register")
+    const tError = useTranslations("Errors")
+    const locale = useLocale()
+    const [isResending, setIsResending] = useState(false)
+    const supabase = createClient()
+
+    const handleResendEmail = async () => {
+        setIsResending(true)
+
+        const { error } = await supabase.auth.resend({
+            type: 'signup',
+            email: email,
+            options: {
+                emailRedirectTo: `${window.location.origin}/${locale}/auth/callback`,
+            },
+        })
+
+        if (error) {
+            toast.error(tError("resendFailed"))
+        } else {
+            toast.success(tRegister("resendSuccess"))
+        }
+
+        setIsResending(false)
+    }
 
     return (
         <div className="bg-surface border rounded-2xl px-6 py-10 w-full md:w-[440px] flex flex-col items-center text-center animate-in fade-in zoom-in duration-300">
@@ -23,6 +54,11 @@ export default function RegistrationSuccess() {
                     <span>{tRegister("dontGetEmail")}</span>
                 </div>
                 <p className="text-xs text-text-muted opacity-70">{tRegister("dontGetEmailText")}</p>
+
+                <button onClick={handleResendEmail} disabled={isResending} className="mt-2 text-sm font-bold text-default hover:text-default-hover disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 duration-200 cursor-pointer">
+                    {isResending && <Loader2 size={14} className="animate-spin" />}
+                    {tRegister("resendLink")}
+                </button>
             </div>
 
             <Link href="/login" className="group text-default font-semibold hover:text-default-hover duration-200 flex items-center gap-2">
