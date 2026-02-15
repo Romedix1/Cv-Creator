@@ -105,7 +105,10 @@ CREATE POLICY "User can upload snapshots" ON storage.objects FOR INSERT TO authe
 CREATE POLICY "User can update own snapshots" ON storage.objects FOR UPDATE TO authenticated USING (bucket_id = 'cv-images' AND (storage.foldername(name))[1] = auth.uid()::text);
 CREATE POLICY "User can view own snapshots" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'cv-images' AND (storage.foldername(name))[1] = auth.uid()::text);
 
-AVATARS POLICY
+-- AVATARS POLICY
 CREATE POLICY "Users can upload their own avatar" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'avatars' AND (storage.foldername(name))[1] = auth.uid()::text);
 CREATE POLICY "Users can update their own avatar" ON storage.objects FOR UPDATE TO authenticated USING (bucket_id = 'avatars' AND (storage.foldername(name))[1] = auth.uid()::text);
 CREATE POLICY "Avatar public access" ON storage.objects FOR SELECT TO public USING (bucket_id = 'avatars');
+
+ALTER FUNCTION public.handle_updated_at() SET search_path = public;
+ALTER FUNCTION public.check_resume_limit() SET search_path = public;
