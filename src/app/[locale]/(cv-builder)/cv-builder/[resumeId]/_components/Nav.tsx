@@ -55,8 +55,8 @@ export default function CvBuilderNav({ isAuthenticated, resumeId }: CvBuilderNav
                 </div>
 
                 <button type="button" aria-label={tAria("downloadPDF")} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments, locale)} className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2">
-                    <span className="hidden sm:block text-sm lg:text-[17x] font-bold">{tBuilderNav("download")}</span>
-                    <DownloadIcon aria-hidden="true" className="w-5 h-5" />
+                    <span className="hidden sm:block text-sm lg:text-[17x] font-bold text-button-text">{tBuilderNav("download")}</span>
+                    <DownloadIcon aria-hidden="true" className="w-5 h-5 text-button-text" />
                 </button>
             </div>
         </nav>

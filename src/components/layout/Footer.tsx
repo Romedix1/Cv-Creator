@@ -16,11 +16,11 @@ export default function Footer() {
                     <p className="text-text-muted text-[14px]">{tFooter("text")}</p>
                 </div>
 
-                <ul className="gap-3.5 flex flex-col text-[14px] text-text-muted md:flex-1">
-                    <li><Link href="/templates">{tFooter("templates")}</Link></li>
-                    <li><Link href="/login">{tFooter("login")}</Link></li>
-                    <li><Link href="/privacy">{tFooter("policyPrivacy")}</Link></li>
-                    <li><Link href="/terms">{tFooter("terms")}</Link></li>
+                <ul className="gap-3.5 flex flex-col text-[14px] text-text-muted md:flex-1 duration-200">
+                    <li className="hover:text-default-hover"><Link href="/templates">{tFooter("templates")}</Link></li>
+                    <li className="hover:text-default-hover"><Link href="/login">{tFooter("login")}</Link></li>
+                    <li className="hover:text-default-hover"><Link href="/privacy">{tFooter("policyPrivacy")}</Link></li>
+                    <li className="hover:text-default-hover"><Link href="/terms">{tFooter("terms")}</Link></li>
                 </ul>
             </div>
 

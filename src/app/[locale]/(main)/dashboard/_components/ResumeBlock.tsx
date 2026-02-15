@@ -32,7 +32,7 @@ export default async function ResumeBlock({ data, snapshotUrl }: CvBlockType) {
                 <div className="absolute bg-default-hover opacity-0 group-hover:opacity-50 duration-400 z-10 w-full h-full" />
             </Link>
 
-            <div className="flex justify-between items-center relative bg-text-muted dark:bg-bg-main w-full p-4 rounded-b-[12px]">
+            <div className="flex justify-between items-center relative bg-surface dark:bg-bg-main w-full p-4 rounded-b-[12px]">
                 <ResumeInfobar resumeId={data.id} title={data.title} lastEdited={lastEdited} />
             </div>
         </article>

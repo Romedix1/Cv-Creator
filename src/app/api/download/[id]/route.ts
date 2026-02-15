@@ -76,14 +76,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
                 'Content-Disposition': `attachment; filename="cv.pdf"`
             }
         })
-    } catch (error: any) {
-        // return NextResponse.json({ error: "Internal server error" }, { status: 500 })
-        console.error("--- DEBUG START ---");
-        console.error("Wiadomość błędu:", error.message);
-        console.error("Pełny stos (stack):", error.stack);
-        console.error("--- DEBUG END ---");
-
-        return NextResponse.json({ error: "Błąd serwera", dev_details: error.message }, { status: 500 });
+    } catch {
+        return NextResponse.json({ error: "Internal server error" }, { status: 500 })
     } finally {
         if (browser) {
             await browser.close()
