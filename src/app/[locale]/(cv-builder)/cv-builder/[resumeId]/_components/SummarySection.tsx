@@ -6,10 +6,16 @@ import SortableList from "./SortableList";
 import SectionHeader from "./SectionHeader";
 import { cn } from "@/lib/utils";
 
+type CustomSectionSubset = {
+    id: string;
+    title?: string;
+    name?: string;
+}
+
 type SummarySectionProps = {
     sections: string[];
     onSectionsOrderChange: (newOrder: string[]) => void;
-    customSections: { id: string, title: string }[];
+    customSections: CustomSectionSubset[];
     onTemplateChange: (newValue: string) => void;
     onColorChange: (newValue: string) => void;
     template: string | null;
@@ -32,7 +38,7 @@ export default function SummarySection({ sections, onSectionsOrderChange, custom
         "#BE185D": tTemplate("pink")
     }
 
-    const identifiableSections = sections.map((sectionId) => ({ id: sectionId }))
+    const identifiableSections = sections.map(id => ({ id }));
 
     const CHANGE_TEMPLATE_OPTIONS = [
         {label: "Modern Blue", value: "modern-blue"},
@@ -44,20 +50,21 @@ export default function SummarySection({ sections, onSectionsOrderChange, custom
     ]
 
     const handleReorder = (newItems: { id: string }[]) => {
-        onSectionsOrderChange(newItems.map(item => item.id))
+        const newOrderIds = newItems.map(item => item.id)
+        onSectionsOrderChange(newOrderIds)
     }
 
     const getSectionTitle = (id: string) => {
         const custom = customSections.find(section => section.id === id)
 
         if (custom) {
-            return custom.title || tTemplate("noTitle")
+            return custom.title || custom.name || tTemplate("noTitle")
         }
 
         try {
             return tTemplate(`${id}Header`)
         } catch (error) {
-            return id
+            return tTemplate("noTitle")
         }
     }
 

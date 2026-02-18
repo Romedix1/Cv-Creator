@@ -270,6 +270,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
             </div>
 
             {sectionsToRender.map((section, index) => {
+                if (!section) return
                 return (
                     <div key={index}>
                         {(section.id !== "contact" && section.position !== "left") && <SectionHeader text={section.title} />}

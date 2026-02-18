@@ -247,15 +247,15 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                     return (
                                         <div key={item.id} className="flex">
                                             {createLine(isLast)}
-                                            <div className="flex flex-col flex-1 gap-1">
+                                            <div className="flex flex-col flex-1 gap-1 min-w-0">
                                                 <div>
                                                     <div className="flex justify-between items-baseline">
                                                         <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.title}</h3>
-                                                        <span className={cn("text-[10px] text-text-muted font-medium whitespace-nowrap", spaceGrotesk.className)}>{item.startDate} - {item.endDate}</span>
+                                                        <span className={cn("text-[10px] text-text-muted font-medium whitespace-nowrap flex-1", spaceGrotesk.className)}>{item.startDate} - {item.endDate}</span>
                                                     </div>
                                                 </div>
 
-                                                <div className="flex flex-col gap-0.5">
+                                                <div className="flex flex-col gap-0.5 flex-1">
                                                     <p className="text-text-muted text-[10px] wrap-break-word min-w-0">{item.description}</p>
                                                 </div>
                                             </div>
@@ -271,7 +271,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                     return (
                                         <div key={item.id} className="flex">
                                             {createLine(isLast)}
-                                            <div key={item.id} className="flex flex-col flex-1 gap-2.5">
+                                            <div key={item.id} className="flex flex-col flex-1 gap-2.5 min-w-0">
                                                 <div>
                                                     <div className="flex justify-between items-baseline">
                                                         <h3 className="font-bold text-[13px] text-black wrap-break-word flex-1 min-w-0">{item.title}</h3>
@@ -297,13 +297,13 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                     {section.items.map((secItem) => {
                                         if (secItem.title) {
                                             return (
-                                                <div key={secItem.id} className="w-full flex flex-col gap-3">
+                                                <div key={secItem.id} className="w-full flex flex-col gap-3 ">
                                                     <h3 className="font-bold text-[10px] wrap-break-word">{secItem.title}:</h3>
                                                     <ul className="flex flex-col gap-3">
                                                         {secItem.elements?.map((element) => (
-                                                            <li key={element.id} className="px-2 wrap-break-word flex items-center gap-2">
+                                                            <li key={element.id} className="px-2 wrap-break-word flex items-center gap-2 min-w-0">
                                                                 <span><Check className="shrink-0" /></span>
-                                                                {element.value}
+                                                                <span className="min-w-0 wrap-break-word">{element.value}</span>
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -313,9 +313,9 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                                         return (
                                             <ul key={secItem.id} className="flex flex-col gap-3">
                                                 {secItem.elements?.map((element) => (
-                                                    <li key={element.id} className="px-2 wrap-break-word flex items-center gap-2">
+                                                    <li key={element.id} className="px-2 wrap-break-word flex items-center gap-2 min-w-0">
                                                         <span><Check className="shrink-0" /></span>
-                                                        {element.value}
+                                                        <span className="flex-1 min-w-0 wrap-break-word">{element.value}</span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -336,12 +336,14 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex", manrope.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#F3F4F6] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
-                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover ring-4 ring-white"/>
+                {data.personalInfo.avatarUrl && <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover ring-4 ring-white"/>}
 
                 {sectionsToRender.map((section, index) => {
-                    if(section.position === "left") {
+                    if (!section) return
+
+                    if (section.position === "left") {
                         return (
-                            <div key={`left-${index}`} className="flex flex-col items-stretch gap-3 w-full">
+                            <div key={`left-${index}`} className="flex flex-col items-stretch gap-3 w-full flex-1">
                                 <LeftSectionHeader text={section.title} font={spaceGrotesk.className} />
                                 {section.content}
                             </div>
@@ -359,7 +361,9 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
 
                 <div className="flex flex-col gap-8">
                     {sectionsToRender.map((section, index) => {
-                        if(section.position === "center") {
+                        if (!section) return
+
+                        if (section.position === "center") {
                             return (
                                 <div key={`center-${index}`}>
                                     <TemplateHeader text={section.title} font={spaceGrotesk.className} />

@@ -283,11 +283,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                                     return (
                                         <div key={item.id} className="flex">
                                             {createLine(isLast, userColor)}
-                                            <div className="flex flex-col gap-1">
+                                            <div className="flex flex-col flex-1 min-w-0 gap-1">
                                                 <div>
                                                     <div className="flex justify-between items-baseline">
                                                         {CenterItemHeader(item.title)}
-                                                        {CenterItemDate(`${item.startDate} ${item.endDate && "-"} ${item.endDate}`)}
+                                                        {(item.startDate || item.endDate) && (CenterItemDate(`${item.startDate || ""} ${(item.startDate && item.endDate) ? "-" : ""} ${item.endDate || ""}`))}
                                                     </div>
                                                 </div>
 
@@ -307,11 +307,11 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                                     return (
                                         <div key={item.id} className="flex">
                                             {createLine(isLast, userColor)}
-                                        <div className="flex flex-col gap-2.5">
+                                        <div className="flex flex-col flex-1 gap-2.5">
                                             <div>
                                                 <div className="flex justify-between items-baseline">
                                                     {CenterItemHeader(item.title)}
-                                                    {CenterItemDate(`${item.startDate} ${item.endDate && "-"} ${item.endDate}`)}
+                                                    {(item.startDate || item.endDate) && (CenterItemDate(`${item.startDate || ""} ${(item.startDate && item.endDate) ? "-" : ""} ${item.endDate || ""}`))}
                                                 </div>
                                             </div>
 
@@ -382,6 +382,8 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                 {/* LEFT */}
                 <div className="p-6 pt-25 bg-[#F3F4F6] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
                     {sectionsToRender.map((section, index) => {
+                        if(!section) return null
+                        
                         if(section.position === "left") {
                             return (
                                 <div key={`left-${index}`} className="flex flex-col gap-3 w-full wrap-break-word">
@@ -398,6 +400,8 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                 <div className="p-8 pb-0 pl-6 flex-1 min-w-0">
                     <div className="flex flex-col gap-8">
                         {sectionsToRender.map((section, index) => {
+                            if (!section) return
+
                             if(section.position === "center") {
                                 return (
                                     <div key={`center-${index}`}>

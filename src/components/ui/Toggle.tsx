@@ -17,7 +17,7 @@ type ToggleProps<T extends string = string> = {
 }
 
 export default function Toggle<T extends string>({ value, onChange, options, name = "toggle-group", ariaLabel }: ToggleProps<T>) {
-    const textStyles = "flex items-center justify-center gap-2 w-full px-4 py-1.5 text-xs font-medium rounded-md duration-200 text-text-muted peer-checked:bg-default peer-checked:text-text-main peer-focus-visible:ring-2 peer-focus-visible:ring-default-hover cursor-pointer"
+    const textStyles = "flex items-center justify-center gap-2 w-full px-4 py-1.5 text-xs font-medium rounded-md duration-200 text-text-muted peer-checked:bg-default peer-checked:text-white dark:peer-checked:text-text-main peer-focus-visible:ring-2 peer-focus-visible:ring-default-hover cursor-pointer"
 
     return (
         <fieldset className="bg-bg-secondary p-1 rounded-lg border border-border flex flex-col sm:flex-row relative w-fit sm:w-full">

@@ -291,9 +291,10 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex", inter.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#EFF6FF] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
-                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={532} quality={100} className="rounded-full w-25 h-25 object-cover"/>
+                {data.personalInfo.avatarUrl && <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={532} quality={100} className="rounded-full w-25 h-25 object-cover"/>}
 
                 {sectionsToRender.map((section, index) => {
+                    if (!section) return
                     if(section.position === "left") {
                         return (
                             <div key={`left-${index}`} className="flex flex-col items-stretch w-full gap-3">
@@ -315,8 +316,8 @@ export default function ModernBlue({ data }: { data: ResumeData }) {
                 </div>}
 
                 <div className="flex flex-col gap-8">
-                    {sectionsToRender.map((sectionKey, index) => {
-                        const section = sectionsMap[sectionKey.id]
+                    {sectionsToRender.map((section, index) => {
+                        if (!section) return
 
                         if(section.position === "center") {
                             return (

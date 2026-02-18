@@ -321,9 +321,11 @@ export default function TechMinimal({ data }: { data: ResumeData }) {
         <div className={cn("bg-white flex", inter.className, "w-full text-black")}>
             {/* LEFT */}
             <div className="p-6 bg-[#F9FAFB] w-50 shrink-0 flex flex-col items-stretch gap-8 min-h-210.5">
-                <AppImage src={data.personalInfo.avatarUrl || ""} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover"/>
+                {data.personalInfo.avatarUrl && <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover"/>}
 
                 {sectionsToRender.map((section, index) => {
+                    if (!section) return
+
                     if(section.position === "left") {
                         return (
                             <div key={`left-${index}`} className="flex flex-col items-stretch w-full gap-3">
@@ -345,7 +347,8 @@ export default function TechMinimal({ data }: { data: ResumeData }) {
                 </div>}
                 <div className="flex flex-col gap-8">
                     {sectionsToRender.map((section, index) => {
-                        if(section.position === "center") {
+                        if (!section) return
+                        if (section.position === "center") {
                             return (
                                 <div key={`center-${index}`}>
                                     <TemplateHeader text={section.title} font={roboto.className} />

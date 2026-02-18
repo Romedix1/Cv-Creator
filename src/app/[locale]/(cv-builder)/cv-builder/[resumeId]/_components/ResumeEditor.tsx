@@ -320,7 +320,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
 
                 return <SummarySection sections={syncedOrder} onSectionsOrderChange={(newOrder: string[]) => handleSectionChange("settings", {...data.settings, sectionOrder: newOrder})} customSections={data.customSection} onTemplateChange={(newValue) => handleSettingChange("template", newValue)} onColorChange={(newValue) => handleSettingChange("color", newValue)} template={data.settings.template} color={data.settings.color}/>
             case "addSection":
-                return <CustomSection sections={data.customSection} template={data.settings.template} onSectionChange={(newItems: CustomSectionType[]) => handleSectionChange("customSection", newItems)} setIsEditingMode={setIsEditingMode} />
+                return <CustomSection sections={data.customSection} template={data.settings.template} sectionOrder={data.settings.sectionOrder}onOrderChange={(newOrder) => handleSectionChange("settings", { ...data.settings, sectionOrder: newOrder })}onSectionChange={(newItems: CustomSectionType[]) => handleSectionChange("customSection", newItems)} setIsEditingMode={setIsEditingMode} />
         }
     }
 
