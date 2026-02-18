@@ -16,7 +16,7 @@ export default function LanguagesItem({ item, onUpdate, onBack, onDelete, setIsE
     const tBuilder = useTranslations("Builder")
 
     const languageLevel = [
-        { label: tBuilder("nativeLanguage"), value: "Native" },
+        { label: tBuilder("nativeLanguage"), value: tBuilder("nativeLanguage") },
         { label: "C2", value: "C2" },
         { label: "C1", value: "C1" },
         { label: "B2", value: "B2" },
@@ -35,7 +35,7 @@ export default function LanguagesItem({ item, onUpdate, onBack, onDelete, setIsE
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input name="languageName" type="text" label={tInput("languageValueLabel")} value={item.value || ""} onChange={(e) => handleChange("value", e.target.value)} />
-                <Input name="languageLevel" options={languageLevel} type="select" value={item.level || ""} label={tInput("languageLevelLabel")} onChange={(e) => handleChange("level", e.target.value)} />
+                <Input name="languageLevel" options={languageLevel} type="select" value={item.level || tBuilder("nativeLanguage")} label={tInput("languageLevelLabel")} onChange={(e) => handleChange("level", e.target.value)} />
             </div>
 
             <ExitEditingMode itemId={item.id} onDelete={onDelete} setIsEditingMode={setIsEditingMode} onBack={onBack} />

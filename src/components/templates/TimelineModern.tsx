@@ -160,9 +160,11 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
                 <div className="text-[11px] w-full">
                     <ul className="flex flex-col gap-3">
                         {data.languages.map((language) => (
-                                <li key={language.id} className={cn("px-2 wrap-break-word flex items-center gap-2", spaceGrotesk.className)}>
+                                <li key={language.id} className={cn("px-2 wrap-break-word flex items-center gap-2 min-w-0", spaceGrotesk.className)}>
                                     <span><Check className="shrink-0" /></span>
-                                    <span className="font-bold">{language.value}</span> - {language.level}
+                                    <div className="flex-1 min-w-0 wrap-break-word">
+                                        <span className="font-bold">{language.value}</span> - {language.level}
+                                    </div>
                                 </li>
                             )
                         )}
@@ -333,7 +335,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={cn("bg-white flex", manrope.className, "w-full text-black")}>
+        <div className={cn("bg-white flex", manrope.className, "w-full text-black min-h-[297mm]")}>
             {/* LEFT */}
             <div className="p-6 bg-[#F3F4F6] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
                 {data.personalInfo.avatarUrl && <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover ring-4 ring-white"/>}
@@ -343,7 +345,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
 
                     if (section.position === "left") {
                         return (
-                            <div key={`left-${index}`} className="flex flex-col items-stretch gap-3 w-full flex-1">
+                            <div key={`left-${index}`} className="flex flex-col items-stretch gap-3 w-full">
                                 <LeftSectionHeader text={section.title} font={spaceGrotesk.className} />
                                 {section.content}
                             </div>

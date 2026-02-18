@@ -285,7 +285,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={cn("bg-white flex flex-col gap-8", inter.className, "w-full text-black p-10")}>
+        <div className={cn("bg-white flex flex-col gap-8", inter.className, "w-full text-black p-10 min-h-[297mm]")}>
             {/* NAME */}
             <div className="relative flex w-full min-h-33.25">
                 <div className="flex flex-col w-9/12">

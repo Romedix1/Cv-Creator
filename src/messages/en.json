@@ -255,7 +255,8 @@
         "editEducation": "Edit education",
         "major": "Field of study",
         "degree": "Degree",
-
+        "changeView": "Change view",
+        "editLanguage": "Edit language",
         "nativeLanguage": "Native",
         "editSection": "Edit section",
         "sectionSubitems": "Section items",

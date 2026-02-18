@@ -366,7 +366,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={cn("bg-white flex flex-col", inter.className, "w-full text-black")}>
+        <div className={cn("bg-white flex flex-col", inter.className, "w-full text-black min-h-[297mm]")}>
             {/* TOP */}
             <div className="flex w-full py-11 relative" style={{ background: userColor }}>
                 {data.personalInfo.avatarUrl && <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={532} quality={100} className="w-full h-full object-cover" containerClassName="rounded-full w-30 h-30 object-cover absolute ring-4 ring-white left-6 bottom-0 translate-y-1/2"/>}
@@ -383,7 +383,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
                 <div className="p-6 pt-25 bg-[#F3F4F6] w-50 shrink-0 flex flex-col items-center gap-8 min-h-210.5">
                     {sectionsToRender.map((section, index) => {
                         if(!section) return null
-                        
+
                         if(section.position === "left") {
                             return (
                                 <div key={`left-${index}`} className="flex flex-col gap-3 w-full wrap-break-word">

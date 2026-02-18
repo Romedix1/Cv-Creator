@@ -318,7 +318,7 @@ export default function TechMinimal({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={cn("bg-white flex", inter.className, "w-full text-black")}>
+        <div className={cn("bg-white flex", inter.className, "w-full text-black min-h-[297mm]")}>
             {/* LEFT */}
             <div className="p-6 bg-[#F9FAFB] w-50 shrink-0 flex flex-col items-stretch gap-8 min-h-210.5">
                 {data.personalInfo.avatarUrl && <AppImage src={data.personalInfo.avatarUrl} alt={tAlt("userImage")} width={400} height={400} quality={100} className="rounded-[12px] w-25 h-25 object-cover"/>}
