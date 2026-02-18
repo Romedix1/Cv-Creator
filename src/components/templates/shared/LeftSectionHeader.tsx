@@ -8,6 +8,6 @@ type LeftSectionHeaderProps = {
 
 export default function LeftSectionHeader({ text, font, className }: LeftSectionHeaderProps) {
     return (
-        <h2 className={cn("text-[12px] font-bold text-center", font, className)}>{text}</h2>
+        <h2 className={cn("text-[12px] font-bold text-center min-w-0 wrap-break-word", font, className)}>{text}</h2>
     )
 }

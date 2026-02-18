@@ -9,21 +9,24 @@ import ItemActions from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_comp
 import SectionHeader from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/SectionHeader";
 
 type CustomSectionProps = {
-    sections: CustomSectionType[];
+sections: CustomSectionType[];
     template: string;
+    sectionOrder: string[];
+    onOrderChange: (newOrder: string[]) => void;
     onSectionChange: (newSection: CustomSectionType[]) => void;
     setIsEditingMode: (isEditing: boolean) => void;
 }
 
-export default function CustomSection({ sections, template, onSectionChange, setIsEditingMode }: CustomSectionProps) {
+export default function CustomSection({ sections, sectionOrder, template, onSectionChange, onOrderChange, setIsEditingMode }: CustomSectionProps) {
     const tButton = useTranslations("Button")
     const tBuilder = useTranslations("Builder")
 
     const [editing, setEditing] = useState<string | null>(null)
 
     const handleAdd = () => {
+        const newId = crypto.randomUUID()
         const newItem: CustomSectionType = {
-            id: crypto.randomUUID(),
+            id: newId,
             title: "",
             type: "detailed",
             layout: "center",
@@ -31,8 +34,11 @@ export default function CustomSection({ sections, template, onSectionChange, set
         }
 
         onSectionChange([...sections, newItem])
+
+        onOrderChange([...sectionOrder, newId])
+
         setIsEditingMode(true)
-        setEditing(newItem.id)
+        setEditing(newId)
     }
 
     const handleUpdate = (updatedItem: CustomSectionType) => {
@@ -42,6 +48,8 @@ export default function CustomSection({ sections, template, onSectionChange, set
 
     const handleRemove = (sectionId: string) => {
         onSectionChange(sections.filter((item) => item.id !== sectionId))
+
+        onOrderChange(sectionOrder.filter(id => id !== sectionId))
 
         if (editing === sectionId) {
             handleExitEdit()
@@ -67,7 +75,7 @@ export default function CustomSection({ sections, template, onSectionChange, set
         <section className="px-3 mt-6 flex flex-col gap-6 sm:px-12 w-full">
             <SectionHeader step="custom" />
 
-            <SortableList items={sections} onReorder={onSectionChange} droppableId="experience-list"
+            <SortableList items={sections} onReorder={onSectionChange} droppableId="custom-list"
                renderItem={(item) => (
                    <div className="flex items-center gap-4">
                        <div className="flex flex-col flex-1 min-w-0 gap-1">

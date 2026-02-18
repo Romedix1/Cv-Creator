@@ -301,15 +301,18 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
             </div>
 
             <div className="flex w-full flex-col gap-12">
-                {sectionsToRender.map((section, index) =>
-                    section.position !== "left" && (
-                        <div key={index} className="flex w-full items-start">
-                            {SectionHeader(index+1, section.title)}
-                            <div className="flex-1 min-w-0 pt-0.5">
-                                {section.content}
+                {sectionsToRender.map((section, index) => {
+                    if (!section) return
+                    if(section.position !== "left") {
+                        return (
+                            <div key={index} className="flex w-full items-start">
+                                {SectionHeader(index+1, section.title)}
+                                <div className="flex-1 min-w-0 pt-0.5">
+                                    {section.content}
+                                </div>
                             </div>
-                        </div>
-                    )
+                        )}
+                    }
                 )}
             </div>
 

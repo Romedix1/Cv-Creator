@@ -8,14 +8,32 @@ interface SectionConfig {
     content: React.ReactNode;
 }
 
-export const useSectionOrder = (data: ResumeData,  sectionsMap: Record<string, SectionConfig>) => {
-    const customSectionIds = data.customSection?.map(section => section.id) || []
+export const useSectionOrder = (data: ResumeData, sectionsMap: Record<string, SectionConfig>) => {
+    const customSections = data.customSection || []
+    const customSectionIds = customSections.map(s => s.id)
 
     const fullDefaultOrder = [...DEFAULT_SECTION_ORDER, ...customSectionIds]
-
     const finalOrder = data.settings.sectionOrder || fullDefaultOrder
 
-    const sectionsToRender = finalOrder.map(id => ({...sectionsMap[id], id})).filter(section => section && section.isVisible)
+    const sectionsToRender = finalOrder.map(id => {
+        if (sectionsMap[id]) {
+            return { ...sectionsMap[id], id }
+        }
 
-    return sectionsToRender;
-};
+        const customData = customSections.find(s => s.id === id)
+        if (customData) {
+            return {
+                id: customData.id,
+                title: customData.title,
+                isVisible: true,
+                content: null,
+                isCustom: true,
+                position: customData.layout
+            }
+        }
+
+        return null
+    }).filter(section => section !== null && section.isVisible)
+
+    return sectionsToRender
+}
