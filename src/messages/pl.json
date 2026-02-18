@@ -256,7 +256,8 @@
         "editEducation": "Edytuj edukację",
         "major": "Specjalizacja",
         "degree": "Stopień",
-
+        "changeView": "Zmień widok",
+        "editLanguage": "Edytuj język",
         "nativeLanguage": "Ojczysty",
         "editSection": "Edytuj sekcję",
         "sectionSubitems": "Elementy sekcji",

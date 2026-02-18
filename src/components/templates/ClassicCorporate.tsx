@@ -252,7 +252,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
     const sectionsToRender = useSectionOrder(data, sectionsMap)
 
     return (
-        <div className={cn("bg-white flex flex-col gap-8", merriweather.className, "w-full text-black p-12.5")}>
+        <div className={cn("bg-white flex flex-col gap-8", merriweather.className, "w-full text-black p-12.5 min-h-[297mm]")}>
             {/* NAME */}
             <div className="relative flex justify-center items-start w-full min-h-33.25">
                 <div className="flex flex-col gap-2.5 items-center text-center">

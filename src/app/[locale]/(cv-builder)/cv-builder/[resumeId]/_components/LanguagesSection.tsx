@@ -19,6 +19,7 @@ type LanguagesSectionProps = {
 export default function LanguagesSection({ languages, onLanguageChange, setIsEditingMode }: LanguagesSectionProps) {
     const tInput = useTranslations("Inputs")
     const tButton = useTranslations("Button")
+    const tBuilder = useTranslations("Builder")
 
     const [editing, setEditing] = useState<string | null>(null)
 
@@ -31,7 +32,7 @@ export default function LanguagesSection({ languages, onLanguageChange, setIsEdi
         const newItem: LanguageProps = {
             id: crypto.randomUUID(),
             value: "",
-            level: ""
+            level: tBuilder("nativeLanguage")
         }
         onLanguageChange([...languages, newItem])
         setEditing(newItem.id)

@@ -6,8 +6,6 @@ export default function useCreateResume(canCreate: boolean, templateId: string, 
     const router = useRouter();
 
     const handleCreate = () => {
-        console.log("DEBUG: Czy zalogowany?", isAuthenticated);
-    console.log("DEBUG: Co jest w storage?", localStorage.getItem("last_guest_resume_id"));
         if (canCreate) {
             let targetId
 
