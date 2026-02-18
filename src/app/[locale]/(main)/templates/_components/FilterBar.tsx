@@ -16,9 +16,10 @@ const TEMPLATES_DATA = [
 
 type FilterBarType = {
     canCreate: boolean;
+    isAuthenticated: boolean;
 }
 
-export default function FilterBar({ canCreate }: FilterBarType) {
+export default function FilterBar({ canCreate, isAuthenticated }: FilterBarType) {
     const [search, setSearch] = useState("")
     const [selectedCategory, setSelectedCategory] = useState("all")
     const [selectedTemplate, setSelectedTemplate] = useState("")
@@ -43,13 +44,13 @@ export default function FilterBar({ canCreate }: FilterBarType) {
             <div className="grid w-full grid-cols-1 gap-8 lg:gap-10 md:w-8/12 lg:w-auto lg:grid-cols-2 xl:grid-cols-3 2xl:mt-6">
                 {filteredTemplates.map((template) => {
                     return (
-                        <Template key={template.id} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate} canCreate={canCreate} className="w-full"/>
+                        <Template key={template.id} templateId={template.id} name={template.name} image={template.image} onPreview={setSelectedTemplate} canCreate={canCreate} isAuthenticated={isAuthenticated} className="w-full"/>
                     )
                 })}
             </div>
 
             {(selectedTemplate && activeTemplate) && (
-                <TemplatePreview onClose={handleClose} id={activeTemplate.id} templateId={activeTemplate.id} name={activeTemplate.name} image={activeTemplate.image} canCreate={canCreate}/>
+                <TemplatePreview onClose={handleClose} id={activeTemplate.id} templateId={activeTemplate.id} name={activeTemplate.name} image={activeTemplate.image} canCreate={canCreate} isAuthenticated={isAuthenticated} />
             )}
         </>
     )

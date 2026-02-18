@@ -19,9 +19,10 @@ type TemplatePreviewProps = {
     templateId: string;
     onPreview?: (id: string) => void;
     enablePreview?: boolean;
+    isAuthenticated: boolean;
 }
 
-export default function TemplatePreview({ onClose, name, image, canCreate, templateId }: TemplatePreviewProps) {
+export default function TemplatePreview({ onClose, name, image, canCreate, templateId, isAuthenticated }: TemplatePreviewProps) {
     const tButton = useTranslations("Button")
 
     useEffect(() => {
@@ -30,7 +31,7 @@ export default function TemplatePreview({ onClose, name, image, canCreate, templ
         return () => { document.body.style.overflow = "unset"  }
     }, [])
 
-    const { handleCreate, showLimitModal, setShowLimitModal } = useCreateResume(canCreate, templateId)
+    const { handleCreate, showLimitModal, setShowLimitModal } = useCreateResume(canCreate, templateId, isAuthenticated)
 
     return (
         <>

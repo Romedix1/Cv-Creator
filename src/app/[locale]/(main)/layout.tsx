@@ -19,7 +19,7 @@ export default async function MainLayout({ children }: { children: ReactNode }) 
 
     return (
         <>
-            <Nav user={user} />
+            <Nav />
             {children}
             <Footer />
         </>

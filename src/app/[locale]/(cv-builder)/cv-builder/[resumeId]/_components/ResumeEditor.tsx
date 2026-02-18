@@ -174,6 +174,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
                 try {
                     localStorage.setItem(`guest_resume_${resumeId}`, JSON.stringify(debouncedData))
                     localStorage.setItem(`guest_title_${resumeId}`, title)
+                    localStorage.setItem("last_guest_resume_id", resumeId)
                 } catch {
                     console.error("Local storage is full or disabled")
                 } finally {

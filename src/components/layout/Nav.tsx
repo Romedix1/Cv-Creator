@@ -6,16 +6,16 @@ import { getTranslations } from "next-intl/server";
 import { getUserProfile } from "@/lib/getUserProfile";
 import NavLink from "../ui/NavLink";
 import { cn } from "@/lib/utils";
+import { getIsAuthenticated } from "@/lib/isAuthenticated";
 
 type NavProps = {
     authPage?: boolean;
-    user?: User | null;
 }
 
-export default async function Nav({ authPage = false, user }: NavProps) {
+export default async function Nav({ authPage = false }: NavProps) {
     const t = await getTranslations("Nav");
 
-    const isAuthenticated = !!user
+    const isAuthenticated = await getIsAuthenticated()
 
     let avatarUrl: string | undefined = undefined
     let initials: string = ""
