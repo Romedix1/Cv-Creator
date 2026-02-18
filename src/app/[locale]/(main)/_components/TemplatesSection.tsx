@@ -5,6 +5,7 @@ import techTemplate from '@public/images/Templates/tech-minimal.png';
 import { canCreateMoreResumes } from "@/lib/resume/server";
 import { getTranslations } from "next-intl/server";
 import Template from '@/components/Template';
+import { getIsAuthenticated } from '@/lib/isAuthenticated';
 
 export default async function TemplatesSection() {
     const tTemplates = await getTranslations("TemplatesSection");
@@ -17,16 +18,18 @@ export default async function TemplatesSection() {
 
     const canCreate = await canCreateMoreResumes()
 
+    const isAuthenticated = await getIsAuthenticated()
+
     return (
         <section id="templates-section" className="px-5 py-16 bg-surface-hover flex flex-col gap-16 scroll-mt-[50px]">
             <div className="flex flex-col gap-4">
                 <h2 className="text-[28px] text-text-main font-semibold leading-9 text-center 2xl:text-[40px] 2xl:leading-12">{tTemplates("header")}</h2>
                 <p className="text-[16px] text-text-muted leading-6 text-center 2xl:text-[18px]">{tTemplates("subtitle")}</p>
             </div>
-            <div className="flex flex-col gap-7.5 items-stretch lg:flex-row lg:gap-5 2xl:justify-center 2xl:gap-7.5 w-full">
+            <div className="flex flex-col gap-7.5 justify-center items-stretch lg:flex-row lg:gap-5 2xl:gap-7.5 w-full ">
                 {TEMPLATES_DATA.map((template, index) => {
                     return (
-                        <Template key={index} templateId={template.id} name={template.name} image={template.image} enablePreview={false} canCreate={canCreate} />
+                        <Template key={index} templateId={template.id} name={template.name} image={template.image} enablePreview={false} canCreate={canCreate} isAuthenticated={isAuthenticated}/>
                     )
                 })}
             </div>

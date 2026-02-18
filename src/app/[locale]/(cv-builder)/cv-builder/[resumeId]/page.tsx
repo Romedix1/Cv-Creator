@@ -1,5 +1,6 @@
 import ResumeEditor from "@/app/[locale]/(cv-builder)/cv-builder/[resumeId]/_components/ResumeEditor";
 import { getUserProfile } from "@/lib/getUserProfile";
+import { getIsAuthenticated } from "@/lib/isAuthenticated";
 import { getResumeById, getUserResumeCount } from "@/lib/resume/server";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
@@ -12,10 +13,8 @@ type CvBuilderProps = {
 export default async function CvBuilder({ params, searchParams }: CvBuilderProps) {
     const { resumeId } = await params;
     const { template } = await searchParams
-    const supabase = await createClient()
 
-    const { data: { user } } = await supabase.auth.getUser()
-    const isAuthenticated = !!user
+    const isAuthenticated = await getIsAuthenticated()
 
     let userProfile = null
     let initialData = null

@@ -17,13 +17,14 @@ type TemplateProps = {
     enablePreview?: boolean;
     canCreate: boolean;
     className?: string;
+    isAuthenticated: boolean;
 }
 
-export default function Template({ templateId, name, image, onPreview, enablePreview = true, canCreate, className }: TemplateProps) {
+export default function Template({ templateId, name, image, onPreview, enablePreview = true, canCreate, className, isAuthenticated }: TemplateProps) {
     const tButton = useTranslations("Button")
     const tAlt = useTranslations("ImgAlt")
 
-    const { handleCreate, showLimitModal, setShowLimitModal } = useCreateResume(canCreate, templateId)
+    const { handleCreate, showLimitModal, setShowLimitModal } = useCreateResume(canCreate, templateId, isAuthenticated)
 
     return (
         <article className={cn("group px-2.5 py-2.5 bg-surface border rounded-2xl lg:w-87.5 2xl:w-112.5", className)}>

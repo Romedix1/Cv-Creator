@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import PersonalDataSection from "./_components/PersonalDataSection";
 import PasswordSection from "./_components/PasswordSection";
 import DeleteAccountSection from "./_components/DeleteAccountSection";
-import { profile } from "console";
+import { getIsAuthenticated } from "@/lib/isAuthenticated";
 
 export default async function DashboardSettings() {
   const supabase = await createClient()
@@ -13,7 +13,7 @@ export default async function DashboardSettings() {
 
   const providers = user?.app_metadata.providers || []
 
-  const isAuthenticated = !!user
+  const isAuthenticated = await getIsAuthenticated()
   const isEmailProvider = providers.includes('email')
 
   if (!userProfile) {
