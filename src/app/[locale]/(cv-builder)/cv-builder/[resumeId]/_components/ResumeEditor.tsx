@@ -59,8 +59,6 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
 
     if (!resumeId) redirect("/")
 
-    const isFirstRender = useRef(true)
-
     const iconStyles = "w-7 h-7"
 
     const STEPS = [
@@ -149,24 +147,22 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
             }
 
             setIsHydrated(true)
+        } else {
+            setIsHydrated(true)
         }
     }, [isAuthenticated, resumeId])
 
     useEffect(() => {
-        if (isFirstRender.current) return
-
         setIsSaving(true)
     }, [data, title, setIsSaving])
 
     useEffect(() => {
         const saveData = async () => {
-            if (isFirstRender.current) {
-                isFirstRender.current = false
-                return
-            }
+            if (!resumeId || (!isAuthenticated && !isHydrated)) return
 
-            if (!isAuthenticated && !isHydrated) return
-            if (!resumeId) return
+            const isGuestDataNotReady = !isAuthenticated && debouncedData.experience.length === 0 && data.experience.length > 0
+
+            if (isGuestDataNotReady) return
 
             setSaveError(null)
 
@@ -205,7 +201,7 @@ export default function ResumeEditor({ initialData, resumeId, template, isAuthen
         }
 
         saveData()
-    }, [debouncedData, debouncedTitle, title, isHydrated, isAuthenticated, resumeId, supabase, tBuilderNav, tError])
+    }, [debouncedData, debouncedTitle, isHydrated, isAuthenticated, resumeId, supabase, tBuilderNav, tError])
 
     useEffect(() => {
         const uploadImage = async () => {
