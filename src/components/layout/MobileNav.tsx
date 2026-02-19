@@ -1,8 +1,9 @@
-'use client'
+"use client"
 
 import { useState } from "react";
 import HamburgerMenu from "./HamburgerMenu";
 import MobileMenu from "./MobileMenu";
+import FocusLock from "react-focus-lock";
 
 type MobileNavProps = {
     isAuthenticated: boolean;
@@ -17,9 +18,11 @@ export default function MobileNav({ isAuthenticated, avatarUrl, initials, fullNa
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <div className="md:hidden">
-            <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
-            <MobileMenu isOpen={isOpen} onClose={closeMenu} isAuthenticated={isAuthenticated} avatarUrl={avatarUrl} initials={initials} fullName={fullName}/>
-        </div>
+        <FocusLock disabled={!isOpen} returnFocus={true}>
+            <div className="md:hidden">
+                <HamburgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+                <MobileMenu isOpen={isOpen} onClose={closeMenu} isAuthenticated={isAuthenticated} avatarUrl={avatarUrl} initials={initials} fullName={fullName}/>
+            </div>
+        </FocusLock>
     )
 }
