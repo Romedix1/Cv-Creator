@@ -536,7 +536,7 @@ export default function CreativeAccent({ data }: { data: ResumeData }) {
       className={cn(
         "bg-white flex flex-col",
         inter.className,
-        "w-full text-black min-h-[297mm] print:w-full print:shadow-none print:mx-0",
+        "w-full text-black min-h-[297mm]",
       )}
     >
       {/* TOP */}

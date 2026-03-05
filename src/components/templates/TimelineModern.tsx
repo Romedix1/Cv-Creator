@@ -542,7 +542,7 @@ export default function TimelineModern({ data }: { data: ResumeData }) {
       className={cn(
         "bg-white flex",
         manrope.className,
-        "w-full text-black min-h-[297mm] print:w-full print:shadow-none print:mx-0",
+        "w-full text-black min-h-[297mm]",
       )}
     >
       {/* LEFT */}

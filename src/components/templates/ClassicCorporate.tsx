@@ -358,7 +358,7 @@ export default function ClassicCorporate({ data }: { data: ResumeData }) {
       className={cn(
         "bg-white flex h-full flex-col gap-8",
         merriweather.className,
-        "w-full text-black p-12.5 min-h-[297mm] print:w-full print:shadow-none print:mx-0",
+        "w-full text-black p-12.5 min-h-[297mm]",
       )}
     >
       {/* NAME */}
