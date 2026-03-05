@@ -2,17 +2,16 @@ import { useTranslations } from "next-intl";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import { getIsAuthenticated } from "@/lib/isAuthenticated";
-import { useSignOut } from "@/hooks/useSignOut";
 import AuthLink from "@/components/templates/shared/AuthLink";
+import { getTranslations } from "next-intl/server";
 
 export default async function Footer() {
-  const tFooter = useTranslations("Footer");
+  const tFooter = await getTranslations("Footer");
 
   const date = new Date();
   const year = date.getFullYear();
 
   const isAuthenticated = await getIsAuthenticated();
-  const { signOut, loading } = useSignOut();
 
   return (
     <footer className="py-16 px-8 bg-surface flex flex-col gap-6 md:px-16">
