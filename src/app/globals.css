@@ -17,25 +17,25 @@
   --color-border: var(--border);
 
   --color-surface-static: var(--surface-static);
-  --color-success: var(--success)
+  --color-success: var(--success);
 }
 
 :root {
-  --bg-main: #FAFAFA;
-  --bg-second: #09090B;
-  --surface: #FFFFFF;
-  --surface-hover: #F4F4F5;
-  --text-main: #09090B;
-  --text-muted: #71717A;
-  --button-text: #FFFFFF;
-  --error: #EF4444;
-  --default: #2563EB;
-  --default-hover: #1D4ED8;
+  --bg-main: #fafafa;
+  --bg-second: #09090b;
+  --surface: #ffffff;
+  --surface-hover: #f4f4f5;
+  --text-main: #09090b;
+  --text-muted: #71717a;
+  --button-text: #ffffff;
+  --error: #ef4444;
+  --default: #2563eb;
+  --default-hover: #1d4ed8;
   --border: oklch(0.922 0 0);
 
   /* Colors for both themes in few sections  */
-  --surface-static: #FFFFFF;
-  --success: #16A34A;
+  --surface-static: #ffffff;
+  --success: #16a34a;
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -71,17 +71,16 @@
 }
 
 .dark {
-  --bg-main: #09090B;
-  --bg-second: #FAFAFA;
-  --surface: #18181B;
+  --bg-main: #09090b;
+  --bg-second: #fafafa;
+  --surface: #18181b;
   --surface-hover: #121214;
-  --text-main: #FAFAFA;
-  --text-muted: #A1A1AA;
-  --button-text: #FFFFFF;
-  --error: #F87171;
-  --default: #3B82F6;
-  --default-hover: #60A5FA;
-
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
+  --button-text: #ffffff;
+  --error: #f87171;
+  --default: #3b82f6;
+  --default-hover: #60a5fa;
 
   --border: oklch(1 0 0 / 10%);
   --background: oklch(0.145 0 0);
@@ -164,5 +163,17 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }

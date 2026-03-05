@@ -384,7 +384,7 @@ export default function SwissMinimalist({ data }: { data: ResumeData }) {
       className={cn(
         "bg-white flex flex-col gap-8",
         inter.className,
-        "w-full text-black p-10 min-h-[297mm]",
+        "w-full text-black p-10 min-h-[297mm] print:w-full print:shadow-none print:mx-0",
       )}
     >
       {/* NAME */}
