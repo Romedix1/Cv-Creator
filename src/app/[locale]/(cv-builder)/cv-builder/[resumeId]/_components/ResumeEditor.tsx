@@ -206,29 +206,41 @@ export default function ResumeEditor({
 
   const supabase = createClient();
 
+  const hasInitialized = useRef(false);
+
   useEffect(() => {
-    if (!isAuthenticated) {
-      const localData = localStorage.getItem(`guest_resume_${resumeId}`);
-      const localTitle =
-        localStorage.getItem(`guest_title_${resumeId}`) ||
-        tBuilderNav("documentName");
+    if (hasInitialized.current) return;
 
-      setTitle(localTitle);
+    const loadData = () => {
+      let finalData: ResumeData | null = null;
 
-      if (localData) {
-        try {
-          const parsedData = JSON.parse(localData);
-          setData(parsedData);
-        } catch {
-          console.error("Cookies error");
+      if (isAuthenticated && initialData) {
+        finalData = initialData;
+      } else if (!isAuthenticated) {
+        const localData = localStorage.getItem(`guest_resume_${resumeId}`);
+        if (localData) {
+          try {
+            finalData = JSON.parse(localData);
+          } catch (e) {}
         }
       }
 
+      if (finalData) {
+        if (template && finalData.settings.template !== template) {
+          finalData = {
+            ...finalData,
+            settings: { ...finalData.settings, template: template },
+          };
+        }
+        setData(finalData);
+      }
+
+      hasInitialized.current = true;
       setIsHydrated(true);
-    } else {
-      setIsHydrated(true);
-    }
-  }, [isAuthenticated, resumeId]);
+    };
+
+    loadData();
+  }, [isAuthenticated, initialData, resumeId, template]);
 
   useEffect(() => {
     setIsSaving(true);
