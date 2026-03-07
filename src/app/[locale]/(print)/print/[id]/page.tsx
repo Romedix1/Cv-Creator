@@ -5,7 +5,6 @@ import { getTemplate } from "@/lib/getTemplate";
 import { createClient } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
 import { ResumeData } from "@/types/resumeData";
-import { useResume } from "@/context/ResumeContext";
 
 export default function PrintPage({
   params,
@@ -19,12 +18,11 @@ export default function PrintPage({
   const [templateName, setTemplateName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const { title } = useResume();
-
   useEffect(() => {
     const loadData = async () => {
       const localData = localStorage.getItem(`guest_resume_${id}`);
       const localTemplate = localStorage.getItem(`guest_template_${id}`);
+      const localTitle = localStorage.getItem(`guest_title_${id}`);
 
       if (localData) {
         const parsedData = JSON.parse(localData);
@@ -32,10 +30,10 @@ export default function PrintPage({
         setTemplateName(
           localTemplate || parsedData?.settings?.template || "modern-blue",
         );
-
         setLoading(false);
         return;
       }
+
       const supabase = createClient();
       const { data: resume } = await supabase
         .from("resumes")
@@ -53,10 +51,6 @@ export default function PrintPage({
 
     loadData();
   }, [id]);
-
-  useEffect(() => {
-    document.title = title || "Curriculum Vitae";
-  }, [title]);
 
   if (loading)
     return (
