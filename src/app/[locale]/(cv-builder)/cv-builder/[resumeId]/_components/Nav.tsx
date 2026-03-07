@@ -1,6 +1,13 @@
-"use client"
+"use client";
 
-import { ArrowLeft, CloudAlert, CloudCheck, CloudUpload, DownloadIcon, PenSquare } from "lucide-react";
+import {
+  ArrowLeft,
+  CloudAlert,
+  CloudCheck,
+  CloudUpload,
+  DownloadIcon,
+  PenSquare,
+} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useResume } from "@/context/ResumeContext";
@@ -9,56 +16,118 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 type CvBuilderNavProps = {
-    isAuthenticated: boolean;
-    resumeId: string;
-}
+  isAuthenticated: boolean;
+  resumeId: string;
+};
 
-export default function CvBuilderNav({ isAuthenticated, resumeId }: CvBuilderNavProps) {
-    const tBuilderNav = useTranslations("BuilderNav")
-    const tAria = useTranslations("Aria")
-    const tDocuments = useTranslations("Dashboard.MyCVs")
+export default function CvBuilderNav({
+  isAuthenticated,
+  resumeId,
+}: CvBuilderNavProps) {
+  const tBuilderNav = useTranslations("BuilderNav");
+  const tAria = useTranslations("Aria");
+  const tDocuments = useTranslations("Dashboard.MyCVs");
 
-    const { isSaving, title, setTitle, saveError } = useResume()
+  const { isSaving, title, setTitle, saveError } = useResume();
 
-    const [isDownloading, setIsDownloading] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false);
 
-    const saveIconStyles = "w-5 h-5 lg:w-6 lg:h-6"
+  const saveIconStyles = "w-5 h-5 lg:w-6 lg:h-6";
 
-    const locale = useLocale()
+  const locale = useLocale();
 
-    return (
-        <nav className="relative bg-bg-main p-3 border-b border-border flex items-center justify-between">
-            <div className="sm:flex items-center">
-                <div className="flex items-center gap-2 h-full">
-                    <Link href={`${isAuthenticated ? "/dashboard" : "/"}`} aria-label={`${isAuthenticated ? tAria("backToDashboard") : tAria("backToMainPage")}`} className="p-2 rounded-md cursor-pointer text-text-muted hover:text-text-main duration-200">
-                        <ArrowLeft aria-hidden="true" className="w-6 h-6 lg:w-8 lg:h-8" />
-                    </Link>
-                    <div className="w-px my-0.5 bg-border self-stretch" />
-                </div>
+  return (
+    <nav className="relative bg-bg-main p-3 border-b border-border flex items-center justify-between">
+      <div className="sm:flex items-center">
+        <div className="flex items-center gap-2 h-full">
+          <Link
+            href={`${isAuthenticated ? "/dashboard" : "/"}`}
+            aria-label={`${isAuthenticated ? tAria("backToDashboard") : tAria("backToMainPage")}`}
+            className="p-2 rounded-md cursor-pointer text-text-muted hover:text-text-main duration-200"
+          >
+            <ArrowLeft aria-hidden="true" className="w-6 h-6 lg:w-8 lg:h-8" />
+          </Link>
+          <div className="w-px my-0.5 bg-border self-stretch" />
+        </div>
 
-                <div className="absolute sm:relative lg:ml-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:translate-0 sm:left-0 sm:top-0 max-w-[40%] sm:w-100 lg:w-150">
-                    <div className="flex items-center justify-center sm:justify-start gap-2 rounded-md px-2 py-1.5">
-                        <input aria-label={tBuilderNav("documentName")} id="title" name="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="bg-transparent border-none outline-none font-semibold text-sm text-foreground text-center min-w-5 p-0 focus:border-default focus:bg-surface" style={{ fieldSizing: "content" } as React.CSSProperties} />
+        <div className="absolute sm:relative lg:ml-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:translate-0 sm:left-0 sm:top-0 max-w-[40%] sm:w-100 lg:w-150">
+          <div className="flex items-center justify-center sm:justify-start gap-2 rounded-md px-2 py-1.5">
+            <input
+              aria-label={tBuilderNav("documentName")}
+              id="title"
+              name="title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="bg-transparent border-none outline-none font-semibold text-sm text-foreground text-center min-w-5 p-0 focus:border-default focus:bg-surface"
+              style={{ fieldSizing: "content" } as React.CSSProperties}
+            />
 
-                        <div>
-                            <span className="sr-only">{tBuilderNav("editTitle")}</span>
-                            <PenSquare aria-hidden="true" className="w-4 h-4 lg:w-5 lg:h-5 text-text-muted cursor-text" />
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <span className="sr-only">{tBuilderNav("editTitle")}</span>
+              <PenSquare
+                aria-hidden="true"
+                className="w-4 h-4 lg:w-5 lg:h-5 text-text-muted cursor-text"
+              />
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="flex items-center gap-1">
-                <div role="status" aria-live="polite" className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-2 lg:gap-3 text-text-main pointer-events-none select-none">
-                    <span className={cn("text-sm font-medium lg:text-[18px]", saveError && "text-error")}>{saveError ? saveError : isSaving ? tBuilderNav("saving") : tBuilderNav("saved")}</span>
-                    {saveError ? <CloudAlert aria-hidden={true} className={cn("text-error", saveIconStyles)} /> : isSaving ? <CloudUpload aria-hidden={true} className={saveIconStyles} /> : <CloudCheck aria-hidden={true} className={saveIconStyles} />}
-                </div>
+      <div className="flex items-center gap-1">
+        <div
+          role="status"
+          aria-live="polite"
+          className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-2 lg:gap-3 text-text-main pointer-events-none select-none"
+        >
+          <span
+            className={cn(
+              "text-sm font-medium lg:text-[18px]",
+              saveError && "text-error",
+            )}
+          >
+            {saveError
+              ? saveError
+              : isSaving
+                ? tBuilderNav("saving")
+                : tBuilderNav("saved")}
+          </span>
+          {saveError ? (
+            <CloudAlert
+              aria-hidden={true}
+              className={cn("text-error", saveIconStyles)}
+            />
+          ) : isSaving ? (
+            <CloudUpload aria-hidden={true} className={saveIconStyles} />
+          ) : (
+            <CloudCheck aria-hidden={true} className={saveIconStyles} />
+          )}
+        </div>
 
-                <button type="button" aria-label={tAria("downloadPDF")} onClick={() => handleDownload(resumeId, title, isDownloading, setIsDownloading, tDocuments, locale)} className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2">
-                    <span className="hidden sm:block text-sm lg:text-[17x] font-bold text-button-text">{tBuilderNav("download")}</span>
-                    <DownloadIcon aria-hidden="true" className="w-5 h-5 text-button-text" />
-                </button>
-            </div>
-        </nav>
-    )
+        <button
+          type="button"
+          aria-label={tAria("downloadPDF")}
+          onClick={() =>
+            handleDownload(
+              resumeId,
+              title,
+              isDownloading,
+              setIsDownloading,
+              tDocuments,
+              locale,
+            )
+          }
+          className="flex items-center justify-center gap-2 rounded-md sm:bg-default sm:text-text-main hover:bg-default-hover duration-200 cursor-pointer sm:px-4 sm:py-2"
+        >
+          <span className="hidden sm:block text-sm lg:text-[17x] font-bold text-button-text">
+            {tBuilderNav("download")}
+          </span>
+          <DownloadIcon
+            aria-hidden="true"
+            className="w-5 h-5 text-button-text"
+          />
+        </button>
+      </div>
+    </nav>
+  );
 }

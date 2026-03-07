@@ -144,7 +144,7 @@ export default function ResumeEditor({
     useState<Settings["skillsType"]>("categories");
   const [isHydrated, setIsHydrated] = useState(isAuthenticated);
 
-  const { title, setTitle, setIsSaving, setSaveError } = useResume();
+  const { title, setIsSaving, setSaveError } = useResume();
 
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -250,20 +250,25 @@ export default function ResumeEditor({
     const saveData = async () => {
       if (!resumeId || (!isAuthenticated && !isHydrated)) return;
 
-      const isGuestDataNotReady =
-        !isAuthenticated &&
-        debouncedData.experience.length === 0 &&
-        data.experience.length > 0;
-
-      if (isGuestDataNotReady) return;
-
       setSaveError(null);
 
       if (!isAuthenticated) {
         try {
+          const previousGuestId = localStorage.getItem("last_guest_resume_id");
+
+          if (previousGuestId && previousGuestId !== resumeId) {
+            localStorage.removeItem(`guest_resume_${previousGuestId}`);
+            localStorage.removeItem(`guest_title_${previousGuestId}`);
+            localStorage.removeItem(`guest_template_${previousGuestId}`);
+          }
+
           localStorage.setItem(
             `guest_resume_${resumeId}`,
             JSON.stringify(debouncedData),
+          );
+          localStorage.setItem(
+            `guest_template_${resumeId}`,
+            debouncedData.settings.template,
           );
           localStorage.setItem(`guest_title_${resumeId}`, title);
           localStorage.setItem("last_guest_resume_id", resumeId);
