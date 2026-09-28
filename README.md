@@ -13,7 +13,7 @@
   A modern, intuitive resume builder empowering users to craft professional, beautifully designed CVs with dynamic layouts and high-quality PDF exports.
 </p>
 
-### [**Live Site**](#https://cv-creator-kappa.vercel.app/)
+### [**Live Site**](https://cv-creator-kappa.vercel.app/)
 
 [Explore Features](#features) • [Tech Stack](#tech-stack) • [How to Run](#quick-start--how-to-run) • [Configure .env](#how-to-write-env) • [Architecture](#project-structure)
 
