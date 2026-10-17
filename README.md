@@ -77,7 +77,7 @@ cv-creator/
 │   ├── actions/              # Next.js Server Actions (auth, resume management)
 │   ├── app/
 │   │   ├── [locale]/         # Internationalized route groups
-│   │   ├── api/              # API Route Handlers (PDF generation)
+│   │   ├── api/              # API Route Handlers (PDF download, Supabase keep-alive)
 │   │   ├── globals.css       # Tailwind CSS v4 design tokens
 │   │   └── loading.tsx       # Global loading states
 │   ├── components/
@@ -95,7 +95,8 @@ cv-creator/
 ├── components.json           # shadcn/ui configuration
 ├── next.config.ts            # Next.js configuration
 ├── package.json              # Project dependencies and scripts
-└── tailwind.config.ts        # Tailwind configuration (v4)
+├── tailwind.config.ts        # Tailwind configuration (v4)
+└── vercel.json               # Vercel Cron configuration for keep-alive ping
 ```
 
 ---
