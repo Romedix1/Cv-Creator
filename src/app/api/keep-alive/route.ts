@@ -15,7 +15,7 @@ export async function GET(request: Request) {
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     );
 
-    const d = await supabase
+    await supabase
       .from("resumes")
       .select("id", { head: true })
       .limit(1);
